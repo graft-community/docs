@@ -2,7 +2,7 @@
 # GRAFT COMMUNITY
 ### Windows Compile Instructions For GRAFT NETWORK
 ##### By Patrick Durbin @SomethingGettingWrong
-![image1](https://github.com/Patrickdurbin/docs/blob/Windows-Compile/windows-compile-images/Graft%20Community%20Windows%20Comp.jpg)
+![GClogo](https://github.com/Patrickdurbin/docs/blob/Windows-Compile/windows-compile-images/GClogo.jpg)
 
 First head on over to the msys64 website.[MSYS2.ORG](https://www.msys2.org/)
 Msys2 is a self contained executable for all intents and purposes is a posix with
@@ -18,16 +18,16 @@ executable.
 
 Once you have this file downloaded. Execute it and install.
 
-![image2](https://github.com/Patrickdurbin/docs/blob/Windows-Compile/msys2%201.jpg)
+![1](https://github.com/Patrickdurbin/docs/blob/Windows-Compile/windows-compile-images/1.jpg)
 
 Please do not change from the current location `C:\` unless your comfortable with
 editing the make file in the GraftNetwork git directory currently its expects the
 path for msys64 to be on the `C:\`
 
-![image3](https://github.com/Patrickdurbin/docs/blob/Windows-Compile/msys2%202.jpg)
+![2](https://github.com/Patrickdurbin/docs/blob/Windows-Compile/windows-compile-images/2.jpg)
 ### Run your copy of msys64
 
-![image4](https://github.com/Patrickdurbin/docs/blob/Windows-Compile/msys2%203.jpg)
+![3](https://github.com/Patrickdurbin/docs/blob/Windows-Compile/windows-compile-images/3.jpg)
 
 At the Bash type.
 ```
@@ -40,7 +40,7 @@ just updated the update code and now requires a restart.
 Proceed with installation (Y) for yes when prompted with this next screen just exit
 
 
-![image5](https://github.com/Patrickdurbin/docs/blob/Windows-Compile/msys2%204.jpg)
+![4](https://github.com/Patrickdurbin/docs/blob/Windows-Compile/windows-compile-images/4.jpg)
 
 It will prompt with “ process are running in session” click okay to exit.
 
@@ -49,8 +49,8 @@ Edit the properties for the MSYS2 Shell
 shortcut changing "msys2_shell.bat" to
 "msys2_shell.cmd -mingw64"
 ```
-![image6](https://github.com/Patrickdurbin/docs/blob/Windows-Compile/msys2%205.jpg)
-![image7](https://github.com/Patrickdurbin/docs/blob/Windows-Compile/msys2%206.jpg)
+![5](https://github.com/Patrickdurbin/docs/blob/Windows-Compile/windows-compile-images/5.jpg)
+![6](https://github.com/Patrickdurbin/docs/blob/Windows-Compile/windows-compile-images/6.jpg)
 
 Double click the renamed batch file and again run the update command
 ```
@@ -58,7 +58,7 @@ pacman -Syuu
 ```
 Hit Y for yes
 
-![image8](https://github.com/Patrickdurbin/docs/blob/Windows-Compile/msys2%207.jpg)
+![7](https://github.com/Patrickdurbin/docs/blob/Windows-Compile/windows-compile-images/7.jpg)
 
 
 ##### Please paste the following command into Msys
@@ -87,13 +87,13 @@ this case your terminal)
 
 Hit enter Then Y for yes
 
-![image9](https://github.com/Patrickdurbin/docs/blob/Windows-Compile/msys2%208.jpg)
+![8](https://github.com/Patrickdurbin/docs/blob/Windows-Compile/windows-compile-images/8.jpg)
 
 ##### Now we need to install a DNS resolver
 ```
 pacman -S mingw-w64-x86_64-unbound
 ```
-![image10](https://github.com/Patrickdurbin/docs/blob/Windows-Compile/msys2%20unbound.jpg)
+![unbound](https://github.com/Patrickdurbin/docs/blob/Windows-Compile/windows-compile-images/unbound.jpg)
 
 ##### Now we install “git”
 ```
@@ -102,7 +102,7 @@ pacman -S git
 This will install software that will communicate with github to pull
 copies of a project.
 
-![image11](https://github.com/Patrickdurbin/docs/blob/Windows-Compile/msys2%20git.jpg)
+![git](https://github.com/Patrickdurbin/docs/blob/Windows-Compile/windows-compile-images/git.jpg)
 
 Exit out of msys
 
@@ -129,7 +129,7 @@ unbound that needs to be pulled.
 git submodule update --init --recursive
 ```
 
-![image11](https://github.com/Patrickdurbin/docs/blob/Windows-Compile/msys264%20%20git%20clone.jpg)
+![gitclone](https://github.com/Patrickdurbin/docs/blob/Windows-Compile/windows-compile-images/gitclone.jpg)
 
 Type
 ```
@@ -138,7 +138,7 @@ make release-static-win64
 It should compile the static executables to
 `C:/msys64/GraftNetwork/build/release/bin`
 
-![image12](https://github.com/Patrickdurbin/docs/blob/Windows-Compile/make%20static%20release64.jpg)
+![makestaticrelease64](https://github.com/Patrickdurbin/docs/blob/Windows-Compile/windows-compile-images/makestaticrelease64.jpg)
 
 If you need assistance feel free to contact me in telegram.
 
