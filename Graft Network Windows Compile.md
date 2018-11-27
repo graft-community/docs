@@ -34,8 +34,9 @@ At the Bash type.
 pacman -Syuu
 ```
 
-This will update your terminal. The terminal will freeze. This is normal. You have
-just updated the update code and now requires a restart.
+This will update your terminal. The terminal will appear to freeze. This is normal. You have
+just updated pacman. The Terminal needs to restart in order to continue updating. It has 
+come to a halt as the old pacman was used to essentially replace itself.
 
 Proceed with installation (Y) for yes when prompted with this next screen just exit
 
