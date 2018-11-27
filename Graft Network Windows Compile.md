@@ -67,7 +67,7 @@ Hit Y for yes
 pacman -S mingw-w64-x86_64-toolchain make mingw-w64-x86_64-cmake
 mingw-w64-x86_64-boost
 ```
-This will dowload the toolchain used for cross compilation. The
+This will download the toolchain used for cross compilation. The
 Cmake version used to generate a windows compatible mingw-w
 cmake compile instructions and boost dependencies C++ Libraries.
 
