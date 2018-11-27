@@ -2,7 +2,7 @@
 # GRAFT COMMUNITY
 ### Windows Compile Instructions For GRAFT NETWORK
 ##### By Patrick Durbin @SomethingGettingWrong
-![image1](https://github.com/Patrickdurbin/docs/blob/Windows-Compile/Graft%20Community%20Windows%20Comp.jpg)
+![image1](https://github.com/Patrickdurbin/docs/blob/Windows-Compile/windows-compile-images/Graft%20Community%20Windows%20Comp.jpg)
 
 First head on over to the msys64 website.[MSYS2.ORG](https://www.msys2.org/)
 Msys2 is a self contained executable for all intents and purposes is a posix with
