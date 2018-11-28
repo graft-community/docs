@@ -22,7 +22,7 @@ This is the formal version of the `Alpha3 Supernode Guide for Dummies` by yidake
 ## Brief list of VPS poviders
 
 
->| URL           | Specs         | Bandwidth | Storage | Price/month  |
+| URL           | Specs         | Bandwidth | Storage | Price/month  |
 | ------------- |:-------------:| :-------------:| :-----:| :-----:|
 | https://vultr.com | 2vCPU 4GB | 3 TB | 60GB | $20 |
 | https://try.digitalocean.com | 2vCPU 4GB| 4 TB | 80GB     |   $100 Free Trial |
@@ -40,6 +40,7 @@ This is the formal version of the `Alpha3 Supernode Guide for Dummies` by yidake
     sudo apt-get update
 
 ![1](simple-setup-images/1.png)
+
 
     sudo apt-get upgrade
 
@@ -118,7 +119,7 @@ You now have;
 
 * `graftnonded` - syncs the blockchain, has interactive commands
 * `graft-wallet-cli` - wallet management, has interactive commands
-* `graft_serverg - RTA/supernode functions, non-interactive
+* `graft_server` - RTA/supernode functions, non-interactive
 
 >`Graftnoded` and `graft-wallet-cli` both live inside the directory; `$Home/supernode/BUILD/bin/`
 
@@ -143,11 +144,11 @@ You now have;
 
 ![15](simple-setup-images/15.png)
 
-* Type `help` and press `Enter` to see the list of commands you can run to inspect the network. Check with `status` to double check your block height
+* Type `help` and press `Enter` to see the list of commands you can run to inspect the network. Check with `status` to double check your block height against the community block explorer - https://rta.graft.observer
 
-* When you’re up to block height, then you can safely run wallets, any wallet. But we need to create a specific wallet for your SuperNode, and send the staking amount to it.
+When you’re up to block height, then you can safely run wallets, any wallet. But we need to create a specific wallet for your SuperNode, and send the staking amount to it.
 
-* The easiest way is to run `graft_server` for a few seconds, and then stopping the process. It will create a stake-wallet automatically.
+The easiest way is to run `graft_server` for a few seconds, and then stopping the process. It will create a stake-wallet automatically.
 
 * **You will need to create a new Terminal** - if you close the terminal window, it will kill the current process, in this case `graftnoded` - in future tutorials we will explain how to use `screen` to solve this, but for now we're keeping it simple.
 
@@ -179,7 +180,7 @@ You now have;
 
 ![17](simple-setup-images/17.png)
 
-Once your balance is unlocked, can now start the supernode in the next step.
+Once your balance is unlocked, you can start the supernode in the next step.
 
 * Exit the wallet (or create a new Terminal session), navigate to the `$HOME/supernode` directory and start `graft_server`
 
