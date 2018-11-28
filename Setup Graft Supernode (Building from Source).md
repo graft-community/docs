@@ -6,6 +6,7 @@ These instructions will help you build and setup a Graft Supernode from Source.
 ## Requirements
 * OS:  Ubuntu 18.04 (other linux distributions and versions may require additional steps)
 * RAM:  2GB per CPU Core
+* If you are running from a local network you will also need to forward ports 28680 & 28681 to your supernode's local IP address.
 
 ## Prepare the server
 If you have not done so add a user and give it sudo rights.  We'll use graft-user, but you can use any username you prefer.
@@ -39,6 +40,7 @@ exit
 ````
 
 ## Add Firewall
+
 
 ````bash
 sudo ufw default allow outgoing
