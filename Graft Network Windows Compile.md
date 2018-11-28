@@ -4,7 +4,7 @@
 ##### By Patrick Durbin @SomethingGettingWrong
 ![GClogo](windows-compile-images/GClogo.jpg)
 
-First head on over to the msys64 website.[MSYS2.ORG](https://www.msys2.org/)
+First head on over to the msys64 website. [MSYS2.ORG](https://www.msys2.org/)
 Msys2 is a self contained executable for all intents and purposes is a posix with
 bash built off of Arch Linux. It has a special toolset called Mingw-64. Mingw-w
 takes native linux libraries and GNU compatible code and cross compiles static
@@ -115,20 +115,12 @@ git clone https://github.com/graft-project/GraftNetwork.git
 ```
 or for the community edition
 ```
-git clone https://github.com/graft-community/GraftNetwork.git
+git clone --recurse-submodules https://github.com/graft-project/GraftNetwork.git
 ```
-
 Once its done type (this will put you in the current directory of
 GraftNetwork)
 
-`Cd GraftNetwork`
-
-Once in the directory you need to call for any external project links
-to files that need to be pulled. Graft has an updated version of
-unbound that needs to be pulled.
-```
-git submodule update --init --recursive
-```
+`cd GraftNetwork`
 
 ![gitclone](windows-compile-images/gitclone.jpg)
 
