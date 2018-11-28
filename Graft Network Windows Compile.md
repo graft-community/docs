@@ -111,7 +111,7 @@ Please browse back to the C:\msys64 and look for mingw
 
 #### Run mingw
 ```
-git clone https://github.com/graft-project/GraftNetwork.git
+git clone --recurse-submodules https://github.com/graft-project/GraftNetwork.git
 ```
 or for the community edition
 ```
