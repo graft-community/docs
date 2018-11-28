@@ -1,5 +1,4 @@
-# README
-# GuideBuiltforUbuntu-DebianGraftDockercontainer
+# Guide Built for Ubuntu - Debian Graft Docker container
 
 Thanks to Jason @jagerman42 (Telegram handle) for the alpha 3 code fork and optimizations included, including the wizard to install his packages and the watch-only-wallets download for testnet. https://github.com/graft-community/GraftNetwork  
 
@@ -155,17 +154,9 @@ Record seed and store safely especially on Mainnet (KEEP OFFLINE or written down
 when in wallet type: seed and follow prompt (no password just press enter)
 
 Once graftnoded fully synced and stake in wallet, kill graft_server process to speed up process.  
- Kill graft_server process:
+Kill graft_server process:
 ````bash
-ps ax | graft_server
-````
-grab process ID = Furthest to the left of the line showing below:
-````bash
-4002 ?        Sl     1:32 graft_server --log-file supernode.log --log-level 1 > out.log 2>&1
-````
-In this example use = 4002
-````bash
-kill -9 4002
+killall -9 graft_server
 ````
 graft_server will start automatically again.
 
@@ -217,13 +208,9 @@ any watch-only-wallets downloads on mainnet):
 
 Before running the image download and docker run step, download provided blockchain directory.
 ````bash
-sudo apt update
-sudo apt install unzip -y
 mkdir $HOME/.graft		# (if not done already)
-wget "https://www.dropbox.com/s/b55s59bluvp8s1z/graft_bc_testnet_bkp_17Nov18.zip" -P /tmp
-unzip /tmp/graft_bc_testnet_bkp_17Nov18.zip '.graft/testnet/*' -d $HOME/
+mkdir $HOME/.graft/testnet && mkdir $HOME/.graft/testnet/lmdb && cd ~/.graft/testnet/lmdb && wget https://rta.graft.observer/lmdb/data.mdb
 ````
-
 Go back to: [Download image and run container after with mounted volume ](https://github.com/mv1879/docs/blob/master/Dockers%20by%20Fez.md#add-docker-repo)
 
 ## ADVANCED
@@ -246,15 +233,7 @@ mkdir -p ~/.graft/supernode/data/{watch-only-wallets,stake-wallet} && cd ~/.graf
 ````
 Kill graft_server process:
 ````bash
-ps ax | grep graft_server
-````
-grab process ID = Furthest to the left of the line showing below:
-````bash
-4002 ?        Sl     1:32 graft_server --log-file supernode.log --log-level 1 > out.log 2>&1
-````
-In this example use = 4002
-````bash
-kill -9 4002
+killall -9 graft_server
 ````
 graft_server will start automatically again.
 cd back to location for supernode logs 
