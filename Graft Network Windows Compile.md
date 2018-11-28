@@ -18,16 +18,16 @@ executable.
 
 Once you have this file downloaded. Execute it and install.
 
-![1](https://github.com/Patrickdurbin/docs/blob/Windows-Compile/windows-compile-images/1.jpg)
+![1](windows-compile-images/1.jpg)
 
 Please do not change from the current location `C:\` unless your comfortable with
 editing the make file in the GraftNetwork git directory currently its expects the
 path for msys64 to be on the `C:\`
 
-![2](https://github.com/Patrickdurbin/docs/blob/Windows-Compile/windows-compile-images/2.jpg)
+![2](windows-compile-images/2.jpg)
 ### Run your copy of msys64
 
-![3](https://github.com/Patrickdurbin/docs/blob/Windows-Compile/windows-compile-images/3.jpg)
+![3](windows-compile-images/3.jpg)
 
 At the Bash type.
 ```
@@ -41,7 +41,7 @@ come to a halt as the old pacman was used to essentially replace itself.
 Proceed with installation (Y) for yes when prompted with this next screen just exit
 
 
-![4](https://github.com/Patrickdurbin/docs/blob/Windows-Compile/windows-compile-images/4.jpg)
+![4](windows-compile-images/4.jpg)
 
 It will prompt with “ process are running in session” click okay to exit.
 
@@ -50,8 +50,8 @@ Edit the properties for the MSYS2 Shell
 shortcut changing "msys2_shell.bat" to
 "msys2_shell.cmd -mingw64"
 ```
-![5](https://github.com/Patrickdurbin/docs/blob/Windows-Compile/windows-compile-images/5.jpg)
-![6](https://github.com/Patrickdurbin/docs/blob/Windows-Compile/windows-compile-images/6.jpg)
+![5](windows-compile-images/5.jpg)
+![6](windows-compile-images/6.jpg)
 
 Double click the renamed batch file and again run the update command
 ```
@@ -59,7 +59,7 @@ pacman -Syuu
 ```
 Hit Y for yes
 
-![7](https://github.com/Patrickdurbin/docs/blob/Windows-Compile/windows-compile-images/7.jpg)
+![7](windows-compile-images/7.jpg)
 
 
 ##### Please paste the following command into Msys
@@ -88,13 +88,13 @@ this case your terminal)
 
 Hit enter Then Y for yes
 
-![8](https://github.com/Patrickdurbin/docs/blob/Windows-Compile/windows-compile-images/8.jpg)
+![8](windows-compile-images/8.jpg)
 
 ##### Now we need to install a DNS resolver
 ```
 pacman -S mingw-w64-x86_64-unbound
 ```
-![unbound](https://github.com/Patrickdurbin/docs/blob/Windows-Compile/windows-compile-images/unbound.jpg)
+![unbound](windows-compile-images/unbound.jpg)
 
 ##### Now we install “git”
 ```
@@ -103,7 +103,7 @@ pacman -S git
 This will install software that will communicate with github to pull
 copies of a project.
 
-![git](https://github.com/Patrickdurbin/docs/blob/Windows-Compile/windows-compile-images/git.jpg)
+![git](windows-compile-images/git.jpg)
 
 Exit out of msys
 
@@ -130,7 +130,7 @@ unbound that needs to be pulled.
 git submodule update --init --recursive
 ```
 
-![gitclone](https://github.com/Patrickdurbin/docs/blob/Windows-Compile/windows-compile-images/gitclone.jpg)
+![gitclone](windows-compile-images/gitclone.jpg)
 
 Type
 ```
@@ -139,7 +139,7 @@ make release-static-win64
 It should compile the static executables to
 `C:/msys64/GraftNetwork/build/release/bin`
 
-![makestaticrelease64](https://github.com/Patrickdurbin/docs/blob/Windows-Compile/windows-compile-images/makestaticrelease64.jpg)
+![makestaticrelease64](windows-compile-images/makestaticrelease64.jpg)
 
 If you need assistance feel free to contact me in telegram.
 
