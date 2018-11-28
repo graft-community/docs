@@ -115,7 +115,7 @@ git clone --recurse-submodules https://github.com/graft-project/GraftNetwork.git
 ```
 or for the community edition
 ```
-git clone --recurse-submodules https://github.com/graft-project/GraftNetwork.git
+git clone --recurse-submodules https://github.com/graft-community/GraftNetwork.git
 ```
 Once its done type (this will put you in the current directory of
 GraftNetwork)
