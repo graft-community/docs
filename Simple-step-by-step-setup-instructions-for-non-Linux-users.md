@@ -64,6 +64,7 @@ This is the formal version of the `Alpha3 Supernode Guide for Dummies` by yidake
 ![5](simple-setup-images/5.png)
 
 
+      cd graft-ng
       git pull --recurse-submodules
 
 ![6](simple-setup-images/6.png)
