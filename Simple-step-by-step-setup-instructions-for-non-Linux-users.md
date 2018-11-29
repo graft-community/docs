@@ -8,7 +8,7 @@ This is the formal version of the `Alpha3 Supernode Guide for Dummies` by yidake
 
 * This is a bare minimum install recommended for linux newbies and troubleshooting purposes.
 
-* This setup is **not recommended for mainnet**, as it is very a insecure server setup.
+* This setup is **not recommended for mainnet**, as it is a very insecure server setup.
 
 * This guide is not intended for linux educational purposes, rather a simple copy/paste procedure to get your Supernode up an running and see it working properly and learn Supernode management, and later be able to follow more advanced setup guides.
 
@@ -22,14 +22,14 @@ This is the formal version of the `Alpha3 Supernode Guide for Dummies` by yidake
 ## Brief list of VPS poviders
 
 
-| URL           | Specs         | Bandwidth | Storage | Price/month  |
-| ------------- |:-------------:| :-------------:| :-----:| :-----:|
-| https://vultr.com | 2vCPU 4GB | 3 TB | 60GB | $20 |
-| https://try.digitalocean.com | 2vCPU 4GB| 4 TB | 80GB     |   $100 Free Trial |
-| https://www.hetzner.com/ | 2vCPU 4GB | 20TB  | 40TB    |    4,90€|
-| https://contabo.com/ | 4 CPU 8GB | Unlimited | 200 GB      |    4,99€ |
-| https://www.linode.com/ |2vCPU 4GB | 4TB | 80GB      |    $20 |
-| https://www.ovh.com/ | 2vCPU 7GB | ?  | 50GB    |    $26.40 |
+| URL                          | Specs     | Bandwidth | Storage| Price/month     |
+| -------------                |:---------:| :--------:| :-----:| :--------------:|
+| https://vultr.com            | 2vCPU 4GB | 3 TB      | 60GB   |    $20          |
+| https://try.digitalocean.com | 2vCPU 4GB | 4 TB      | 80GB   | $100 Free Trial |
+| https://www.hetzner.com/     | 2vCPU 4GB | 20TB      | 40TB   |    4,90€        |
+| https://contabo.com/         | 4 CPU 8GB | Unlimited | 200 GB |    4,99€        |
+| https://www.linode.com/      | 2vCPU 4GB | 4TB       | 80GB   |    $20          |
+| https://www.ovh.com/         | 2vCPU 7GB | ?         | 50GB   |    $26.40       |
 
 
 * Start by selecting a VPS provider, spin up a node selecting Ubuntu 18.04. The Community Dev Tree accepts other distributions, but for this guide we will focus on Ubuntu 18.04.
@@ -59,30 +59,14 @@ This is the formal version of the `Alpha3 Supernode Guide for Dummies` by yidake
 
 * Clone Community Tree Graft Supernode testnet code from GitHub repository
 
-      git clone --recursive https://github.com/graft-community/graft-ng.git
+      git clone --recursive -b gc-alpha https://github.com/graft-community/graft-ng.git
 
 ![5](simple-setup-images/5.png)
 
-* Enter the graft-ng directory
 
-
-    cd graft-ng
+      git pull --recurse-submodules
 
 ![6](simple-setup-images/6.png)
-
-* Switch over to the alpha3 branch
-
-
-    git checkout alpha3
-
-![7](simple-setup-images/7.png)
-
-* Update submodules
-
-
-    git submodule update --init --recursive
-
-![8](simple-setup-images/8.png)
 
 * Install dependencies
 
@@ -103,7 +87,7 @@ This is the formal version of the `Alpha3 Supernode Guide for Dummies` by yidake
 * Run “cmake” in this directory, using the source code
 
 
-    cmake -DENABLE_SYSLOG=ON $HOME/graft-ng
+      cmake -DENABLE_SYSLOG=ON $HOME/graft-ng
 
 ![11](simple-setup-images/11.png)
 
@@ -121,15 +105,13 @@ You now have;
 * `graft-wallet-cli` - wallet management, has interactive commands
 * `graft_server` - RTA/supernode functions, non-interactive
 
->`Graftnoded` and `graft-wallet-cli` both live inside the directory; `$Home/supernode/BUILD/bin/`
-
->`graft_server` lives in;
+>`Graftnoded` and `graft-wallet-cli` and `graft_server` live in;
 `$HOME/supernode/
 
 * You should already be inside of the supernode directory, but in any case, lets cd directly into it:
 
 
-    cd $HOME/supernode/BUILD/bin
+    cd $HOME/supernode
 
 ![13](simple-setup-images/13.png)
 
@@ -163,7 +145,7 @@ The easiest way is to run `graft_server` for a few seconds, and then stopping th
 * Let’s open the stake-wallet to find the address to send funds to. By opening the wallet, you will be able to retrieve the mnemonic seed phrase for safe keeping. The actual stake-wallet is created in a hidden folder, here is how to access it;
 
 
-    cd $HOME/supernode/BUILD/bin
+    cd $HOME/supernode
     ./graft-wallet-cli --wallet-file ~/.graft/supernode/data/stake-wallet/stake-wallet --password "" --testnet --trusted-daemon
 
 ![16](simple-setup-images/16.png)
