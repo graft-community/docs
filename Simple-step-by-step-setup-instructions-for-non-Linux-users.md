@@ -191,7 +191,12 @@ Eventually, after quite some time, it will finish. Let it run. Some terminal emu
 ![22](simple-setup-images/22.png)
 
 #### Congratulations!
+
 You have a fully functioning Supernode live on Alpha 3 testnet, and should start getting rewards soon.
+
+You will need test-GRFT to fund your Supernode. Head over to the official Graft Telegram RTA Testnet channel (https://t.me/joinchat/F25OCUXOQ55qqHm_BZU4Sg), or if you prefer Discord (https://discord.gg/ukjvUB)
+
+Once there, read the pinned message on how to get some test-GRFT - basically just ask!
 
 You can now experiment with the Point-Of-Sale wallet to create some items, as well as the RTA Alpha testnet wallet - and see for yourself how RTA works. If all is well configured, should take 4 to 8 seconds to conclude a sale.
 
