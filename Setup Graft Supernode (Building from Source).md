@@ -123,3 +123,76 @@ rm watch-only-wallets.tar
 ````bash
 ~/supernode/./graft_server --log-level=1 --log-file ~/supernode/logs/graft_server.log
 ````
+
+## Add graftnoded and graftserver services
+
+Mae sure that graft_server and graftnoded are not running
+````bash
+~/supernode/BUILD/bin/./graftnoded --testnet exit
+killall -9 graftnoded
+killall -9 graft_server
+````
+  
+Create graftnoded service using nano.
+````bash
+sudo nano /etc/systemd/system/graftnoded.service
+````
+
+Copy the following into the file that you just graftnoded.service.  Make sure to change graft-user to your username in all 4 places (User, WorkingDirectory, ExecStart X 2).  Use CTRL-X to save and exit.
+````bash
+[Unit]
+Description=Graft node (RTA alpha)
+After=network-online.target
+
+[Service]
+User=graft-user
+Type=simple
+WorkingDirectory=/home/graft-user/
+Restart=always
+ExecStart=/home/graft-user/supernode/BUILD/bin/./graftnoded --testnet --log-file /home/graft-user/supernode/logs/graftnoded.log --log-level=1 --non-interactive
+LimitNOFILE=8192
+Environment=TERM=xterm
+
+[Install]
+WantedBy=multi-user.target
+````
+  
+Create graftserver service using nano.
+````bash
+sudo nano /etc/systemd/system/graftserver.service
+````
+Copy the following into the file that you just graftserver.service.  Make sure to change graft-user to your username in all 4 places (User, WorkingDirectory, ExecStart X 2).  Use CTRL-X to save and exit.
+````bash
+[Unit]
+Description=Graft supernode (RTA alpha)
+After=graftnoded.service
+
+[Service]
+User=graft-user
+Type=simple
+WorkingDirectory=/home/graft-user/supernode/
+Restart=always
+ExecStart=/home/graft-user/supernode/./graft_server  --log-level=1 --log-file /home/graft-user/supernode/logs/graft_server.log
+Environment=TERM=xterm
+LimitNOFILE=8192
+
+[Install]
+WantedBy=multi-user.target
+````
+Start and enable these services to start on boot.
+
+````bash
+sudo systemctl start graftnoded
+sudo systemctl start graftserver
+sudo systemctl enable graftnoded
+sudo systemctl enable graftserver
+sudo reboot
+````
+
+After reboot make sure services are running properly.
+
+````bash
+sudo systemctl status graftnoded
+sudo systemctl status graftserver
+````
+
