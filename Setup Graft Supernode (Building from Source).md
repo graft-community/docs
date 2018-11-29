@@ -74,10 +74,10 @@ git clone --recursive -b alpha3 https://github.com/graft-project/graft-ng.git
 ## Build Graft Supernode from source
 
 ````bash
-cd $HOME
+cd ~
 mkdir -p supernode/logs
 cd supernode
-cmake -DENABLE_SYSLOG=ON $HOME/graft-ng
+cmake -DENABLE_SYSLOG=ON ~/graft-ng
 make -j2    # Adjust as needed: -j1 for a low-powered machine, -j8 for an 8-core monster with at least 16GB ram
 ````
 
@@ -85,41 +85,41 @@ make -j2    # Adjust as needed: -j1 for a low-powered machine, -j8 for an 8-core
 
 
 ````bash
-mkdir -p $HOME/.graft/testnet/lmdb
-wget https://rta.graft.observer/lmdb/data.mdb -P $HOME/.graft/testnet/lmdb/
+mkdir -p ~/.graft/testnet/lmdb
+wget https://rta.graft.observer/lmdb/data.mdb -P ~/.graft/testnet/lmdb/
 ````
 
 ## Start graftnoded
 
 ````bash
-$HOME/supernode/BUILD/bin/./graftnoded --testnet --log-file ~/supernode/logs/graftnoded.log --log-level=1 --detach
+~/supernode/BUILD/bin/./graftnoded --testnet --log-file ~/supernode/logs/graftnoded.log --log-level=1 --detach
 ````
 
 ## Start graft_server
 Start graft_server for long enough to create the stake-wallet then close it.  When it starts to scroll hit CTRL-C to exit.
 
 ````bash
-$HOME/supernode/./graft_server
+~/supernode/./graft_server
 ````
 
 ## Add Stake to Stake-Wallet
 The following command will give you the stake wallet address.  Use this address to request testnet graft in the Telegram group or Discord channel.
 
 ````bash
-cat $HOME/.graft/supernode/data/stake-wallet/stake-wallet.address.txt
+cat ~/.graft/supernode/data/stake-wallet/stake-wallet.address.txt
 ````
 
 ## Download Watch-Only -Wallets (Optional to help catch up graft_server)
 
 ````bash
-mkdir -p $HOME/.graft/supernode/data
+mkdir -p ~/.graft/supernode/data
 wget https://rta.graft.observer/lmdb/watch-only-wallets.tar
-tar xf watch-only-wallets.tar -C $HOME/.graft/supernode/data
+tar xf watch-only-wallets.tar -C ~/.graft/supernode/data
 rm watch-only-wallets.tar
 ````
 
 ## Start Graft Server
 
 ````bash
-$HOME/supernode/./graft_server --log-level=1 --log-file $HOME/supernode/logs/graft_server.log
+~/supernode/./graft_server --log-level=1 --log-file ~/supernode/logs/graft_server.log
 ````
