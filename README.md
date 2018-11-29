@@ -20,6 +20,11 @@ easily to run the supernode on Linux systems that don't necessarily satisfy the 
 This is a condensed set of instructions to get up and running with a supernode.  Recommended for someone with prior Linux
 experience, or who has gone through the setup before and just needs a quick refresher on the steps.
 
+### [Updating the supernode code and recompiling](graft-ng-update.md)
+
+A quick set of instructions (by [Jason](https://t.me/jagerman42)) describing how to update and
+rebuild the supernode using either the dev or community builds.
+
 ## Other guides
 
 ### [Compiling node + cli tools on Windows](Graft%20Network%20Windows%20Compile.md)
