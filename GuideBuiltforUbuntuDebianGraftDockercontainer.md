@@ -156,7 +156,7 @@ when in wallet type: seed and follow prompt (no password just press enter)
 Once graftnoded fully synced and stake in wallet, kill graft_server process to speed up process.  
 Kill graft_server process:
 ````bash
-killall -9 graft_server
+kill -9 `pidof graft_server`
 ````
 graft_server will start automatically again.
 
@@ -233,7 +233,7 @@ mkdir -p ~/.graft/supernode/data/{watch-only-wallets,stake-wallet} && cd ~/.graf
 ````
 Kill graft_server process:
 ````bash
-killall -9 graft_server
+kill -9 `pidof graft_server`
 ````
 graft_server will start automatically again.
 cd back to location for supernode logs 
