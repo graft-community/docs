@@ -32,11 +32,7 @@ sudo fallocate -l 4G /swapfile          # Change 4G to the proper size swap file
 sudo chmod 600 /swapfile
 sudo mkswap /swapfile
 sudo swapon /swapfile
-sudo su -
-cat <<EOF >> /etc/fstab
-/swapfile none swap sw 0 0
-EOF
-exit
+echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
 ````
 
 ## Add Firewall
@@ -47,13 +43,9 @@ sudo ufw default allow outgoing
 sudo ufw default deny incoming
 sudo ufw allow ssh/tcp
 sudo ufw limit ssh/tcp
-sudo ufw allow 28600/tcp            # Load balancer http port
-sudo ufw allow 28643/tcp            # Load balancer https port
 sudo ufw allow 28680/tcp            # p2p node port
-sudo ufw allow 28680/udp            # p2p node port
 sudo ufw allow 28681/tcp            # rpc node port
 sudo ufw allow 28690/tcp            # rpc supernode port
-sudo ufw allow 8081/tcp             # block explorer port
 sudo ufw logging on
 sudo ufw -f enable
 sudo ufw status
@@ -77,8 +69,6 @@ sudo sed -i -e 's/.*DefaultLimitNOFILE=.*/DefaultLimitNOFILE=8192/g' /etc/system
 
 ````bash
 git clone --recursive -b alpha3 https://github.com/graft-project/graft-ng.git
-cd graft-ng
-git submodule update --init --recursive
 ````
 
 ## Build Graft Supernode from source
