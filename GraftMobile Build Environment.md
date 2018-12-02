@@ -1,7 +1,7 @@
 # Instructions on how to build Graft Android Wallet and POS on Qt cross-platfrom application framework for Windows desktop.
 
 
-![QtWallet](docs/QTImages/QtGraftWallet.PNG)
+![](QTImages/QtGraftWallet.PNG)
 
 
 ### Preamble
