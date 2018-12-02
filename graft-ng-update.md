@@ -4,19 +4,20 @@ Note: this assumes that you already have a working graft-ng and want to update t
 
 It also assumes that your `graft-ng` is checked out in `~/graft-ng` and that your build directory is `~/supernode`.
 
-## Updating git
+## Updating git (staying on the official dev branch)
 
 The following will fetch new commits from github:
 
     cd ~/graft-ng
-    git checkout alpha3   # Or whatever the current branch is called.
-    git pull --recurse-submodules
+    git fetch --all
+    git checkout --recurse-submodules alpha3
 
-In some cases, you may need to update the GraftNetwork code embedded inside graft-ng separately.  To do that you would use:
+In some cases, you may need to update the GraftNetwork code embedded inside graft-ng separately.  To do that you would continue
+from the above using:
 
     cd ~/graft-ng/modules/cryptonode
-    git checkout rta-alpha3    # change, if needed, to whichever branch you want to use
-    git pull
+    git fetch --all
+    git checkout rta-alpha3
 
 Now rebuild graft-ng from scratch by moving aside the existing build directory and creating a fresh one:
 
@@ -25,26 +26,51 @@ Now rebuild graft-ng from scratch by moving aside the existing build directory a
     mkdir supernode
     cd supernode
     cmake -DENABLE_SYSLOG=ON ~/graft-ng
-    make -j2    # Adjust as needed: -j1 for a low-powered machine, -j8 for an 8-core monster with at least 16GB ram
+    make -j2    # Adjust as needed: -j1 for a low-powered machine, -j8 for an 8-core monster with 16GB of ram
 
 That's it; this will give you a new, up-to-date build.
 
 
 # Trying out the community branch
 
+## Updating
+
+If you already have a community branch checkout, you simply need to update it using:
+
+    cd ~/graft-ng
+    git pull --recurse-submodules
+
+and then rebuild using:
+
+    cd ~/supernode
+    make -j2    # Adjust as needed: -j1 for a low-powered machine, -j8 for an 8-core monster with 16GB of ram
+
+## Switching from the dev branch
+
 The community development branch follows the main alpha development branch, but also includes various community-developed
-fixes and/or features.  If you want to try it out, the following recipe should get you going:
+fixes and/or features.  If you want to try it out, the following recipe should get you going.
+
+Assuming you already have a `graft-ng` repository cloned from the official graft-project branch, you
+can add the community branch as a second `remote` using:
 
     cd ~/graft-ng
     git remote add g.c https://github.com/graft-community/graft-ng.git
     git fetch g.c
     git checkout gc-alpha
-    git pull --recurse-submodules
+
+If you don't have `graft-ng` at all, you can obtain the community version directly using:
+
     cd ~
-    mv supernode supernode.old
+    git clone --recurse-submodules -b gc-alpha https://github.com/graft-community/graft-ng.git
+
+Using either of these approaches, you can then build the supernode using:
+
+    cd ~
+    mv supernode supernode.old   # (only if you already have a supernode build directory)
+    mkdir supernode
     cd supernode
     cmake -DENABLE_SYSLOG=ON ~/graft-ng
-    make -j2    # Adjust as needed: -j1 for a low-powered machine, higher for a machine with more cores/ram
+    make -j2    # Adjust as needed: -j1 for a low-powered machine, -j for an 8-core monster with 16GB of ram
 
 Note that the community version builds slightly differently: the `graftnoded` and `graft-wallet-cli` files will end up
 in the build directory (`~/supernode`) rather than in a subdirectory (`~/supernode/BUILD/bin`).
@@ -60,11 +86,15 @@ Yes, you can!  The graft-community version is also available in a .deb, built by
     apt install graftnoded-alpha graft-supernode
     cp /usr/share/doc/graft-supernode/config.ini ~/supernode.ini
 
-Then you can launch graftnoded by just running
+Then you can launch graftnoded by just running (see the other guides for details on running this in
+screen or as a service):
 
     graftnoded
 
-and can launch the supernode by running
+or can launch the supernode by running:
+
+    # Only need this the first time:
+    cp /usr/share/doc/graft-supernode/config.ini ~/supernode.ini
 
     graft_server --config-file ~/supernode.ini
 
