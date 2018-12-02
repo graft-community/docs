@@ -30,3 +30,7 @@ rebuild the supernode using either the dev or community builds.
 ### [Compiling node + cli tools on Windows](Graft%20Network%20Windows%20Compile.md)
 
 A comprehensive set of instructions on how to compile your own node and command-line Windows binaries on Windows by [Patrick](https://t.me/SomethingGettingWrong)
+
+### [Instructions on how to build Graft Android Wallet and POS on Qt cross-platfrom application framework for Windows desktop.](instructions-on-how-to-build-graft-android-wallet-and-pos-on-qt-cross-platfrom-application-framework-for-windows-desktop.md)
+
+A complete setup up guide to where to download, IDE setup and application building GraftMobile components on Windows.
