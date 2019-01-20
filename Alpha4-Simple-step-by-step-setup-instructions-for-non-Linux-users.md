@@ -1,6 +1,6 @@
 # **Alpha 4 - Simple step-by-step Supernode setup instructions for non-Linux users**
 ---
-by: yidakee (aka el_duderino_007)
+_by: yidakee (aka el_duderino_007)_
 
 ## General considerations
 
