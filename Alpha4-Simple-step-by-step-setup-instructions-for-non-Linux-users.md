@@ -28,7 +28,7 @@
 
 * Link to Digital Ocean free $100 Trial (must provide Credit Card) - https://try.digitalocean.com/performance/
 
-* Start by selecting a VPS provider, spin up a node selecting Ubuntu 18.04. The Community Dev Tree accepts other distributions, but for this guide we will focus on Ubuntu 18.04.
+* Start by selecting a VPS provider, spin up a node selecting Ubuntu 18.04. 
 
 * Once you’ve fired up your node, `ssh` into the server and perform typical maintenance (note, it may not look exactly the same on your machine)
 
