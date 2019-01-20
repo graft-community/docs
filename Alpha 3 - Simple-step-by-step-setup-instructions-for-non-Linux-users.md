@@ -1,4 +1,4 @@
-# **Simple step-by-step Supernode setup instructions for non-Linux users**
+# **Alpha 3 - Simple step-by-step Supernode setup instructions for non-Linux users**
 ---
 This is the formal version of the `Alpha3 Supernode Guide for Dummies` by yidakee (@el_duderino_007) dedicated to the Community Tree development branch of Graft Network.
 
