@@ -28,7 +28,7 @@
 
 * Link to Digital Ocean free $100 Trial (must provide Credit Card) - https://try.digitalocean.com/performance/
 
-* Start by selecting a VPS provider, spin up a node selecting Ubuntu 18.04. 
+* Start by selecting a VPS provider, spin up a node selecting Ubuntu 18.04.
 
 * Once you’ve fired up your node, `ssh` into the server and perform typical maintenance (note, it may not look exactly the same on your machine)
 
@@ -128,10 +128,10 @@ You now have;
 * `supernode` - RTA/supernode functions, non-interactive
 
 >`graftnoded` and `graft-wallet-cli` live in the directory;
-`$HOME/supernode/BUILD/bin
+`$HOME/supernode/BUILD/bin`
 
 >`supernode` lives is;
-`$HOME/supernode/
+`$HOME/supernode/`
 
 * You need to run `graftnoded` first and let the blockchain fully sync.
 * * First, lets run `graftnoded` and wait until it syncs up the blockchain - this may take a long time, around 3h at the time of writing.
