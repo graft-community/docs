@@ -10,11 +10,6 @@ up GRAFT nodes, supernodes, etc.
 Detailed setup guide by [yidakee](https://t.me/el_duderino_007) to get a supernode up and running from scratch on a Ubuntu 18.04 system.
 Highly recommended for new-to-Linux users to get going.
 
-### [Alpha 3 - Simple step-by-step Supernode setup instructions for non-Linux users](Alpha3%20-%20 Simple-step-by-step-setup-instructions-for-non-Linux-users.md)
-
-Detailed setup guide by [yidakee](https://t.me/el_duderino_007) to get a supernode up and running from scratch on a Ubuntu 18.04 system.
-Highly recommended for new-to-Linux users to get going.
-
 ### [Docker supernode guide](GuideBuiltforUbuntuDebianGraftDockercontainer.md)
 
 Instructions (by [Fez](https://t.me/Fezz27)) on how to run a supernode inside a docker container, which, among other things, allows you
