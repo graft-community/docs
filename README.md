@@ -5,7 +5,12 @@ up GRAFT nodes, supernodes, etc.
 
 ## Supernode guides
 
-### [Simple step-by-step Supernode setup instructions for non-Linux users](Simple-step-by-step-setup-instructions-for-non-Linux-users.md)
+### [Alpha 4 - Simple step-by-step Supernode setup instructions for non-Linux users](Alpha4-Simple-step-by-step-setup-instructions-for-non-Linux-users.md)
+
+Detailed setup guide by [yidakee](https://t.me/el_duderino_007) to get a supernode up and running from scratch on a Ubuntu 18.04 system.
+Highly recommended for new-to-Linux users to get going.
+
+### [Alpha 3 - Simple step-by-step Supernode setup instructions for non-Linux users](Alpha3 - Simple-step-by-step-setup-instructions-for-non-Linux-users.md)
 
 Detailed setup guide by [yidakee](https://t.me/el_duderino_007) to get a supernode up and running from scratch on a Ubuntu 18.04 system.
 Highly recommended for new-to-Linux users to get going.
