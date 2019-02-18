@@ -69,13 +69,13 @@ _by: yidakee (aka el_duderino_007)_
 * For the Graft Official build, do;
 
 ````bash
-      git clone --recursive https://github.com/graft-project/graft-ng.git
+      git clone --recursive -b alpha4 https://github.com/graft-project/graft-ng.git
 ````
 
 * Otherwise, for the Graft Community Tree build do;
 
 ````bash
-      git clone --recursive https://github.com/graft-community/graft-ng.git
+      git clone --recursive -b gc-alpha https://github.com/graft-community/graft-ng.git
 ````
 
 ![5](alpha4-simple-setup-images/5.png)
