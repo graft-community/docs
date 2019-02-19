@@ -46,7 +46,7 @@ Next, fire up the _supernode_ much in the same way, though _supernode_ does not 
 ./supernode --log-file supernode.log
 ````
 
-* IMPORTANT NOTE: These log files can grow VERY big VERY quick. 100mb (in multiple files) per couple minutes. So ideally, you should start a testing round with _--log-file_ -  run your tests, save the logs locally to send to the team, and then stop logging until your next round of testing.
+* IMPORTANT NOTE: These log files can grow VERY big VERY fast. 100mb (in multiple files) per couple of minutes. Ideally, you should start a testing round with _--log-file_ -  run your RTA tests, save the logs locally to send to the team, and then stop logging and delete the log files from your server until your next round of testing. I suggest you rund tests for 10 - 20 minutes at a time.
 
 * Logs will be saved in the following directories;
 
@@ -100,13 +100,14 @@ Example of the proper way to submit:
 
 The more descriptive, the better.
 
-To submit your logs, please ZIP them up into one file and name it your Telegram / Discord handle. Maximum file size is 1 GB.
+To submit your logs, please ZIP them up into one file and name it your Telegram / Discord handle.
+Maximum file size is 1 GB.
 
 Be sure to collect both Graftnoded logs and Supernode logs into one ZIP file.
 
 ex:
 
-> yidakee.zip
+> yidakee_test_5.zip
 
 please fill out this Google forms and upload your ZIP file.
 
