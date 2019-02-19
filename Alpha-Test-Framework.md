@@ -116,4 +116,8 @@ please fill out this Google forms and upload your ZIP file.
 
 Once you have saved your logs locally and submitted, it is recommended you delete them from the SuperNode server to avoid confusion with subsequent testing rounds.
 
-If you need any help, feel free to contact Tiago (yidakee on Discord / @el_duderino_007 on Telegram)
+If you need any help, feel free to contact Tiago (yidakee on Discord / @el_duderino_007 on Telegram) for assistance.
+
+Live long and break stuff!
+
+-yidakee
