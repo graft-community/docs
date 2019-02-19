@@ -16,7 +16,7 @@ take testing a step further and report back with logs to the Graft development t
 
 The more, the better - the faster quality logs are submitted, the faster bugs are squashed, the faster we roll-out onto Mainnet.
 
-The idea is very simple. Test RTA transactions and log the results. Then sumbit any relevant findings
+The idea is very simple. Test RTA transactions and log the results. Then submit any relevant findings
 to the team.
 
 Successful instant RTA transactions do not require logging and reporting - this is expected behavior.
@@ -26,7 +26,7 @@ What does require logging are things like;
 * Error Messages (ex: Something Went Wrong on the mobile wallet)
 * Spinning Wheel when trying to pay for an item
 * Failed transactions
-* RTA sucessful, but took significantly more time than expected
+* RTA successful, but took significantly more time than expected
 * Any other unexpected behaviour
 
 ## Procedure;
@@ -46,7 +46,7 @@ Next, fire up the _supernode_ much in the same way, though _supernode_ does not 
 ./supernode --log-file supernode.log
 ````
 
-* IMPORTANT NOTE: These log files can grow VERY big VERY fast. 100mb (in multiple files) per couple of minutes. Ideally, you should start a testing round with _--log-file_ -  run your RTA tests, save the logs locally to send to the team, and then stop logging and delete the log files from your server until your next round of testing. I suggest you rund tests for 10 - 20 minutes at a time.
+* IMPORTANT NOTE: These log files can grow VERY big VERY fast. 100mb (in multiple files) per couple of minutes. Ideally, you should start a testing round with _--log-file_ -  run your RTA tests, save the logs locally to send to the team, and then stop logging and delete the log files from your server until your next round of testing. I suggest you run tests for 10 - 20 minutes at a time.
 
 * Logs will be saved in the following directories;
 
@@ -64,25 +64,25 @@ $HOME/<your_supernode_build_dir>/
 
 ## How To Collect Files
 
-If you're a linux power user, you know what to do. If you're not, the simplest and most intuitive is to use FileZilla (or any other similar sftp client).
+If you're a Linux power user, you know what to do. If you're not, the simplest and most intuitive is to use FileZilla (or any other similar sftp client).
 
 This is assuming you are using a VPS - if you are using a local machine, life is much simpler, simply drag and drop the log files to your preferred location
 
 ![1](testing-framework-images/1.png)
 
-On the left panel (you local machine), navigate to your preferred place to save the logs to.
+On the left panel (your local machine), navigate to your preferred place to save the logs to.
 
 On the right panel, navigate to the log location, and simply drag and drop to your preferred location on your local machine.
 
 ![2](testing-framework-images/2.png)
 
-Once you have collected the logs, proceed to submit the to the team.
+Once you have collected the logs, proceed to submit them.
 
 ## Submitting Log Files
 
 Logs files are extremly useful, but unless you provide the team with some sort of back story, they will end up spending too much time scrolling page after page hunting for a needle in a haystack.
 
-There will be a small questionnaire to fill out, so the Graft team understand your environment. Please be as accurante as possible!
+There will be a small questionnaire to fill out, so the Graft team understand your environment. Please be as accurate as possible!
 
 Along with the log files and quick questionnaire we also ask you to describe the step leading to the error logs, it is imperative you describe step-by-step your actions, so the team can quickly zone into the relevant parts of the log.
 
@@ -94,9 +94,9 @@ Example of the wrong way to do it:
 Example of the proper way to submit:
 
 
->Point-of-Sale walelt and mobile RTA wallet are fully sync'ed up, and both my Point-Of-Sale wallet and mobile wallet pointed to my own Supernode, using port 28690. On the Point of Sale I selected a product and clicked on "Checkout". Once the QR showed up, I scanned the QR, waited for the payment information to show up. When it showed up, I clicked pay, by then ....
+>Point-of-Sale wallet and mobile RTA wallet are fully sync'ed up, and both my Point-Of-Sale wallet and mobile wallet pointed to my own Supernode, using port 28690. On the Point of Sale I selected a product and clicked on "Checkout". Once the QR showed up, I scanned the QR, waited for the payment information to show up. When it showed up, I clicked pay, by then ....
 
-> Sometimes I can perform RTA sales, other times I can't. I dont understand. I'm not doing anything different. The logs I'm sending contains both successful and unsuccessful RTA transactions. I cannot reproduce the behavior. Mobile wallet connected to HTTPS, POS wallet to my own Supernode. Sometimes after Checkout, after scanning QR I get "Waiting for payment details... "
+> Sometimes I can perform RTA sales, other times I can't. I don't understand. I'm not doing anything different. The logs I'm sending contains both successful and unsuccessful RTA transactions. I cannot reproduce the behavior. Mobile wallet connected to HTTPS, POS wallet to my own Supernode. Sometimes after Checkout, after scanning QR I get "Waiting for payment details... "
 
 The more descriptive, the better.
 
