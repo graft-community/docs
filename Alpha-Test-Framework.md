@@ -100,7 +100,9 @@ Example of the proper way to submit:
 
 The more descriptive, the better.
 
-To submit your logs, please ZIP them up into one file and name it your Telegram / Discord handle. Maximum file size is 1 GB
+To submit your logs, please ZIP them up into one file and name it your Telegram / Discord handle. Maximum file size is 1 GB.
+
+Be sure to collect both Graftnoded logs and Supernode logs into one ZIP file.
 
 ex:
 
