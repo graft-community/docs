@@ -46,7 +46,7 @@ Next, fire up the _supernode_ much in the same way, though _supernode_ does not 
 ./supernode --log-file supernode.log
 ````
 
-* IMPORTANT NOTE: These log files can grow VERY big VERY quick. 100mb per couple minutes. So ideally, you should start a testing round with _--log-file_ -  run your tests, save the logs locally to send to the team, and then stop logging until your next round of testing.
+* IMPORTANT NOTE: These log files can grow VERY big VERY quick. 100mb (in multiple files) per couple minutes. So ideally, you should start a testing round with _--log-file_ -  run your tests, save the logs locally to send to the team, and then stop logging until your next round of testing.
 
 * Logs will be saved in the following directories;
 
@@ -111,4 +111,6 @@ please fill out this Google forms and upload your ZIP file.
 >https://docs.google.com/forms/d/1WzsLiqwfQQV9Yqbk-KVmUAl16nBeIMHtXmTznSQV1RQ/edit
 
 
-If you need any help, please contact Tiago (yidakee on Discord / @el_duderino_007 on Telegram)
+Once you have saved your logs locally and submitted, it is recommended you delete them from the SuperNode server to avoid confusion with subsequent testing rounds.
+
+If you need any help, feel free to contact Tiago (yidakee on Discord / @el_duderino_007 on Telegram)
