@@ -1,4 +1,4 @@
-# **Graft Supernode Testnet - Simple step-by-step Supernode setup instructions for non-Linux users**
+# **Graft Supernode Public Testnet v.1.7.1 - Simple step-by-step Supernode setup instructions for non-Linux users**
 a.k.a - Graft: Running a Supernode for Dummies Guide
 
 ![0](graft-v1-7-1-Simple-step-by-step/0.jpg)
@@ -224,7 +224,7 @@ Now literally take a 15 minute break. No, seriously, take 15 minutes to stretch 
 ````
 ![14](graft-v1-7-1-Simple-step-by-step/14.png)
 
-* It looks kind of weird, but that output is a positive sign. You can also use a browser to see the same output using `http://SUPERNODE_IP:28690/dapi/v2.0/cryptonode/getwalletaddress` - You won't be needing this, but is one way to check if your Supernode is working properly.
+* It looks kind of weird, but that output is a positive sign. You can also use a browser to see the same output using `http://Your_Server_IP:28690/debug/supernode_list/1` - You won't be needing this, but is one way to check if your Supernode is working properly.
 
 * Next, let's check the Supernode for the info we need to activate it on the network. Issue the following command, but substitute `Your_Server_IP` with your actual server IP. You will see the wallet address you previously configure in `config.ini` along with an ID_Key and Signature. We will need these in a bit to stake the Supernode to activate it and start earning rewards.
 
