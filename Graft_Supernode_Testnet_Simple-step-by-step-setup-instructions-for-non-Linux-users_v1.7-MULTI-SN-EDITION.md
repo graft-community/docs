@@ -165,7 +165,7 @@ These will be the only binaries you will need.
 When you’re up to block height, then you can safely run wallets, any wallet. Supernodes run on cold wallet staking, so you should NOT keep your stake wallet on a live server. Especially with this barebone server setup.
 
 * Right! Now we have our node up and communicating to the network/blockchain, we need to create "Homes" for each of our Supernode instances.
-* For the sake of this tutorial, we will run 2 Supernodes. If you want to run mnore than 2, just follow the below steps multiple times and crate SN3 SN4....
+* For the sake of this tutorial, we will run 2 Supernodes. If you want to run more than 2, just follow the below steps multiple times and crate SN3 SN4....
 
 * **You will need to start a new Terminal session** - if you close the current terminal window, it will kill the current process, in this case `graftnoded` - in future tutorials we will explain how to use `screen` to solve this, but for now we're keeping it simple.
 
