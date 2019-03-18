@@ -71,7 +71,7 @@ To give context - I personally run a 32gb 4 Core Server [E3-SSD-1-32] (https://w
 ![2](graft-v1-7-1-Simple-step-by-step-MULTI/2.png)
 
 
-* We will now configure the [repository] (ttps://deb.graft.community) and install the binaries - this means easy updates in the future.
+* We will now configure the [repository] (https://deb.graft.community) and install the binaries - this means easy updates in the future.
 
 ````bash
     curl -s https://deb.graft.community/public.gpg | sudo apt-key add -
