@@ -187,7 +187,7 @@ and add the graft-supernode binary to SNx
 
 ![9](graft-v1-7-1-Simple-step-by-step-MULTI/9.png)
 
-* We need to edit the `config.ini` file to add in your stake wallet address - so have that handy! We will use `vim`, one of many linux text editors. Once inside the file, use your arrow key to navigate to `wallet-public-address=` and paste in your testnet stake wallet address. Remember, this is a TESTNET tutorial, so please make sure the address starts with an `F` - not NOT use a real mainnet address starting with a `G` 
+* We need to edit the `config.ini` file to add in your stake wallet address - so have that handy! We will use `vim`, one of many linux text editors. 
 * The items of interest for this step are boxed in red
 * You will need to set the port [28881 for Public Testnet] as highlighted and also the Data directory - Leave the address blank as we wil configure that per SN in the steps below.
 
@@ -227,7 +227,7 @@ and add the graft-supernode binary to SNx
 
 * You con continue the above step as many times as you want, each time incrimenting the http-address and coap-address ports.
 
-* You now have 2 supernodes configured ready to fire up - if yuo know how to use screen, do that other wise create 2 new ssh sessions and start graft-supernode for both SN1 and SN2
+* You now have 2 supernodes configured ready to fire up - if you know how to use screen, do that other wise create 2 new ssh sessions and start graft-supernode for both SN1 and SN2
 
 
 ````bash
