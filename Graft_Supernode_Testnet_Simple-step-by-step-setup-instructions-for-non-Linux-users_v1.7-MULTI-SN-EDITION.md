@@ -1,15 +1,19 @@
-# **Graft Supernode Testnet - Simple step-by-step -==MULTI==- Supernode setup instructions for non-Linux users**
+# **Graft Supernodes - All of them**
+## *Simple step-by-step 'Dummies' guide for running multiple Supernodes*
 a.k.a - Graft: Running more than one Supernode on a single server for Dummies Guide
 
-![0](graft-v1-7-1-Simple-step-by-step/0.jpg)
+![0](graft-v1-7-1-Simple-step-by-step-MULTI/0.jpg)
 
-- GraftNetwork - v1.7.1 (do not use 1.7.0)
+- GraftNetwork - v1.7.1
 - Supernode v1.0.0
 
 ---
-_by: yidakee (aka el_duderino_007)_
+_by: GraftNugget (forked from yidakee [aka el_duderino_007])_
+Note: This guide is intended to get you to a point of running multiple supernodes on the one server. The steps required to stake them do not change from yidakee's guide.
+
 
 ## General considerations
+* Currently, the functionality of running multiple Supernodes against one instance of graftnoded requires the use of the [Graft Community] (https://github.com/graft-community) code, this guide will get you running on this code base.
 
 * This release is in preparation for main net launch. It will run on Public Testnet. This is different from the previous RTA Alpha testnet. If you have wallets with funds from the RTA Alpha testnet, these will not show up on Public Testnet.
 
@@ -27,7 +31,9 @@ _by: yidakee (aka el_duderino_007)_
 
 ## Requirements
 
-* Any modern machine with at least 2GB per core, 2GB RAM - 
+* Any modern machine with at least 2GB per core, 2GB RAM - Note: The more SN's you want to run, the bigger the machine.
+To give context - I personally run a 32gb 4 Core Server [E3-SSD-1-32] (https://www.soyoustart.com/us/offers/1801sys47.xml) which I have tested to 10+ Graft Supernodes.
+
 * Current bandwidgth consuption ~500GB - 1TB per month
 * VPS (_virtual private server_) recommended.
 
@@ -52,66 +58,62 @@ _by: yidakee (aka el_duderino_007)_
 
 ````bash
     sudo apt-get update
+
 ````
 ````bash
     sudo apt-get upgrade
+
 ````
-
-![1](graft-v1-7-1-Simple-step-by-step/1.png)
-
+![1](graft-v1-7-1-Simple-step-by-step-MULTI/1.png)
 
 * If this window shows up, select the first option
 
-![2](graft-v1-7-1-Simple-step-by-step/2.png)
+![2](graft-v1-7-1-Simple-step-by-step-MULTI/2.png)
 
 
-* We will now download the latest Graft release, and then the Supernode release
-
-````bash
-    wget https://github.com/graft-project/GraftNetwork/releases/download/v1.7.1/GraftNetwork_1.7.1.ubuntu-18.04.x64.tar.gz
-    wget https://github.com/graft-project/graft-ng/releases/download/v1.0.0/supernode.1.0.0.ubuntu-18.04.x64.tar.gz
-````
-
-![3](graft-v1-7-1-Simple-step-by-step/3.png)
-
-
-* Lets have a look at the downloaded file. The compressed files show up in red
+* We will now configure the [repository] (ttps://deb.graft.community) and install the binaries - this means easy updates in the future.
 
 ````bash
-    ls -la
-````
-
-![4](graft-v1-7-1-Simple-step-by-step/4.png)
-
-
-* Now, let's decompress the files and view the directories - these show up in blue
-
-````bash
-    tar -zxvf GraftNetwork_1.7.1.ubuntu-18.04.x64.tar.gz
-    tar -zvxf supernode.1.0.0.ubuntu-18.04.x64.tar.gz
-    ls -la
-````
-
-![5](graft-v1-7-1-Simple-step-by-step/5.png)
-
-* Next, lets enter the directory where the GraftNetwork binaries where decompressed into, and have a look inside. You will see there is a `graft-supernode` binary inside - do not use this one! The actual Supernode binary is inside /root/supernode.1.0.0.ubuntu-18.04.x64/
-
-````bash
-    cd GraftNetwork_1.7.1
+    curl -s https://deb.graft.community/public.gpg | sudo apt-key add -
 ````
 ````bash
-    ls -la
+    echo "deb https://deb.graft.community bionic main" | sudo tee /etc/apt/sources.list.d/graft.community.list
+````
+````bash
+    sudo apt update
 ````
 
-![6](graft-v1-7-1-Simple-step-by-step/6.png)
+![3](graft-v1-7-1-Simple-step-by-step-MULTI/3.png)
 
-* To go back, simply issue `cd` command, and you'll be back to the main /root/ directory. 
+* Installing graftnoded
+````bash
+    sudo apt install -y graftnoded
+````
+
+* Installing graft-supernode
+````bash
+    sudo apt install -y graft-supernode
+````
+
+* Installing graft-wallet-cli
+````bash
+    sudo apt install -y graft-wallet
+````
+
+![4](graft-v1-7-1-Simple-step-by-step-MULTI/4.png)
+
+* Lets have a look at the binaries that have been deployed, make sure they are in your PATH and executable.
 
 ````bash
-    cd
+    which graftnoded
+    which graft-supernode
+    which graft-wallet-cli
+    graftnoded --version
+    graft-wallet-cli --version
+    graft-supernode --version
 ````
 
-Here is a handy Linux trick. Instead of writing `cd supernode.1.0.0.ubuntu-18.04.x64` try just typing `cd supe`and then press Tab. Linux is smart enough to guess what you mean and will autocomplete for you ;) 
+![5](graft-v1-7-1-Simple-step-by-step-MULTI/5.png)
 
 ### Great! We’ve managed to install everything.
 
@@ -119,21 +121,21 @@ You now have;
 
 * `graftnonded` - syncs the blockchain, has interactive commands
 * `graft-wallet-cli` - wallet management, has interactive commands
-* `supernode` - RTA/supernode functions, non-interactive
+* `graft-supernode` - RTA/supernode functions, non-interactive
 
-These will be the only binaries you will use, do not use the others.
+These will be the only binaries you will need.
 
 * We could run `graftnoded` and sync from scratch, but who wants to wait 5h doing nothing? Lets "cheat" by directly downloading the blockchain ans save lots of time.
 
 * Lets run `graftnoded` and wait a little for it to build the directories - give it 1 minute and then `exit` to stop `graftnode`
 
 ````bash
-    cd GraftNetwork_1.7.1
-    ./graftnoded --testnet
+    graftnoded --testnet
 ````
-![7](graft-v1-7-1-Simple-step-by-step/7.png)
 
-* A soon you see the bottom lines saying `Synced xxx/xxxxxx` , you can type `exit` to quit `graftnoded`
+* Leave it for 15 or so seconds and exit , you can type `exit` to quit `graftnoded`
+
+![6](graft-v1-7-1-Simple-step-by-step-MULTI/6.png)
 
 * Let's navigate to the directory where the blockchain lives in, delete the current one and download the most current up-to-date.
 
@@ -144,7 +146,8 @@ These will be the only binaries you will use, do not use the others.
     ls -la
     wget https://testnet.graft.observer/lmdb/data.mdb
 ````
-![7-1](graft-v1-7-1-Simple-step-by-step/7-1.png)
+
+![7](graft-v1-7-1-Simple-step-by-step-MULTI/7.png)
 
 * Big shoutout to _jagerman_ for keeping a publicly available copy of the testnet blockchain. Thanks man, you rock!
 
@@ -152,136 +155,100 @@ These will be the only binaries you will use, do not use the others.
 * Brilliant! Now lets go back and start `graftnoded` again, and be almost immediately up to block height.
 
 ````bash
-    cd 
-    cd GraftNetwork_1.7.1
-    ./graftnoded --testnet
+    graftnoded --testnet
 ````
 
-![7-2](graft-v1-7-1-Simple-step-by-step/7-2.png)
-
-
+![8](graft-v1-7-1-Simple-step-by-step-MULTI/8.png)
 
 * Type `help` and press `Enter` to see the list of commands you can run to inspect the network. Enter `status` to double check your block height against the block explorer -> http://testnet.graft.network or jagerman's https://testnet.graft.observer
 
 When you’re up to block height, then you can safely run wallets, any wallet. Supernodes run on cold wallet staking, so you should NOT keep your stake wallet on a live server. Especially with this barebone server setup.
 
-
-* Now lets start the Supernode
+* Right! Now we have our node up and communicating to the network/blockchain, we need to create "Homes" for each of our Supernode instances.
+* For the sake of this tutorial, we will run 2 Supernodes. If you want to run mnore than 2, just follow the below steps multiple times and crate SN3 SN4....
 
 * **You will need to start a new Terminal session** - if you close the current terminal window, it will kill the current process, in this case `graftnoded` - in future tutorials we will explain how to use `screen` to solve this, but for now we're keeping it simple.
 
-* So, open a new Terminal session, `ssh` into your VPS, and enter the Supernode directory 
+* So, open a new Terminal session, `ssh` into your VPS - you will now be in your HOME directory.
+
+* Lets create SNx - this will be the template for creating as many Supernodes as your bank ballance allows.
+````bash
+    mkdir -p SNx
+````
+Now lets add the required config.ini
+````bash
+    cd SNx
+    cp /usr/share/doc/graft-supernode/config.ini . 
+````
+and add the graft-supernode binary to SNx
+````bash
+    cp /usr/bin/graft-supernode .
+````
+
+![9](graft-v1-7-1-Simple-step-by-step-MULTI/9.png)
+
+* We need to edit the `config.ini` file to add in your stake wallet address - so have that handy! We will use `vim`, one of many linux text editors. Once inside the file, use your arrow key to navigate to `wallet-public-address=` and paste in your testnet stake wallet address. Remember, this is a TESTNET tutorial, so please make sure the address starts with an `F` - not NOT use a real mainnet address starting with a `G` 
+* The items of interest for this step are boxed in red
+* You will need to set the port [28881 for Public Testnet] as highlighted and also the Data directory - Leave the address blank as we wil configure that per SN in the steps below.
 
 ````bash
-    cd supernode.1.0.0.ubuntu-18.04.x64
-    ls -la
+    vim config.ini
 ````
-![9](graft-v1-7-1-Simple-step-by-step/9.png)
+![10](graft-v1-7-1-Simple-step-by-step-MULTI/10.png)
 
-* We need to edit the `config.ini` file to add in your stake wallet address - so have that handy! We will use `nano`, one of many linux text editors. Once inside the file, use your arrow key to navigate to `wallet-public-address=` and paste in your testnet stake wallet address. Remember, this is a TESTNET tutorial, so please make sure the address starts with an `F` - not NOT use a real mainnet address starting with a `G` 
+*note: to put vim into edit mode, press i - to save and exit press ESC and then :wq!
+
+
+* Alrighty, so now we have a working template (SNx) that can copied into as many instances of Supernode that you wish to run (SN1 SN2 SN3 ....)
+* For this demo, we will be running a SN1 and a SN2
 
 ````bash
-    nano config.ini
+    cp -R SNx SN1
+    cp -R SNx SN2
 ````
-![10](graft-v1-7-1-Simple-step-by-step/10.png)
-
-
-* To save the file, look at the bottom row of the screen and press `CTRL+x` on your keyboard. It should now say `Save modified buffer?` - simply type `y` and press enter.
-
-![10-1](graft-v1-7-1-Simple-step-by-step/10-1.png)
-
-
-* Let's start the Supernode. Before we do so, lets quickly do a patch fix that should not be required in the future.
+* You now have your stand alone instances SN1 and SN2 - what we need to do now is configure the Data directory and wallet address in each of the respective config.ini
 
 ````bash
-    sudo apt install libboost-all-dev
+    cd SN1
+    vim config.ini
 ````
-![11](graft-v1-7-1-Simple-step-by-step/11.png)
+* update the data-dir to reflect the home of SN1 along with the stake wallet address.
 
+![11](graft-v1-7-1-Simple-step-by-step-MULTI/11.png)
 
-* Start the Supernode to get it running without stake for now, to grab some final info.
+* Ok, so now we have SN1 configured, we need to make the changes to SN2's config.ini - pretty much like SN1 but we incriment 2 port numbers.
+
 
 ````bash
-    ./supernode
+    cd ../SN2
+    vim config.ini
 ````
-![12](graft-v1-7-1-Simple-step-by-step/12.png)
+![11-1](graft-v1-7-1-Simple-step-by-step-MULTI/11-1.png)
 
+* You con continue the above step as many times as you want, each time incrimenting the http-address and coap-address ports.
 
-* If you check back on `graftnoded` Terminal, you should start seeing the Supernode announcements to the network
+* You now have 2 supernodes configured ready to fire up - if yuo know how to use screen, do that other wise create 2 new ssh sessions and start graft-supernode for both SN1 and SN2
 
-![13](graft-v1-7-1-Simple-step-by-step/13.png)
-
-Now literally take a 15 minute break. No, seriously, take 15 minutes to stretch your legs, make some coffee, feed your pets, water your plants etc ...  and let the Supernode start talking to its peers and collect some data for the next part. Even is your Supernode is not staked yet to receive RTA ts fees, it is still working as a proxy node.
-
-* After 15m, let's check out your Supernoode outputs. Two ways to verify if your Supernode is healthy is by checking it's peer list and ID info.
-
-* First, lets check if the Supernode list is working right. Be sure to input your Supernode IP in the follwoing command, as per the screenshot. Don't forget the to substitute `Your_Server_IP` with your actual server IP.
-
-* Open a new Terminal window! If you close the Terminal window running the Supernode, you will kill the process.
 
 ````bash
-    curl --request GET http://Your_Server_IP:28690/debug/supernode_list/1
+    cd SN1
+    ./graft-supernode
 ````
-![14](graft-v1-7-1-Simple-step-by-step/14.png)
-
-* It looks kind of weird, but that output is a positive sign. You can also use a browser to see the same output using `http://SUPERNODE_IP:28690/dapi/v2.0/cryptonode/getwalletaddress` - You won't be needing this, but is one way to check if your Supernode is working properly.
-
-* Next, let's check the Supernode for the info we need to activate it on the network. Issue the following command, but substitute `Your_Server_IP` with your actual server IP. You will see the wallet address you previously configure in `config.ini` along with an ID_Key and Signature. We will need these in a bit to stake the Supernode to activate it and start earning rewards.
 
 ````bash
-    curl --request GET http://Your_Server_IP:28690/dapi/v2.0/cryptonode/getwalletaddress
+    cd SN3
+    ./graft-supernode
 ````
-![15](graft-v1-7-1-Simple-step-by-step/15.png)
 
-You can also use a browser for this, maybe it will be easier to visualize and copy/paste for the next part - funding the stake wallet!
-
-* Alright, let's go on to create a new Public Testnet wallet and fund our Supernode! Probably a good idea to open another Terminal window.
-
-Please keep in mind that previous RTA Testnet wallets containing funds will not show up on the Public Testnet. Also, sending from the RTA Tesntnet to the Public Tesnet won't work either. 
-
-So best create a fresh new wallet and fund it directly. Don't forget to save the mnemonic seed for recovery if needed! Remeber, this is cold wallet staking, the wallet should not be kept on the live server. You can use a local linux machine if you have one
+* One final step we need to now do is confirm that the SN's are up and running, you can do this by calling a function of each of them to display the paremters of each SN - you will need this infomation for the staking process; take note and record the output.
 
 ````bash
-    cd GraftNetwork_1.7.1
-    ./graft-wallet-cli --testnet 
+    curl -s http://127.0.0.1:28690/dapi/v2.0/cryptonode/getwalletaddress
+    curl -s http://127.0.0.1:28691/dapi/v2.0/cryptonode/getwalletaddress
 ````
-![16](graft-v1-7-1-Simple-step-by-step/16.png)
 
-* You will need to ask the admins for some Public Testnet coins. Ask in the Alpha Testnet channels on Discord (https://discord.gg/a59J3Z) or Telegram (https://t.me/joinchat/F25OCUXOQ55qqHm_BZU4Sg). In fact, in the Telegram channel there is a bot that will automatically send funds to your wallet. Simply join and ask how it's done, you'll soon find some funds going your way.
-
-* Once the wallet has been funded and coins are unlocked, we can now proceed to stake the Supernode
-
-![17](graft-v1-7-1-Simple-step-by-step/17.png)
-
-* Once the coins have been unlocked, you can issue the staking command. The syntax is pretty simple.
-
-* `stake_transfer <SUPERNODE_WALLET_PULIC_ADDRESS> <STAKE_AMOUNT> <LOCK_BLOCKS_COUNT> <SUPERNODE_PUBLIC_ID_KEY> <SUPERNODE_SIGNATURE>`
-
-* Looks intimidating, but it's pretty simple. Remember a few steps back when you requested the `Supernode ID_KEY` and `Signature` ?
-
-* To remind you, just pop this into your browser. Don't forget to change `Your_Server_IP` for your actual server IP
-
-`http://Your_Server_IP:28690/dapi/v2.0/cryptonode/getwalletaddress`
-
-![18](graft-v1-7-1-Simple-step-by-step/18.png)
+![12](graft-v1-7-1-Simple-step-by-step-MULTI/12.png)
 
 
-* So now, go to your wallet and lets complete the `stake_transfer` command, In this case, I will be setting up a Tier 3 node. The ammounts does not need to be exact. Select the number of blocks you want to stake for. 720 blocks is just about 24h. Maximum is 5000 blocks = 1 week
-
-![19](graft-v1-7-1-Simple-step-by-step/19.png)
-
-* Now, just wait 6 blocks for the transfer to go through and your Supernode will have been activated!
-
-
-### Congratulations! You've managed to get your Supernode up and running.
-
-* Now, just sit back and relax. Soon enough you will start earning Supernode rewards!
-
-* Next stop - real Main Net with real Graft coming soon!
-
-* Don't forget to join us on the Alpha Testnet channels on Discord (https://discord.gg/a59J3Z) or Telegram (https://t.me/joinchat/F25OCUXOQ55qqHm_BZU4Sg) to get the most up to date news!
-
-* yidakee out (for now).
-
-
+* IMPORTANT - FROM THIS POINT onwards, please refer back to yidakee's guide which takes you through how to stake the supernodes etc.
 
