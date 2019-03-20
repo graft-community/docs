@@ -203,6 +203,7 @@ and add the graft-supernode binary to SNx
 * For this demo, we will be running a SN1 and a SN2
 
 ````bash
+    cd ~
     cp -R SNx SN1
     cp -R SNx SN2
 ````
