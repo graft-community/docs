@@ -142,7 +142,7 @@ These will be the only binaries you will use, do not use the others.
 ````
 ![7-1](easy-guide-mainnet/7-1.png)
 
-* Big shoutout to _jagerman_ for keeping a publicly available copy of the testnet blockchain. Thanks man, you rock!
+* Big shoutout to _jagerman_ for keeping a publicly available copy of the blockchain. Thanks man, you rock!
 
 
 * Brilliant! Now lets go back and start `graftnoded` again, and be almost immediately up to block height.
@@ -157,7 +157,7 @@ These will be the only binaries you will use, do not use the others.
 
 
 
-* Type `help` and press `Enter` to see the list of commands you can run to inspect the network. Enter `status` to double check your block height against the block explorer -> http://testnet.graft.network or jagerman's https://testnet.graft.observer
+* Type `help` and press `Enter` to see the list of commands you can run to inspect the network. Enter `status` to double check your block height against the block explorer ->  https://graft.observer
 
 Supernodes run on cold wallet staking, so you should NOT keep your stake wallet on a live server. Especially with this barebone insecure server setup.
 
