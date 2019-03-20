@@ -138,7 +138,7 @@ These will be the only binaries you will use, do not use the others.
     ls -la
     rm *
     ls -la
-    wget https://graft.observer/lmdb/data.mdb
+    wget (temporarily unavailable due to server load - will be fixed shortly)
 ````
 ![7-1](easy-guide-mainnet/7-1.png)
 
