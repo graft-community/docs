@@ -5,7 +5,7 @@ up GRAFT nodes, supernodes, etc.
 
 ## Supernode guides
 
-### [Alpha 4.2 - Simple step-by-step Supernode setup instructions for non-Linux users](Alpha4.2-Simple-step-by-step-setup-instructions-for-non-Linux-users.md)
+### [Graft Supernode Main Net v.1.7.3 - Simple step-by-step Supernode setup instructions for non-Linux users](Graft_Supernode_Mainnet_Simple-step-by-step-setup-instructions-for-non-Linux-users_v1.7.md)
 
 Detailed setup guide by [yidakee](https://t.me/el_duderino_007) to get a supernode up and running from scratch on a Ubuntu 18.04 system.
 Highly recommended for new-to-Linux users to get going.
