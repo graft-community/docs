@@ -303,12 +303,12 @@ ssh-key-gen 2048
 ```
 - Press: ENTER
 ```
-ssh-copy-id graft@<remote-machine-ip
+ssh-copy-id graft@<remote-machine-ip>
 ```
 - Enter password.
 - Now you can use:
 ```
-ssh  graft@<remote-machine-ip
+ssh  graft@<remote-machine-ip>
 ```
 to Login with no password.
 
