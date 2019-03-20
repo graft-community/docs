@@ -140,6 +140,9 @@ Restart=always
 ExecStart=/usr/bin/graft-supernode --config-file config.ini --log-file /home/graft/%i/logs/%i.log
 Environment=TERM=xterm
 #LimitNOFILE=8192
+
+[Install]
+WantedBy=multi-user.target
 ````
 Cntrl + x to save
 
