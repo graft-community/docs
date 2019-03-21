@@ -144,6 +144,8 @@ These will be the only binaries you will use, do not use the others.
 
 * Big shoutout to _jagerman_ for keeping a publicly available copy of the blockchain. Thanks man, you rock!
 
+* Alternatively, you can use this torrent -> [Torrent](easy-guide-mainnet/Graft.mainnet.data.mdb.torrent) - Thanks @MV1879!
+
 
 * Brilliant! Now lets go back and start `graftnoded` again, and be almost immediately up to block height.
 
