@@ -21,9 +21,11 @@ _by: yidakee (aka el_duderino_007)_
 
 * This setup is **only for Testnet** - should be almost identical to main net, but I cannot predict the future. Upon main net launch, this guide will be revised/updated
 
-* This guide is not intended for linux educational purposes, rather a simple copy/paste procedure to get your Supernode up an running and see it working properly and learn basic Supernode management, and later be able to follow more advanced setup guides.
+* This guide is not intended for linux educational purposes, rather a simple copy/paste procedure to get your Supernode up and running and see it working properly and learn basic Supernode management, and later be able to follow more advanced setup guides.
 
 * Things may not look _exactly_ the same on your system as the screenshots included in this document. For example, this guide is for v1.7.1, but some screenshots show 1.7.0 - simply copy/paste the commands and you should be good.
+
+* You should setup and run the Graft software whilst logged in as a non-root user
 
 ## Requirements
 
@@ -68,6 +70,7 @@ _by: yidakee (aka el_duderino_007)_
 * We will now download the latest Graft release, and then the Supernode release
 
 ````bash
+    cd $HOME
     wget https://github.com/graft-project/GraftNetwork/releases/download/v1.7.1/GraftNetwork_1.7.1.ubuntu-18.04.x64.tar.gz
     wget https://github.com/graft-project/graft-ng/releases/download/v1.0.0/supernode.1.0.0.ubuntu-18.04.x64.tar.gz
 ````
@@ -123,7 +126,7 @@ You now have;
 
 These will be the only binaries you will use, do not use the others.
 
-* We could run `graftnoded` and sync from scratch, but who wants to wait 5h doing nothing? Lets "cheat" by directly downloading the blockchain ans save lots of time.
+* We could run `graftnoded` and sync from scratch, but who wants to wait 5h doing nothing? Lets "cheat" by directly downloading the blockchain and save lots of time.
 
 * Lets run `graftnoded` and wait a little for it to build the directories - give it 1 minute and then `exit` to stop `graftnode`
 
@@ -173,6 +176,7 @@ When you’re up to block height, then you can safely run wallets, any wallet. S
 * So, open a new Terminal session, `ssh` into your VPS, and enter the Supernode directory 
 
 ````bash
+    cd $HOME/supernode.1.0.0.ubuntu-18.04.x64
     cd supernode.1.0.0.ubuntu-18.04.x64
     ls -la
 ````
@@ -213,23 +217,23 @@ When you’re up to block height, then you can safely run wallets, any wallet. S
 
 Now literally take a 15 minute break. No, seriously, take 15 minutes to stretch your legs, make some coffee, feed your pets, water your plants etc ...  and let the Supernode start talking to its peers and collect some data for the next part. Even is your Supernode is not staked yet to receive RTA ts fees, it is still working as a proxy node.
 
-* After 15m, let's check out your Supernoode outputs. Two ways to verify if your Supernode is healthy is by checking it's peer list and ID info.
+* After 15m, let's check out your Supernoode outputs. Two ways to verify if your Supernode is healthy is by checking its peer list and ID info.
 
-* First, lets check if the Supernode list is working right. Be sure to input your Supernode IP in the follwoing command, as per the screenshot. Don't forget the to substitute `Your_Server_IP` with your actual server IP.
+* First, lets check if the Supernode list is working right. Be sure to input your Supernode IP in the follwoing command, as per the screenshot. Don't forget the to substitute `<Your_Server_IP>` with your actual server IP.
 
 * Open a new Terminal window! If you close the Terminal window running the Supernode, you will kill the process.
 
 ````bash
-    curl --request GET http://Your_Server_IP:28690/debug/supernode_list/1
+    curl --request GET http://<Your_Server_IP>:28690/debug/supernode_list/1
 ````
 ![14](graft-v1-7-1-Simple-step-by-step/14.png)
 
-* It looks kind of weird, but that output is a positive sign. You can also use a browser to see the same output using `http://Your_Server_IP:28690/debug/supernode_list/1` - You won't be needing this, but is one way to check if your Supernode is working properly.
+* It looks kind of weird, but that output is a positive sign. You can also use a browser to see the same output using `http://<Your_Server_IP>:28690/debug/supernode_list/1` - You won't be needing this, but is one way to check if your Supernode is working properly.
 
-* Next, let's check the Supernode for the info we need to activate it on the network. Issue the following command, but substitute `Your_Server_IP` with your actual server IP. You will see the wallet address you previously configure in `config.ini` along with an ID_Key and Signature. We will need these in a bit to stake the Supernode to activate it and start earning rewards.
+* Next, let's check the Supernode for the info we need to activate it on the network. Issue the following command, but substitute `<Your_Server_IP>` with your actual server IP. You will see the wallet address you previously configure in `config.ini` along with an ID_Key and Signature. We will need these in a bit to stake the Supernode to activate it and start earning rewards.
 
 ````bash
-    curl --request GET http://Your_Server_IP:28690/dapi/v2.0/cryptonode/getwalletaddress
+    curl --request GET http://<Your_Server_IP>:28690/dapi/v2.0/cryptonode/getwalletaddress
 ````
 ![15](graft-v1-7-1-Simple-step-by-step/15.png)
 
@@ -255,13 +259,13 @@ So best create a fresh new wallet and fund it directly. Don't forget to save the
 
 * Once the coins have been unlocked, you can issue the staking command. The syntax is pretty simple.
 
-* `stake_transfer <SUPERNODE_WALLET_PULIC_ADDRESS> <STAKE_AMOUNT> <LOCK_BLOCKS_COUNT> <SUPERNODE_PUBLIC_ID_KEY> <SUPERNODE_SIGNATURE>`
+* `stake_transfer <SUPERNODE_WALLET_PUBLIC_ADDRESS> <STAKE_AMOUNT> <LOCK_BLOCKS_COUNT> <SUPERNODE_PUBLIC_ID_KEY> <SUPERNODE_SIGNATURE>`
 
 * Looks intimidating, but it's pretty simple. Remember a few steps back when you requested the `Supernode ID_KEY` and `Signature` ?
 
-* To remind you, just pop this into your browser. Don't forget to change `Your_Server_IP` for your actual server IP
+* To remind you, just pop this into your browser. Don't forget to change `<Your_Server_IP>` for your actual server IP
 
-`http://Your_Server_IP:28690/dapi/v2.0/cryptonode/getwalletaddress`
+`http://<Your_Server_IP>:28690/dapi/v2.0/cryptonode/getwalletaddress`
 
 ![18](graft-v1-7-1-Simple-step-by-step/18.png)
 
