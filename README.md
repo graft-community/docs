@@ -34,3 +34,7 @@ A comprehensive set of instructions on how to compile your own node and command-
 ### [Instructions on how to build Graft Android Wallet and POS on Qt cross-platform application framework for Windows desktop.](GraftMobile%20Build%20Environment.md)
 
 A complete setup up guide on to where to download the components, assemble the IDE and build GraftMobile components on Windows.
+
+### [Graft Community Deb packages systemd and logrotate setup and Basic Server hardening steps](MaintenanceandServerHardeningguideforGraftSupernode_MultiSN_CommunityDebpackages.md)
+
+A Quick and easy to follow guide on how to setup systemd and logrotate for your Superndoe server running the Graft Community deb packages, also includes basic server hardening steps (by [Fez](https://t.me/Fezz27))
