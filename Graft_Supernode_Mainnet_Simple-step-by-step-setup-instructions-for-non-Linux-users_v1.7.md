@@ -131,14 +131,15 @@ These will be the only binaries you will use, do not use the others.
 
 * A soon you see the bottom lines saying `Synced xxx/xxxxxx` , you can type `exit` to quit `graftnoded`
 
-* Let's navigate to the directory where the blockchain lives in, delete the current one and download the most current up-to-date.
+* Let's navigate to the directory where the blockchain lives in, delete the current one and download the most current up-to-date. The screenshot shows `testnet` and steps are slightly different, but behaviour is identical
 
 ````bash
-    cd $HOME/.graft/lmdb/
+    cd $HOME/.graft/
     ls -la
-    rm *
-    ls -la
-    wget (temporarily unavailable due to server load - will be fixed shortly)
+    rm -r lmdb
+    curl http://graftbuilds-ohio.s3.amazonaws.com/lmdb.tar.gz | tar xzf -
+    cd lmdb && rm em* && rm lo*
+    cd
 ````
 ![7-1](easy-guide-mainnet/7-1.png)
 
