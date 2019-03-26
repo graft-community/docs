@@ -275,7 +275,7 @@ Port for mainnet graftnoded at the time of writing is : ***18980***
 ## Hardening our server:
 
 - The simplest and most effective way to keep our server safe is keep unnecessary software on our server to a minimum and and to always stay up to date with new packages.
-	- sudo apt update && sudo apt ugrade -y
+	- sudo apt update && sudo apt upgrade -y
 	- sudo apt autoremove
 
 ### Enabling ufw:
@@ -318,7 +318,7 @@ to Login with no password.
 Next step is disable root logins via ssh, obviously ensure you have created another user to ensure you dont lock yourself out. 
 - This step is general SSH best practice as every Linux/Unix distro uses root as the admin user and therefore is an easy target for brute force attacks. 
 - Another good idea is to change the port to a custom port for ssh and use the switch "-p <port-number>" with the ssh command.
-- Once again ensure you open the port on ufw if enabled to ensure you dont lock yourself out.
+- Once again ensure you open the port on ufw if enabled to ensure you dont lock yourself out and you have a non-root user configured.
 
 ```
 sudo nano /etc/ssh/sshd_config
