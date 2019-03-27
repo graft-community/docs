@@ -34,7 +34,7 @@ _by: yidakee (aka el_duderino_007)_
 | -------------                |:---------:| :--------:| :-----:| :--------------:|
 | https://vultr.com            | 2vCPU 4GB | 3 TB      | 60GB   |    $20          |
 | https://digitalocean.com     | 2vCPU 4GB | 4 TB      | 80GB   | $100 Free Trial |
-| https://www.hetzner.com/     | 2vCPU 4GB | 20TB      | 40TB   |    4,90€        |
+| https://www.hetzner.com/     | 2vCPU 4GB | 20TB      | 40GB   |    4,90€        |
 | https://contabo.com/         | 4 CPU 8GB | Unlimited | 200 GB |    4,99€        |
 | https://www.linode.com/      | 2vCPU 4GB | 4TB       | 80GB   |    $20          |
 | https://www.ovh.com/         | 2vCPU 7GB | ?         | 50GB   |    $26.40       |
