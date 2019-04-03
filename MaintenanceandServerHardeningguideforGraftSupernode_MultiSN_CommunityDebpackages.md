@@ -16,53 +16,51 @@
 - This guide can be used for testnet with the only difference being that **graftnoded** and **graft-wallet-cli** commands are used with the **--testnet** switch. 
 	- Like: graftnoded --testnet
 
-Index:
+# Index and quick links:
 
-[Setting up folder structures](#setting-up-our-folder-structure)
+- [**Setting up folder structures**](#setting-up-our-folder-structure)
 	
-	- In this section we setup a dummy example for a folder structure for having multiple supernodes on the same machine.
+In this section we setup a dummy example for a folder structure for having multiple supernodes on the same machine.
 
-
-[Systemd configuration](#systemd-configuration)
+- [**Systemd configuration**](#systemd-configuration)
 	
-	- In this section we setup systemd for our graftnoded and supernode services, please make sure that you replace the "graft" value in any path to the user you are logged in as.
+In this section we setup systemd for our graftnoded and supernode services, please make sure that you replace the "graft" value in any path to the user you are logged in as.
 
-
-[Configuring logrotate](#configuring-logrotate)
+- [**Configuring logrotate**](#configuring-logrotate)
 	
-	- In this section we configure logrotate to manage logs in for our graftnoded and supernode services. Note once again: Please replace the "graft" value in any path to the user you are logged in as.
+In this section we configure logrotate to manage logs in for our graftnoded and supernode services. Note once again: Please replace the "graft" value in any path to the user you are logged in as.
 
-[Hardening our server](#hardening-our-server)
+- [**Hardening our server**](#hardening-our-server)
 	
-	- In this section there are a few rudimentary hardening steps and tips to ensuring you server is not a easy target. Please BEWARE of locking yourself out of your server after apllying 1 or more of these steps.
+In this section there are a few rudimentary hardening steps and tips to ensuring you server is not a easy target. Please BEWARE of locking yourself out of your server after applying 1 or more of these steps.
 
-[A simple guide to operating and using graftnoded](#operating-and-using-graftnoded)
+- [**A simple guide to operating and using graftnoded**](#operating-and-using-graftnoded)
 	
-	- In this section the basic usage of graftnoded, graft-wallet-cli and supernode is explained.
+In this section the basic usage of graftnoded, graft-wallet-cli and supernode is explained.
 
-[Running processes in the background if you have not setup systemd](#running-processes-in-the-background-if-you-have-not-setup-systemd)
+- [**Running processes in the background if you have not setup systemd**](#running-processes-in-the-background-if-you-have-not-setup-systemd)
 	
-	- In this section it is explained how to run a process in the background without killing it when closing your terminal session via Putty for example.
+In this section it is explained how to run a process in the background without killing it when closing your terminal session via Putty for example.
 
-[TMUX explained](#tmux)
+- [**TMUX explained**](#tmux)
 	
-	- In this section a few commands for general usage of tmux are shown, please refer to the Useful resources section for a link to a more comprehensive commands list.
+In this section a few commands for general usage of tmux are shown, please refer to the Useful resources section for a link to a more comprehensive commands list.
 
-[Checking if your supernode is running as expected](#checking-if-your-supernode-is-running-as-expected)
+- [**Checking if your supernode is running as expected**](#checking-if-your-supernode-is-running-as-expected)
 	
-	- In this section a couple commands to quickly check if the supernode service is running and providing us a supernode list back are shown.
+In this section a couple commands to quickly check if the supernode service is running and providing us a supernode list back are shown.
 
-[Checking logs](#checking-logs)
+- [**Checking logs**](#checking-logs)
 	
-	- In this section, it is shown how to quickly inspect a log file.
+In this section, it is shown how to quickly inspect a log file.
 
-[General Troubleshooting of your Supernode setup](#general-troubleshooting-of-your-supernode-setup)
+- [**General Troubleshooting of your Supernode setup**](#general-troubleshooting-of-your-supernode-setup)
 	
-	- In this section I have listed my own personal checks that I have performed since the days of public alpha, which have served me well in ensuring that I am able to quickly get my supernode up and running.
+In this section I have listed my own personal checks that I have performed since the days of public alpha, which have served me well in ensuring that I am able to quickly get my supernode up and running.
 
-[USEFUL LINKS & RESOURCES](useful-links-&-resources)
+- [**USEFUL LINKS & RESOURCES**](useful-links-&-resources)
 
-	- Links to some useful content used in building this guide.
+Links to some useful content used in building this guide.
 
 ### [Graft Community Documentation](https://github.com/graft-community/docs)
 
