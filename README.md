@@ -10,11 +10,6 @@ up GRAFT nodes, supernodes, etc.
 Detailed setup guide by [yidakee](https://t.me/el_duderino_007) to get a supernode up and running from scratch on a Ubuntu 18.04 system.
 Highly recommended for new-to-Linux users to get going.
 
-### [Docker supernode guide](GuideBuiltforUbuntuDebianGraftDockercontainer.md)
-
-Instructions (by [Fez](https://t.me/Fezz27)) on how to run a supernode inside a docker container, which, among other things, allows you
-easily to run the supernode on Linux systems that don't necessarily satisfy the official Ubuntu 18.04 release requirement.
-
 ### [Quick Setup Graft Supernode (Building from Source)](Setup%20Graft%20Supernode%20(Building%20from%20Source).md)
 
 This is a condensed set of instructions to get up and running with a supernode.  Recommended for someone with prior Linux
@@ -35,6 +30,6 @@ A comprehensive set of instructions on how to compile your own node and command-
 
 A complete setup up guide on to where to download the components, assemble the IDE and build GraftMobile components on Windows.
 
-### [Graft Community Deb packages systemd and logrotate setup and Basic Server hardening steps](MaintenanceandServerHardeningguideforGraftSupernode_MultiSN_CommunityDebpackages.md)
+### [Graft Community Deb packages, systemd and logrotate setup and Basic Server hardening steps, including operating graftnoded and graft-wallet-cli, troubleshooting supernode and using TMUX](MaintenanceandServerHardeningguideforGraftSupernode_MultiSN_CommunityDebpackages.md)
 
-A Quick and easy to follow guide on how to setup systemd and logrotate for your Superndoe server running the Graft Community deb packages, also includes basic server hardening steps (by [Fez](https://t.me/Fezz27))
+A Quick and easy to follow guide on how to setup systemd and logrotate for your Supernode server running the Graft Community deb packages, also includes basic server hardening steps, operating graftnoded and graft-wallet-cli, troubleshooting supernode and using TMUX. (by [Fez](https://t.me/Fezz27))
