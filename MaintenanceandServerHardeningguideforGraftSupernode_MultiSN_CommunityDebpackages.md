@@ -60,6 +60,10 @@ Index:
 	
 	- In this section I have listed my own personal checks that I have performed since the days of public alpha, which have served me well in ensuring that I am able to quickly get my supernode up and running.
 
+[USEFUL LINKS & RESOURCES](useful-links-&-resources)
+
+	- Links to some useful content used in building this guide.
+
 ### [Graft Community Documentation](https://github.com/graft-community/docs)
 
 
@@ -657,4 +661,4 @@ If you can tick all these boxes then you can be pretty sure your supernode setup
 
 - [TMUX Cheat Sheet](https://tmuxcheatsheet.com/)
 
-- [Screen Guide]()
+- [Screen Guide](https://linuxize.com/post/how-to-use-linux-screen/)
