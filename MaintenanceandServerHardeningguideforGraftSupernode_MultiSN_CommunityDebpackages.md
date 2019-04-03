@@ -16,6 +16,49 @@
 - This guide can be used for testnet with the only difference being that **graftnoded** and **graft-wallet-cli** commands are used with the **--testnet** switch. 
 	- Like: graftnoded --testnet
 
+Index:
+
+[Setting up folder structures](#setting-up-our-folder-structure)
+	
+	- In this section we setup a dummy example for a folder structure for having multiple supernodes on the same machine.
+
+
+[Systemd configuration](#systemd-configuration)
+	
+	- In this section we setup systemd for our graftnoded and supernode services, please make sure that you replace the "graft" value in any path to the user you are logged in as.
+
+
+[Configuring logrotate](#configuring-logrotate)
+	
+	- In this section we configure logrotate to manage logs in for our graftnoded and supernode services. Note once again: Please replace the "graft" value in any path to the user you are logged in as.
+
+[Hardening our server](#hardening-our-server)
+	
+	- In this section there are a few rudimentary hardening steps and tips to ensuring you server is not a easy target. Please BEWARE of locking yourself out of your server after apllying 1 or more of these steps.
+
+[A simple guide to operating and using graftnoded](#operating-and-using-graftnoded)
+	
+	- In this section the basic usage of graftnoded, graft-wallet-cli and supernode is explained.
+
+[Running processes in the background if you have not setup systemd](#running-processes-in-the-background-if-you-have-not-setup-systemd)
+	
+	- In this section it is explained how to run a process in the background without killing it when closing your terminal session via Putty for example.
+
+[TMUX explained](#tmux)
+	
+	- In this section a few commands for general usage of tmux are shown, please refer to the Useful resources section for a link to a more comprehensive commands list.
+
+[Checking if your supernode is running as expected](#checking-if-your-supernode-is-running-as-expected)
+	
+	- In this section a couple commands to quickly check if the supernode service is running and providing us a supernode list back are shown.
+
+[Checking logs](#checking-logs)
+	
+	- In this section, it is shown how to quickly inspect a log file.
+
+[General Troubleshooting of your Supernode setup](#general-troubleshooting-of-your-supernode-setup)
+	
+	- In this section I have listed my own personal checks that I have performed since the days of public alpha, which have served me well in ensuring that I am able to quickly get my supernode up and running.
 
 ### [Graft Community Documentation](https://github.com/graft-community/docs)
 
@@ -111,7 +154,7 @@ WantedBy=multi-user.target
 ````
 - Cntrl + x to save
 
-#### Enable graftnoded.service to automatically start graftnoded after boot.
+## Enable graftnoded.service to automatically start graftnoded after boot.
 
 ````
 sudo systemctl enable graftnoded.service
@@ -122,12 +165,17 @@ sudo systemctl enable graftnoded.service
 Created symlink /etc/systemd/system/multi-user.target.wants/graftnoded.service → /etc/systemd/system/graftnoded.service.
 ````
 
-#### Start Graftnoded
+## Start Graftnoded
 ````
 sudo systemctl start graftnoded.service
 ````
+To view the systemd logs for your newly created graftnoded.service:
 
-#### Creating the graft-supernode.service file:
+````
+sudo journalctl -u graftnoded.service -af
+````
+
+## Creating the graft-supernode.service file:
 ````
 sudo nano /etc/systemd/system/graft-supernode@.service
 ````
@@ -165,7 +213,7 @@ sn1 would be our variable in the first instance.
 sn2 would be the variable in the second instance.
 ````
 
-#### Enable graft-supernode@.service to automatically start graft-supernode after boot and to only start if graftnoded is up and running.
+## Enable graft-supernode@.service to automatically start graft-supernode after boot and to only start if graftnoded is up and running.
 
 - sn1
 
@@ -178,7 +226,7 @@ sudo systemctl enable graft-supernode@sn1.service
 sudo systemctl enable graft-supernode@sn2.service
 ````
 
-#### Starting graft-supernode with systemd
+## Starting graft-supernode with systemd
 
 - sn1
 
@@ -199,7 +247,17 @@ Now we can also stop the graft-supernode service with the below:
 sudo systemctl stop graft-supernode@sn1.service
 ````
 
-# Configuring Logrotate to rotate very 5 days and compress daily
+To view the systemd logs for your newly created graft-supernode@sn1.service:
+
+````
+sudo journalctl -u graft-supernode@sn1.service -af
+````
+And you can do the same but for sn2:
+````
+sudo journalctl -u graft-supernode@sn2.service -af
+````
+
+## Configuring logrotate
 
 ```
 sudo nano /etc/logrotate.d/sn1-logs
@@ -267,19 +325,12 @@ exit $EXITVALUE
 
 ```
 
-- In theory we now should be good to go. You can add the -f switch to the line:
-```
-/usr/sbin/logrotate -f /etc/logrotate.conf
-```
-
-- To force the logrotate to happen, in case of some files no meeting the requirements.
-
 Port forwarding is required to the graftnoded port as of the time of writing to ensure that you supernode can communicate with other supernodes and appear as active.
 
 Port for mainnet graftnoded at the time of writing is : ***18980***
 
 
-## Hardening our server:
+# Hardening our server
 
 - The simplest and most effective way to keep our server safe is keep unnecessary software on our server to a minimum and and to always stay up to date with new packages.
 ````
@@ -361,9 +412,8 @@ nano /etc/ssh/sshd_config
 - Uncomment the Port=22 line and input your custom port instead of 22.
 	- Again restart SSH daemon to make it take effect, beware as this could kick you off and lock you out, ***ENSURE PORT IS OPEN ON UFW!***
 
-________________________________________________________________________________________________________________________
 
-## A simple guide to operating and using graftnoded and supernode:
+## Operating and using graftnoded
 
 Please note that if you are running compiled binaries or downloaded the binaries, all commands should be run in the same folder as the binary resides/lives and with ./ in front of the mentioned command, eg, ./graftnoded status.
 
@@ -398,7 +448,7 @@ graftnoded help
 ````
 #### Graft wallet commands:
 
-In the directory/folder you would like to sore the wallet in:
+In the directory/folder you would like to store the wallet in:
 ````
 graft-wallet-cli
 ````
@@ -430,8 +480,98 @@ Stake transfer
 ````
 stake_transfer <SUPERNODE_WALLET_PULIC_ADDRESS> <STAKE_AMOUNT> <LOCK_BLOCKS_COUNT> <SUPERNODE_PUBLIC_ID_KEY> <SUPERNODE_SIGNATURE>
 ````
+Gettng your see from the cli wallet, once logged into  the wallet and it is synced etc. You just need to type "seed" and press enter, then put you password that you used on creation or restore and follow the prompts, please store this safely as it provides anybody who obtains it the ability to access your funds and send it wherever they like.
 
-#### Checking if your supernode is running as expected:
+Deleting your wallet once you are done staking. Navigate to the folder directory which you launched the wallet to create it or restore it from your seed.
+
+Once done, do as follows:
+````
+ls
+````
+This will list the files present in the directory, you should find at 3 files inside that directory, 1 with the exact name that you gave your wallet, another file with the name of the wallet + ".address.txt" and last the name of the wallet + ".keys".
+
+For this example lets consider that we named our wallet "stake-wallet" and we created a new directory before creating/restoring our wallet called "wallets" in our home directory ie. ~/. you can naviaget directly there by just doing "cd" and pressing enter.
+````
+cd wallets
+````
+````
+ls
+````
+returns
+````
+stake-wallet stake-wallet.address.txt stake-wallet.keys
+````
+To delete the files just use the rm command, ENSURE you have the seed stored safely so you can restore the wallet at a later time.
+````
+rm stake-wallet
+rm stake-wallet.address.txt
+rm stake-wallet.keys
+````
+
+### Running processes in the background if you have not setup systemd
+
+You have an option of either TMUX or Screen, I am sure there are other options but these are the two that are popular. I myself have used TMUX and found it prety easy to use and powerful, therefore I will explain the usage here, I will post links at the bottom of the guide to further instructions/cheat sheets for tmux and also 1 for screen which I will not include in this guide as my usage of screen is extremely limited.
+
+#### TMUX
+
+Firstly Install tmux on your machine.
+````
+sudo apt update && sudo apt upgrade -y
+````
+Once complete you generate a session, in this example we will call ours "graftsupernode_tmux":
+````
+tmux new -s graftsupernode_tmux
+````
+This will launch a tmux session and have the first window open, this is window number 0.
+	- The Tmux session would have started in the directory that you launched it from, ie. If you were in ~/ directory (home directory) that is where the session will be.
+	- Now you can run any commands you like such as the supernode launch command for example.
+	- The difference is now if you detach from the "graftsupernode_tmux" session, your process will not stop.
+
+In order to detach from the tmux session with a default tmux configuration setup.
+
+Press:
+````
+Cntrl + b
+````
+Then press:
+````
+d
+````
+This will now detach the tmux session and you will back to where you started before you launched the "graftsupernode_tmux" session.
+
+In order to re-attach to the same session we created earlier we use the below command:
+````
+tmux a -t graftsupernode_tmux
+````
+This will return us back to the session we created earlier.
+
+Now lets open a second window:
+Press:
+````
+Cntrl + b
+````
+Then press:
+````
+c
+````
+This will open window number 1.
+Now you have a second "terminal" window in tmux to work in.
+
+If you would like to return to the previous "terminal" window.
+Press:
+````
+Cntrl + b
+````
+Then press:
+````
+0
+````
+
+If you would like to exit/close a window, just type exit and press enter, this will close the window you are in.
+
+This should be enough to allow you a general understanding of tmux and its usage, please refer to the Resources section at the bottom of this guide where I have posted some useful links to find more complete command lists, or google it yourself as there is many articles on both tmux and screen usage. 
+
+#### Checking if your supernode is running as expected
 
 Locally on the machine supernode is running on:
 ````
@@ -514,3 +654,7 @@ If you can tick all these boxes then you can be pretty sure your supernode setup
 - [Digital Ocean Guide for Systemd management of services](https://www.digitalocean.com/community/tutorials/how-to-use-systemctl-to-manage-systemd-services-and-units)
 
 - [Linode using logrotate to manage log files](https://www.linode.com/docs/uptime/logs/use-logrotate-to-manage-log-files/)
+
+- [TMUX Cheat Sheet](https://tmuxcheatsheet.com/)
+
+- [Screen Guide]()
