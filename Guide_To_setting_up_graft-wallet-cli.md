@@ -46,7 +46,9 @@ now go to that directory by using "cd"
 ````
 cd ~/graft-wallets
 ````
-## Creating a New Wallet and connecting to the remote node. If you have completed the section where you are hosting graftnoded yourself, please remove the "--daemon-host graft.community" part in the command.
+## Creating a New Wallet and connecting to the remote node
+
+**If you have completed the section where you are hosting graftnoded yourself, please remove the "--daemon-host graft.community" part in the command.**
 
 ***Ensure you are in the directory where graft-wallet-cli exists*** To check the contents of a drectory use "ls"
 - Step 1: Creating a new wallet
@@ -117,7 +119,7 @@ Now you can start graftnoded again but this time we will launch it in detached m
 ./graftnoded status
 ````
 
-Once fully synced you can return to the Creating a New Wallet section and complete that and the staking your supernode section.
+Once fully synced you can return to the Creating a New Wallet section and complete that and the staking your supernode section. [**Creating a New Wallet and connecting to the remote node**](#creating-a-new-wallet and-connecting-to-the-remote-node)
 
 Note for further commands for graftnoded you can run some thing like the below.
 ````
