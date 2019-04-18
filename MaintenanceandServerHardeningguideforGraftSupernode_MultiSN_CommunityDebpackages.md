@@ -712,6 +712,6 @@ If you can tick all these boxes then you can be pretty sure your supernode setup
 
 - [Linode using logrotate to manage log files](https://www.linode.com/docs/uptime/logs/use-logrotate-to-manage-log-files/)
 
-- [TMUX Cheat Sheet](https://tmuxcheatsheet.com/)
+- [TMUX Cheat Sheet](https://tmuxcheatsheet.com/) AND [Linux Tmux Cheat Sheet - computingforgeeks](https://computingforgeeks.com/linux-tmux-cheat-sheet/)
 
 - [Screen Guide](https://linuxize.com/post/how-to-use-linux-screen/)
