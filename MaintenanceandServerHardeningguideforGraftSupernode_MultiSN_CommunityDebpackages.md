@@ -62,7 +62,7 @@ In this section, it is shown how to quickly inspect a log file.
 	
 In this section I have listed my own personal checks that I have performed since the days of public alpha, which have served me well in ensuring that I am able to quickly get my supernode up and running.
 
-- [**USEFUL LINKS & RESOURCES**](useful-links-&-resources)
+- [**USEFUL LINKS & RESOURCES**](#useful-links-&-resources)
 
 Links to some useful content used in building this guide.
 
@@ -244,9 +244,9 @@ After=graftnoded.service
 [Service]
 User=graft
 Type=simple
-WorkingDirectory=/home/graft/%i
+WorkingDirectory=/home/$USER/%i
 Restart=always
-ExecStart=/usr/bin/graft-supernode --config-file config.ini --log-file /home/graft/%i/logs/%i.log
+ExecStart=/usr/bin/graft-supernode --config-file config.ini --log-file /home/$USER/%i/logs/%i.log
 Environment=TERM=xterm
 #LimitNOFILE=8192
 
