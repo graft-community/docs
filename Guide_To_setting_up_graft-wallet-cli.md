@@ -133,6 +133,6 @@ Written by:
 
 # USEFUL LINKS & RESOURCES
 
-- [Graft Community Guide to deploying a Supernode](https://github.com/graft-community/docs/blob/master/MaintenanceandServerHardeningguideforGraftSupernode_MultiSN_CommunityDebpackages.md)
+- [Graft Community Guide to deploying a Supernode](https://github.com/graft-community/docs/blob/master/Graft_Supernode_Mainnet_Simple-step-by-step-setup-instructions-for-non-Linux-users_v1.7.md)
 
-- [Graft Community Deb packages, systemd and logrotate setup and Basic Server hardening steps, including operating graftnoded and graft-wallet-cli, troubleshooting supernode and using TMUX](https://github.com/graft-community/docs/blob/master/Graft_Supernode_Mainnet_Simple-step-by-step-setup-instructions-for-non-Linux-users_v1.7.md)
+- [Graft Community Deb packages, systemd and logrotate setup and Basic Server hardening steps, including operating graftnoded and graft-wallet-cli, troubleshooting supernode and using TMUX](https://github.com/graft-community/docs/blob/master/MaintenanceandServerHardeningguideforGraftSupernode_MultiSN_CommunityDebpackages.md)
