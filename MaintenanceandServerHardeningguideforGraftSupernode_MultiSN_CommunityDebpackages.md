@@ -18,13 +18,13 @@
 
 # Index and quick links:
 
-- [**Hardening our server**](#hardening-our-server)
-	
-In this section there are a few rudimentary hardening steps and tips to ensuring you server is not a easy target. Please BEWARE of locking yourself out of your server after applying 1 or more of these steps.
-
 - [**Adding a non-root user**](#add-a-non-root-user)
 
 In this section we add a non-root user **graft**. This is recommended and not a must.
+
+- [**Hardening our server**](#hardening-our-server)
+	
+In this section there are a few rudimentary hardening steps and tips to ensuring you server is not a easy target. Please BEWARE of locking yourself out of your server after applying 1 or more of these steps.
 
 - [**Setting up folder structures**](#setting-up-our-folder-structure)
 	
@@ -204,105 +204,6 @@ nano /etc/ssh/sshd_config
 ```
 - Uncomment the Port=22 line and input your custom port instead of 22.
 	- Again restart SSH daemon to make it take effect, beware as this could kick you off and lock you out, ***ENSURE PORT IS OPEN ON UFW!***
-
-
-## Operating and using graftnoded
-
-Please note that if you are running compiled binaries or downloaded the binaries, all commands should be run in the same folder as the binary resides/lives and with ./ in front of the mentioned command, eg, ./graftnoded status.
-
-#### Mainnet:
-````
-Default Port for graftnoded: 18980
-````
-#### Public Testnet:
-````
-Default Port for graftnoded: 28880
-````
-## For Deb packages:
-#### Launch graftnoded:
-````
-graftnoded --detach
-````
-Get status of graftnoded:
-````
-graftnoded status
-````
-Get graftnoded launch options:
-````
-graftnoded --help
-````
-Get graftnoded interactive commands like status previously mentioned:
-````
-graftnoded help
-````
-#### Once again just to remind users who are not familiar with Linux and the is more aimed at, If you are using compiled or downloaded binaries, you need to run these commands in the directory/folder where the binaries live and put ./ in front like:
-````
-./graftnoded --detach
-````
-#### Graft wallet commands:
-
-In the directory/folder you would like to store the wallet in:
-````
-graft-wallet-cli
-````
-##### Follow prompts to launch and create a new wallet or use an existing wallet in the folder.
-
-To restore an existing wallet from the mmemonic seed:
-````
-graft-wallet-cli --restore-deterministic-wallet
-````
-#### Follow prompts and insert seed when requested.
-
-In wallet commands:
-
-All shown < and > should not be used in the related commands
-
-To get current balance:
-````
-balance
-````
-Show the incoming and out-going transactions to this wallet:
-````
-show_transfers
-````
-Make a payment:
-````
-transfer <receiver_wallet_address> <amount>
-````
-Stake transfer
-````
-stake_transfer <SUPERNODE_WALLET_PULIC_ADDRESS> <STAKE_AMOUNT> <LOCK_BLOCKS_COUNT> <SUPERNODE_PUBLIC_ID_KEY> <SUPERNODE_SIGNATURE>
-````
-Once logged into  the wallet and it is synced etc. You just need to type "seed" and press enter, then put you password that you used on creation or restore and follow the prompts, please store this safely as it provides anybody who obtains it the ability to access your funds and send it wherever they like.
-
-Deleting your wallet once you are done staking. Navigate to the folder directory which you launched the wallet to create it or restore it from your seed.
-
-Once done, do as follows:
-````
-ls
-````
-
-- Getting your seed from the cli wallet
-
-This will list the files present in the directory, you should find at 3 files inside that directory, 1 with the exact name that you gave your wallet, another file with the name of the wallet + ".address.txt" and last the name of the wallet + ".keys".
-
-For this example lets consider that we named our wallet "stake-wallet" and we created a new directory before creating/restoring our wallet in the directory called "wallets" in our home directory ie. ~/. you can navigate directly to home directory by just doing "cd" and pressing enter.
-````
-cd ~/wallets
-````
-````
-ls
-````
-returns
-````
-stake-wallet stake-wallet.address.txt stake-wallet.keys
-````
-To delete the files just use the rm command, ENSURE you have the seed stored safely so you can restore the wallet at a later time.
-````
-rm stake-wallet
-rm stake-wallet.address.txt
-rm stake-wallet.keys
-````
 
 ## Setting up our folder structure (Action after you have installed the graft community deb packages)
 
@@ -565,6 +466,104 @@ exit $EXITVALUE
 ## Port forwarding is required to the graftnoded port as of the time of writing to ensure that you supernode can communicate with other supernodes and appear as active.
 
 Port for mainnet graftnoded at the time of writing is : ***18980***
+
+## Operating and using graftnoded
+
+Please note that if you are running compiled binaries or downloaded the binaries, all commands should be run in the same folder as the binary resides/lives and with ./ in front of the mentioned command, eg, ./graftnoded status.
+
+#### Mainnet:
+````
+Default Port for graftnoded: 18980
+````
+#### Public Testnet:
+````
+Default Port for graftnoded: 28880
+````
+## For Deb packages:
+#### Launch graftnoded:
+````
+graftnoded --detach
+````
+Get status of graftnoded:
+````
+graftnoded status
+````
+Get graftnoded launch options:
+````
+graftnoded --help
+````
+Get graftnoded interactive commands like status previously mentioned:
+````
+graftnoded help
+````
+#### Once again just to remind users who are not familiar with Linux and the is more aimed at, If you are using compiled or downloaded binaries, you need to run these commands in the directory/folder where the binaries live and put ./ in front like:
+````
+./graftnoded --detach
+````
+#### Graft wallet commands:
+
+In the directory/folder you would like to store the wallet in:
+````
+graft-wallet-cli
+````
+##### Follow prompts to launch and create a new wallet or use an existing wallet in the folder.
+
+To restore an existing wallet from the mmemonic seed:
+````
+graft-wallet-cli --restore-deterministic-wallet
+````
+#### Follow prompts and insert seed when requested.
+
+In wallet commands:
+
+All shown < and > should not be used in the related commands
+
+To get current balance:
+````
+balance
+````
+Show the incoming and out-going transactions to this wallet:
+````
+show_transfers
+````
+Make a payment:
+````
+transfer <receiver_wallet_address> <amount>
+````
+Stake transfer
+````
+stake_transfer <SUPERNODE_WALLET_PULIC_ADDRESS> <STAKE_AMOUNT> <LOCK_BLOCKS_COUNT> <SUPERNODE_PUBLIC_ID_KEY> <SUPERNODE_SIGNATURE>
+````
+Once logged into  the wallet and it is synced etc. You just need to type "seed" and press enter, then put you password that you used on creation or restore and follow the prompts, please store this safely as it provides anybody who obtains it the ability to access your funds and send it wherever they like.
+
+Deleting your wallet once you are done staking. Navigate to the folder directory which you launched the wallet to create it or restore it from your seed.
+
+Once done, do as follows:
+````
+ls
+````
+
+- Getting your seed from the cli wallet
+
+This will list the files present in the directory, you should find at 3 files inside that directory, 1 with the exact name that you gave your wallet, another file with the name of the wallet + ".address.txt" and last the name of the wallet + ".keys".
+
+For this example lets consider that we named our wallet "stake-wallet" and we created a new directory before creating/restoring our wallet in the directory called "wallets" in our home directory ie. ~/. you can navigate directly to home directory by just doing "cd" and pressing enter.
+````
+cd ~/wallets
+````
+````
+ls
+````
+returns
+````
+stake-wallet stake-wallet.address.txt stake-wallet.keys
+````
+To delete the files just use the rm command, ENSURE you have the seed stored safely so you can restore the wallet at a later time.
+````
+rm stake-wallet
+rm stake-wallet.address.txt
+rm stake-wallet.keys
+````
 
 ### Running processes in the background if you have not setup systemd
 
