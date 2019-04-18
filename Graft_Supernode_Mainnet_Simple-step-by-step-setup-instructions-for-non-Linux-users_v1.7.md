@@ -34,7 +34,7 @@ _by: yidakee (aka el_duderino_007)_
 | -------------                |:---------:| :--------:| :-----:| :--------------:|
 | https://vultr.com            | 2vCPU 4GB | 3 TB      | 60GB   |    $20          |
 | https://digitalocean.com     | 2vCPU 4GB | 4 TB      | 80GB   | $100 Free Trial |
-| https://www.hetzner.com/     | 2vCPU 4GB | 20TB      | 40TB   |    4,90€        |
+| https://www.hetzner.com/     | 2vCPU 4GB | 20TB      | 40GB   |    4,90€        |
 | https://contabo.com/         | 4 CPU 8GB | Unlimited | 200 GB |    4,99€        |
 | https://www.linode.com/      | 2vCPU 4GB | 4TB       | 80GB   |    $20          |
 | https://www.ovh.com/         | 2vCPU 7GB | ?         | 50GB   |    $26.40       |
@@ -131,18 +131,21 @@ These will be the only binaries you will use, do not use the others.
 
 * A soon you see the bottom lines saying `Synced xxx/xxxxxx` , you can type `exit` to quit `graftnoded`
 
-* Let's navigate to the directory where the blockchain lives in, delete the current one and download the most current up-to-date.
+* Let's navigate to the directory where the blockchain lives in, delete the current one and download the most current up-to-date. The screenshot shows `testnet` and steps are slightly different, but behaviour is identical
 
 ````bash
-    cd $HOME/.graft/lmdb/
+    cd $HOME/.graft/
     ls -la
-    rm *
-    ls -la
-    wget (temporarily unavailable due to server load - will be fixed shortly)
+    rm -r lmdb
+    curl http://graftbuilds-ohio.s3.amazonaws.com/lmdb.tar.gz | tar xzf -
+    cd lmdb && rm em* && rm lo*
+    cd
 ````
 ![7-1](easy-guide-mainnet/7-1.png)
 
 * Big shoutout to _jagerman_ for keeping a publicly available copy of the blockchain. Thanks man, you rock!
+
+* Alternatively, you can use this torrent -> [Torrent](easy-guide-mainnet/Graft.mainnet.data.mdb.torrent) - Thanks @MV1879!
 
 
 * Brilliant! Now lets go back and start `graftnoded` again, and be almost immediately up to block height.
