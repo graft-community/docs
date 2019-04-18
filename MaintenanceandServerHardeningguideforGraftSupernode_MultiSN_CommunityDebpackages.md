@@ -547,9 +547,9 @@ ls
 
 This will list the files present in the directory, you should find at 3 files inside that directory, 1 with the exact name that you gave your wallet, another file with the name of the wallet + ".address.txt" and last the name of the wallet + ".keys".
 
-For this example lets consider that we named our wallet "stake-wallet" and we created a new directory before creating/restoring our wallet called "wallets" in our home directory ie. ~/. you can navigate directly to home directory by just doing "cd" and pressing enter.
+For this example lets consider that we named our wallet "stake-wallet" and we created a new directory before creating/restoring our wallet in the directory called "wallets" in our home directory ie. ~/. you can navigate directly to home directory by just doing "cd" and pressing enter.
 ````
-cd wallets
+cd ~/wallets
 ````
 ````
 ls
