@@ -18,6 +18,10 @@
 
 # Index and quick links:
 
+- [**Adding a non-root user**](#add-a-non-root-user)
+
+In this section we add a non-root user **graft**. This is recommended and not a must.
+
 - [**Setting up folder structures**](#setting-up-our-folder-structure)
 	
 In this section we setup a dummy example for a folder structure for having multiple supernodes on the same machine.
@@ -58,7 +62,7 @@ In this section, it is shown how to quickly inspect a log file.
 	
 In this section I have listed my own personal checks that I have performed since the days of public alpha, which have served me well in ensuring that I am able to quickly get my supernode up and running.
 
-- [**USEFUL LINKS & RESOURCES**](useful-links-&-resources)
+- [**USEFUL LINKS & RESOURCES**](#useful-links--resources)
 
 Links to some useful content used in building this guide.
 
@@ -69,9 +73,58 @@ Links to some useful content used in building this guide.
 ## To install the graft community deb packages, please refer to the below link for quick and easy to follow instructions:
 ### [deb.graft.community](https://deb.graft.community/)
 
+## Add a non-root user
+Logged in as root and "**graft** being your username you have chosen (the username can be anything)":
+````bash
+adduser graft
+````
+* Set and confirm the new user's password at the prompt. A strong password is highly recommended!
+````bash
+Set password prompts:
+Enter new UNIX password:
+Retype new UNIX password:
+passwd: password updated successfully
+Note: if you are running as root please exclude any sudo references below:
+````
+* Follow the prompts to set the new user's information. It is fine to accept the defaults to leave all of this information blank.
+````bash
+User information prompts:
+Changing the user information for username
+Enter the new value, or press ENTER for the default
+    Full Name []:
+    Room Number []:
+    Work Phone []:
+    Home Phone []:
+    Other []:
+Is the information correct? [Y/n]
+````
+````bash
+usermod -aG sudo graft
+````
+By default, on Ubuntu, members of the sudo group have sudo privileges.
+* Use the su command to switch to the new user account.
+````bash
+su - graft
+````
+* As the new user, verify that you can use sudo by prepending "sudo" to the command that you want to run with superuser privileges. For example we use **apt update** below.
+````bash
+username# sudo apt update
+````
+* For example, you can list the contents of the /root directory, which is normally only accessible to the root user.
+````bash
+username#  sudo ls -la /root
+````
+* The first time you use sudo in a session, you will be prompted for the password of the user account. Enter the password to proceed.
+````bash
+Output:
+[sudo] password for username:
+````
+If your user is in the proper group and you entered the password correctly, the command that you issued with sudo should run with root privileges.
 
-## Setting up our folder structure
-```
+## Setting up our folder structure (Action after you have installed the graft community deb packages)
+
+- **Create Our Folders**
+````
 mkdir -p ~/sn1/logs
 ````
 ````
@@ -80,8 +133,7 @@ mkdir -p ~/sn2/logs
 ````
 mkdir -p ~/sn3/logs
 ````
-- Copy config.ini into created sn directories
-
+- **Copy config.ini into created sn directories**
 ````
 cp /usr/share/doc/graft-supernode/config.ini ~/sn1/config.ini
 
@@ -90,13 +142,13 @@ cp /usr/share/doc/graft-supernode/config.ini ~/sn2/config.ini
 cp /usr/share/doc/graft-supernode/config.ini ~/sn3/config.ini
 ````
 
-- Edit config.ini files
+- **Edit config.ini files**
 
 ````
 nano ~/sn1/config.ini
 ````
 
-- The Following values are the important values to change when running multi-sn and should be unique per Supernode:
+- **The Following values are the important values to change when running multi-sn and should be unique per Supernode:**
 
 ````
 http-address=0.0.0.0:18690
@@ -108,8 +160,8 @@ data-dir=
 
 - Change the port on ***http-address=***
 
-- Change the directory according to the folders you created in the first step for ***data-dir=*** for each respective config.ini in each directory.
-- Something like :
+- **Change the directory according to the folders you created in the first step for ***data-dir=*** for each respective config.ini in each directory.**
+- **Something like:**
 
 ````
 data-dir=/home/graft/sn1/
@@ -119,21 +171,21 @@ data-dir=/home/graft/sn1/
 data-dir=/home/graft/sn2/
 ````
 
-- Obviously as per all other guides instructions, add your wallet into config.ini that you will be using to stake with:
+- **Obviously as per all other guides instructions, add your wallet into config.ini that you will be using to stake with:**
 
 	wallet-public-address=<Your_wallet_address>
 
 
-- Start supernode and check that supernode.keys is inside your directory for each sn. Refer to below where we setup systemd to launch each Supernode.
+- **Start supernode and check that supernode.keys is inside your directory for each sn. Refer to below where we setup systemd to launch each Supernode.**
 
 
 ## Systemd configuration
 
-- Create systemd service for graftnoded:
+## Create systemd service for graftnoded:
 
-```
+````
 sudo nano /etc/systemd/system/graftnoded.service
-```
+````
 
 - Input below text into the new file:
 
@@ -192,9 +244,9 @@ After=graftnoded.service
 [Service]
 User=graft
 Type=simple
-WorkingDirectory=/home/graft/%i
+WorkingDirectory=/home/$USER/%i
 Restart=always
-ExecStart=/usr/bin/graft-supernode --config-file config.ini --log-file /home/graft/%i/logs/%i.log
+ExecStart=/usr/bin/graft-supernode --config-file config.ini --log-file /home/$USER/%i/logs/%i.log
 Environment=TERM=xterm
 #LimitNOFILE=8192
 
@@ -261,7 +313,7 @@ sudo journalctl -u graft-supernode@sn2.service -af
 
 ## Configuring logrotate
 
-```
+````
 sudo nano /etc/logrotate.d/sn1-logs
 ````
 
@@ -277,9 +329,9 @@ sudo nano /etc/logrotate.d/sn1-logs
 }
 ````
 - Cntrl + x to save
-```
+````
 sudo nano /etc/logrotate.d/sn2-logs
-```
+````
 - Input below text into the new file:
 ````
 /home/graft/sn2/logs/sn2.log {
@@ -305,7 +357,7 @@ sudo /usr/sbin/logrotate -f /etc/logrotate.conf
 sudo cat /etc/cron.daily/logrotate
 ````
 - If it exists it will return something like:
-```
+````
 #!/bin/sh
 
 # skip in favour of systemd timer
@@ -325,9 +377,9 @@ if [ $EXITVALUE != 0 ]; then
 fi
 exit $EXITVALUE
 
-```
+````
 
-Port forwarding is required to the graftnoded port as of the time of writing to ensure that you supernode can communicate with other supernodes and appear as active.
+## Port forwarding is required to the graftnoded port as of the time of writing to ensure that you supernode can communicate with other supernodes and appear as active.
 
 Port for mainnet graftnoded at the time of writing is : ***18980***
 
