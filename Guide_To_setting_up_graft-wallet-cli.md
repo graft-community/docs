@@ -2,7 +2,9 @@
 
 **Note it is recommended to not use the *root* user when working with Linux machines, especially if it concerns financial applications**
 
-*Please consult the below guides first section on how to setup a non-root user. This is not essential.
+*Please consult the hardening guide in the USEFUL LINKS & RESOURCES section on how to setup a non-root user. This is not essential.
+
+- [**USEFUL LINKS & RESOURCES**](#useful-links--resources)
 
 Getting ready:
 
