@@ -61,7 +61,7 @@ cd ~/graft-wallets
 
 # NB NB NB Remember to back up your SEED and keep it safe. just type seed in the wallet and follow the prompts.
 
-FOr extra commands available just telp help and press enter inside the wallet.
+For extra commands available just type help and press enter inside the wallet.
 
 ## Staking your Supernode
 
