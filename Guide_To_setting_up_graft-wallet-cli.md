@@ -49,11 +49,11 @@ cd ~/graft-wallets
 ## Creating a New Wallet and connecting to the remote node. If you have completed the section where you are hosting graftnoded yourself, please remove the "--daemon-host graft.community" part in the command.
 
 ***Ensure you are in the directory where graft-wallet-cli exists*** To check the contents of a drectory use "ls"
-
+- Step 1: Creating a new wallet
 ````
 ./graft-wallet-cli --daemon-host graft.community
 ````
-- Step 3b : Restoring an existing wallet
+- Step 2 : Restoring an existing wallet
 ````
 ./graft-wallet-cli --daemon-host graft.community --restore-deterministic-wallet
 ````
@@ -107,7 +107,7 @@ curl http://graftbuilds-ohio.s3.amazonaws.com/lmdb.tar.gz | tar xzf -
 cd lmdb && rm em* && rm lo*
 cd ~/GraftNetwork_1.7.4.ubuntu-18.04-x64
 ````
-Now you can start graftnoded again but this time we will luanch it in detached mode so it runs in the background
+Now you can start graftnoded again but this time we will launch it in detached mode so it runs in the background
 ````
 ./graftnoded --detach
 ````
@@ -129,6 +129,7 @@ For launch flags for graftnoded
 ````
 Written by:
 
+#### Github user: Fez29
 #### Telegram Handle: @Fezz27
 
 # USEFUL LINKS & RESOURCES
