@@ -4,7 +4,7 @@
 
 *Please consult the hardening guide in the USEFUL LINKS & RESOURCES section on how to setup a non-root user. This is not essential.
 
-- [**USEFUL LINKS & RESOURCES**](#useful-links-&-resources)
+- [**USEFUL LINKS & RESOURCES**](#useful-links--resources)
 
 Getting ready:
 
