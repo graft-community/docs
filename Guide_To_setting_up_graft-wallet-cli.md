@@ -9,7 +9,7 @@
 Getting ready:
 
 Any Ubuntu 18.04 machine is sufficient. Ubuntu server or Ubuntu Desktop will work just fine.
-Secondly you need the details required for staking which you can get from your Supernode, if you are having your Supernode hosted then the URL would be provided to you, if will look something like below:
+Secondly if you are planning on a staking a supernode (If not ignore this and the staking supernode section), you need the details required for staking which you can get from your Supernode, if you are having your Supernode hosted then the URL would be provided to you, if will look something like below:
 
 http://122.78.15.123:18690/dapi/v2.0/cryptonode/getwalletaddress
 
