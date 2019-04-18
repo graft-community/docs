@@ -119,7 +119,7 @@ Now you can start graftnoded again but this time we will launch it in detached m
 ./graftnoded status
 ````
 
-Once fully synced you can return to the Creating a New Wallet section and complete that and the staking your supernode section. [**Creating a New Wallet and connecting to the remote node**](#creating-a-new-wallet and-connecting-to-the-remote-node)
+Once fully synced you can return to the Creating a New Wallet section and complete that and the staking your supernode section. [**Creating a New Wallet and connecting to the remote node**](#creating-a-new-wallet-and-connecting-to-the-remote-node)
 
 Note for further commands for graftnoded you can run some thing like the below.
 ````
