@@ -127,6 +127,70 @@ For launch flags for graftnoded
 ````
 ./graftnoded --help
 ````
+# Additional content on graft-wallet-cli
+
+#### Graft wallet commands:
+
+In the directory/folder you would like to/or have stored the wallet in (From earlier in the guide this was ~/graft-wallets):
+````
+./graft-wallet-cli
+````
+##### Follow prompts to launch and create a new wallet or use an existing wallet in the folder.
+
+To restore an existing wallet from the mmemonic seed:
+````
+./graft-wallet-cli --restore-deterministic-wallet
+````
+#### Follow prompts and insert seed when requested.
+
+In wallet commands:
+
+All shown < and > should not be used in the related commands
+
+To get current balance:
+````
+balance
+````
+Show the incoming and out-going transactions to this wallet:
+````
+show_transfers
+````
+Make a payment:
+````
+transfer <receiver_wallet_address> <amount>
+````
+Stake transfer
+````
+stake_transfer <SUPERNODE_WALLET_PULIC_ADDRESS> <STAKE_AMOUNT> <LOCK_BLOCKS_COUNT> <SUPERNODE_PUBLIC_ID_KEY> <SUPERNODE_SIGNATURE>
+````
+Gettng your see from the cli wallet, once logged into  the wallet and it is synced etc. You just need to type "seed" and press enter, then put you password that you used on creation or restore and follow the prompts, please store this safely as it provides anybody who obtains it the ability to access your funds and send it wherever they like.
+
+Deleting your wallet once you are done staking. Navigate to the folder directory which you launched the wallet to create it or restore it from your seed.
+
+Once done, do as follows:
+````
+ls
+````
+This will list the files present in the directory, you should find at 3 files inside that directory, 1 with the exact name that you gave your wallet, another file with the name of the wallet + ".address.txt" and last the name of the wallet + ".keys".
+
+For this example lets consider that we named our wallet "stake-wallet" and we created a new directory before creating/restoring our wallet called "wallets" in our home directory ie. ~/. you can navigate directly to home directory by just doing "cd" and pressing enter.
+````
+cd ~/graft-wallets
+````
+````
+ls
+````
+returns
+````
+stake-wallet stake-wallet.address.txt stake-wallet.keys
+````
+To delete the files just use the rm command, ENSURE you have the seed stored safely so you can restore the wallet at a later time.
+````
+rm stake-wallet
+rm stake-wallet.address.txt
+rm stake-wallet.keys
+````
+
 Written by:
 
 #### Github user: Fez29
