@@ -51,7 +51,7 @@ Record this for use later
 - Step 1 : Downloading the binaries and unzipping.
 ````
 cd
-curl https://github.com/graft-project/GraftNetwork/releases/download/v1.7.4/GraftNetwork_1.7.4.ubuntu-18.04-x64.tar.gz | tar xzf -
+wget -c https://github.com/graft-project/GraftNetwork/releases/download/v1.7.4/GraftNetwork_1.7.4.ubuntu-18.04-x64.tar.gz -O - | tar xvz -C .
 ````
 - Step 2 : accessing the folder you just downloaded and unzipped.
 ````
