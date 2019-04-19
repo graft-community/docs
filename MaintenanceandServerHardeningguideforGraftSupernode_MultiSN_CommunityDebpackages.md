@@ -22,6 +22,10 @@
 
 In this section we add a non-root user **graft**. This is recommended and not a must.
 
+- [**Hardening our server**](#hardening-our-server)
+	
+In this section there are a few rudimentary hardening steps and tips to ensuring you server is not a easy target. Please BEWARE of locking yourself out of your server after applying 1 or more of these steps.
+
 - [**Setting up folder structures**](#setting-up-our-folder-structure)
 	
 In this section we setup a dummy example for a folder structure for having multiple supernodes on the same machine.
@@ -33,10 +37,6 @@ In this section we setup systemd for our graftnoded and supernode services, plea
 - [**Configuring logrotate**](#configuring-logrotate)
 	
 In this section we configure logrotate to manage logs in for our graftnoded and supernode services. Note once again: Please replace the "graft" value in any path to the user you are logged in as.
-
-- [**Hardening our server**](#hardening-our-server)
-	
-In this section there are a few rudimentary hardening steps and tips to ensuring you server is not a easy target. Please BEWARE of locking yourself out of your server after applying 1 or more of these steps.
 
 - [**A simple guide to operating and using graftnoded**](#operating-and-using-graftnoded)
 	
@@ -120,6 +120,90 @@ Output:
 [sudo] password for username:
 ````
 If your user is in the proper group and you entered the password correctly, the command that you issued with sudo should run with root privileges.
+
+# Hardening our server
+
+- The simplest and most effective way to keep our server safe is keep unnecessary software on our server to a minimum and and to always stay up to date with new packages.
+````
+sudo apt update && sudo apt upgrade -y
+````
+````
+sudo apt autoremove
+````
+### Enabling ufw:
+````
+sudo apt install ufw -y
+````
+**Opening the neccessary ports:**
+
+- SSH:
+```
+sudo ufw allow 22
+```
+- Graftnoded port:
+````
+sudo ufw allow 18980
+````
+- Enabling UFW (***BEWARE OF LOCKING YOURSELF OUT HERE***) ensure your SSH port is opened:
+````
+sudo ufw enable
+````
+
+### Configuring SSH
+This assumes you are connecting to you machine via SSH but have used a password to login, lets enable login via a non-root user with no password. Again we will assume the user is "graft" that is being used on the local machine.
+
+**For a pretty comprehensive guide on SSH best practices see the "Digital Ocean Guide for Systemd management of services" in the [**USEFUL LINKS & RESOURCES**](#useful-links--resources)**
+
+- Press enter to accept defaults unless you already have a SSH key present on your machine and that makes this step unnecessary
+```
+ssh-key-gen 2048
+```
+- Press: ENTER
+```
+ssh-copy-id graft@<remote-machine-ip>
+```
+- Enter password.
+- Now you can use:
+```
+ssh  graft@<remote-machine-ip>
+```
+to Login with no password.
+
+Next step is disable root logins via ssh, obviously ensure you have created another user to ensure you dont lock yourself out. 
+- This step is general SSH best practice as every Linux/Unix distro uses root as the admin user and therefore is an easy target for brute force attacks. 
+- Another good idea is to change the port to a custom port for ssh and use the switch "-p <port-number>" with the ssh command.
+- Once again ensure you open the port on ufw if enabled to ensure you dont lock yourself out and you have a non-root user configured.
+
+```
+sudo nano /etc/ssh/sshd_config
+```
+- Then uncomment the below line and change value to "no"
+
+````
+PermitRootLogin no
+````
+- To make this take effect immediately:
+
+	- Restart the SSH daemon to apply changes by issuing one of the below commands, specific to your Linux distribution.
+
+```
+sudo systemctl restart sshd
+sudo service sshd restart
+sudo /etc/init.d/ssh restart
+```
+- Now the root user cannot login via SSH.
+- You can change to the root user at anytime by using the below command:
+```
+su -
+```
+and inputting the password.
+
+- Changing the port is inside the same file as PermitRootLogin:
+```
+nano /etc/ssh/sshd_config
+```
+- Uncomment the Port=22 line and input your custom port instead of 22.
+	- Again restart SSH daemon to make it take effect, beware as this could kick you off and lock you out, ***ENSURE PORT IS OPEN ON UFW!***
 
 ## Setting up our folder structure (Action after you have installed the graft community deb packages)
 
@@ -383,90 +467,6 @@ exit $EXITVALUE
 
 Port for mainnet graftnoded at the time of writing is : ***18980***
 
-
-# Hardening our server
-
-- The simplest and most effective way to keep our server safe is keep unnecessary software on our server to a minimum and and to always stay up to date with new packages.
-````
-sudo apt update && sudo apt upgrade -y
-````
-````
-sudo apt autoremove
-````
-### Enabling ufw:
-````
-sudo apt install ufw -y
-````
-**Opening the neccessary ports:**
-
-- SSH:
-```
-sudo ufw allow 22
-```
-- Graftnoded port:
-````
-sudo ufw allow 18980
-````
-- Enabling UFW (***BEWARE OF LOCKING YOURSELF OUT HERE***) ensure your SSH port is opened:
-````
-sudo ufw enable
-````
-
-### Configuring SSH
-This assumes you are connecting to you machine via SSH but have used a password to login, lets enable login via a non-root user with no password. Again we will assume the user is "graft" that is being used on the local machine.
-
-- Press enter to accept defaults unless you already have a SSH key present on your machine and that makes this step unnecessary
-```
-ssh-key-gen 2048
-```
-- Press: ENTER
-```
-ssh-copy-id graft@<remote-machine-ip>
-```
-- Enter password.
-- Now you can use:
-```
-ssh  graft@<remote-machine-ip>
-```
-to Login with no password.
-
-Next step is disable root logins via ssh, obviously ensure you have created another user to ensure you dont lock yourself out. 
-- This step is general SSH best practice as every Linux/Unix distro uses root as the admin user and therefore is an easy target for brute force attacks. 
-- Another good idea is to change the port to a custom port for ssh and use the switch "-p <port-number>" with the ssh command.
-- Once again ensure you open the port on ufw if enabled to ensure you dont lock yourself out and you have a non-root user configured.
-
-```
-sudo nano /etc/ssh/sshd_config
-```
-- Then uncomment the below line and change value to "no"
-
-````
-PermitRootLogin no
-````
-- To make this take effect immediately:
-
-	- Restart the SSH daemon to apply changes by issuing one of the below commands, specific to your Linux distribution.
-
-```
-sudo systemctl restart sshd
-sudo service sshd restart
-sudo /etc/init.d/ssh restart
-```
-- Now the root user cannot login via SSH.
-- You can change to the root user at anytime by using the below command:
-```
-su -
-```
-and inputting the password.
-
-- Changing the port is inside the same file as PermitRootLogin:
-```
-nano /etc/ssh/sshd_config
-```
-- Uncomment the Port=22 line and input your custom port instead of 22.
-	- Again restart SSH daemon to make it take effect, beware as this could kick you off and lock you out, ***ENSURE PORT IS OPEN ON UFW!***
-
-
 ## Operating and using graftnoded
 
 Please note that if you are running compiled binaries or downloaded the binaries, all commands should be run in the same folder as the binary resides/lives and with ./ in front of the mentioned command, eg, ./graftnoded status.
@@ -534,7 +534,7 @@ Stake transfer
 ````
 stake_transfer <SUPERNODE_WALLET_PULIC_ADDRESS> <STAKE_AMOUNT> <LOCK_BLOCKS_COUNT> <SUPERNODE_PUBLIC_ID_KEY> <SUPERNODE_SIGNATURE>
 ````
-Gettng your see from the cli wallet, once logged into  the wallet and it is synced etc. You just need to type "seed" and press enter, then put you password that you used on creation or restore and follow the prompts, please store this safely as it provides anybody who obtains it the ability to access your funds and send it wherever they like.
+Once logged into  the wallet and it is synced etc. You just need to type "seed" and press enter, then put you password that you used on creation or restore and follow the prompts, please store this safely as it provides anybody who obtains it the ability to access your funds and send it wherever they like.
 
 Deleting your wallet once you are done staking. Navigate to the folder directory which you launched the wallet to create it or restore it from your seed.
 
@@ -542,11 +542,14 @@ Once done, do as follows:
 ````
 ls
 ````
+
+- Getting your seed from the cli wallet
+
 This will list the files present in the directory, you should find at 3 files inside that directory, 1 with the exact name that you gave your wallet, another file with the name of the wallet + ".address.txt" and last the name of the wallet + ".keys".
 
-For this example lets consider that we named our wallet "stake-wallet" and we created a new directory before creating/restoring our wallet called "wallets" in our home directory ie. ~/. you can naviaget directly there by just doing "cd" and pressing enter.
+For this example lets consider that we named our wallet "stake-wallet" and we created a new directory before creating/restoring our wallet in the directory called "wallets" in our home directory ie. ~/. you can navigate directly to home directory by just doing "cd" and pressing enter.
 ````
-cd wallets
+cd ~/wallets
 ````
 ````
 ls
@@ -709,6 +712,6 @@ If you can tick all these boxes then you can be pretty sure your supernode setup
 
 - [Linode using logrotate to manage log files](https://www.linode.com/docs/uptime/logs/use-logrotate-to-manage-log-files/)
 
-- [TMUX Cheat Sheet](https://tmuxcheatsheet.com/)
+- [TMUX Cheat Sheet](https://tmuxcheatsheet.com/) AND [Linux Tmux Cheat Sheet - computingforgeeks](https://computingforgeeks.com/linux-tmux-cheat-sheet/)
 
 - [Screen Guide](https://linuxize.com/post/how-to-use-linux-screen/)
