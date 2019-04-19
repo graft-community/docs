@@ -65,7 +65,7 @@ mkdir -p ~/graft-wallets
 ````
 Step 4 : copy graft-wallet-cli to the newly created directory.
 ````
-cp ~/GraftNetwork_1.7.4.ubuntu-18.04-x64/graft-wallet-cli ~/graft-wallets/graft-wallet-cli
+cp ~/GraftNetwork_1.7.4 ~/graft-wallets/graft-wallet-cli
 ````
 now go to that directory by using "cd"
 ````
@@ -133,11 +133,15 @@ For launch flags for graftnoded
 ## Connecting a New Wallet or restoring an existing wallet to your own graftnoded
 
 ***Ensure you are in the directory where graft-wallet-cli exists*** To check the contents of a drectory use "ls"
-- Step 1: Creating a new wallet
+- Step 1: Go back to wallet directory we created earlier
+````
+cd ~/graft-wallets
+````
+- Step 2: Creating a new wallet
 ````
 ./graft-wallet-cli
 ````
-- Step 2 : Restoring an existing wallet
+- Step 3 : Restoring an existing wallet
 ````
 ./graft-wallet-cli --restore-deterministic-wallet
 ````
