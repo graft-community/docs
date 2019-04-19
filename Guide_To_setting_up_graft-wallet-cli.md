@@ -53,9 +53,9 @@ Record this for use later
 cd
 wget -c https://github.com/graft-project/GraftNetwork/releases/download/v1.7.4/GraftNetwork_1.7.4.ubuntu-18.04-x64.tar.gz -O - | tar xvz -C .
 ````
-- Step 2 : accessing the folder you just downloaded and unzipped.
+- Step 2 : accessing the folder you just downloaded and unzipped. Check with "ls" to confirm name of file.
 ````
-cd GraftNetwork_1.7.4.ubuntu-18.04-x64
+cd GraftNetwork_1.7.4
 ````
 ## Creating a folder for your wallet files
 
