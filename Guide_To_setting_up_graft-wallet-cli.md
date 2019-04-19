@@ -107,7 +107,7 @@ ls -la
 rm -r lmdb
 curl http://graftbuilds-ohio.s3.amazonaws.com/lmdb.tar.gz | tar xzf -
 cd lmdb && rm em* && rm lo*
-cd ~/GraftNetwork_1.7.4.ubuntu-18.04-x64
+cd ~/GraftNetwork_1.7.4
 ````
 Now you can start graftnoded again but this time we will launch it in detached mode so it runs in the background
 ````
