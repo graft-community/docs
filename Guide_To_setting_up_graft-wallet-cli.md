@@ -65,7 +65,7 @@ mkdir -p ~/graft-wallets
 ````
 Step 4 : copy graft-wallet-cli to the newly created directory.
 ````
-cp ~/GraftNetwork_1.7.4 ~/graft-wallets/graft-wallet-cli
+cp ~/GraftNetwork_1.7.4/graft-wallet-cli ~/graft-wallets/graft-wallet-cli
 ````
 now go to that directory by using "cd"
 ````
