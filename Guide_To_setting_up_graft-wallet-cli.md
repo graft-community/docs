@@ -16,7 +16,7 @@ Also consider that we are using the official build in this guide. There also may
 
 *In this guide, I will show you both ways.*
 
-#### Either way, you need to do this [**Downloading the binaries**](#downloading-the-binaries)
+#### Either way, you need to do this. [**Updating our packages**](#updating-our-packages) AND [**Downloading the binaries**](#downloading-the-binaries)
 
 Optional:
 
@@ -45,6 +45,12 @@ You can hit this from a web browser and it will return something similar to the 
 "signature":"e6ec3a907acf1684dcaa3b31b768ca65f0f605c246833b5141ddb1ad21321l80a8566bf01be8f58b8da7704280539d288679260c09d44a576b9234e53b2f2df01"}
 
 Record this for use later
+
+## Updating our packages
+
+````
+sudo apt update && sudo apt upgrade -y
+````
 
 ## Downloading the binaries
 
