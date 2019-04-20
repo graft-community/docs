@@ -34,6 +34,8 @@ Getting ready:
 
 - Any Ubuntu 18.04 machine is sufficient. Ubuntu server or Ubuntu Desktop will work just fine.
 
+### Getting your SN details:
+
 - Secondly if you are planning on a staking a supernode (If not ignore this and the staking supernode section), you need the details required for staking which you can get from your Supernode, if you are having your Supernode hosted then the URL would be provided to you, if will look something like below:
 
 http://122.78.15.123:18690/dapi/v2.0/cryptonode/getwalletaddress
@@ -159,11 +161,15 @@ For extra commands available just type help and press enter inside the wallet.
 
 ## Staking your Supernode
 
-- Step 1 : Firstly ensure your wallet is reflecting the funds needed once you have you wallet open:
+- Step 1: Ensure address of wallet is same as <wallet_public_address> in the response from your SN that you recorded earlier, see here: [***Getting your SN details***](#getting-your-sn-details)
+````
+address
+````
+- Step 2 : Firstly ensure your wallet is reflecting the funds needed once you have you wallet open:
 ````
 balance
 ````
-- Step 2 : If your funds are present, use the details you recorded earlier from the response from your SN:
+- Step 3 : If your funds are present, use the details you recorded earlier from the response from your SN (Ensure the wallet you are staking from has the same address as the <wallet_public_address>):
 ````
 stake_transfer <wallet_public_address> <STAKE_AMOUNT> <LOCK_BLOCKS_COUNT> <id_key> <signature>
 ````
