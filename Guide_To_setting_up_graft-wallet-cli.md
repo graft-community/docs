@@ -16,7 +16,7 @@ Also consider that we are using the official build in this guide. There also may
 
 *In this guide, I will show you both ways.*
 
-#### Either way, you need to do this [**Downloading the binaries**](#downloading-the-binaries)
+#### Either way, you need to do this. [**Updating our packages**](#updating-our-packages) AND [**Downloading the binaries**](#downloading-the-binaries)
 
 Optional:
 
@@ -34,6 +34,8 @@ Getting ready:
 
 - Any Ubuntu 18.04 machine is sufficient. Ubuntu server or Ubuntu Desktop will work just fine.
 
+### Getting your SN details:
+
 - Secondly if you are planning on a staking a supernode (If not ignore this and the staking supernode section), you need the details required for staking which you can get from your Supernode, if you are having your Supernode hosted then the URL would be provided to you, if will look something like below:
 
 http://122.78.15.123:18690/dapi/v2.0/cryptonode/getwalletaddress
@@ -46,16 +48,22 @@ You can hit this from a web browser and it will return something similar to the 
 
 Record this for use later
 
+## Updating our packages
+
+````
+sudo apt update && sudo apt upgrade -y
+````
+
 ## Downloading the binaries
 
 - Step 1 : Downloading the binaries and unzipping.
 ````
 cd
-curl https://github.com/graft-project/GraftNetwork/releases/download/v1.7.4/GraftNetwork_1.7.4.ubuntu-18.04-x64.tar.gz | tar xzf -
+wget -c https://github.com/graft-project/GraftNetwork/releases/download/v1.7.4/GraftNetwork_1.7.4.ubuntu-18.04-x64.tar.gz -O - | tar xvz -C .
 ````
-- Step 2 : accessing the folder you just downloaded and unzipped.
+- Step 2 : accessing the folder you just downloaded and unzipped. Check with "ls" to confirm name of file.
 ````
-cd GraftNetwork_1.7.4.ubuntu-18.04-x64
+cd GraftNetwork_1.7.4
 ````
 ## Creating a folder for your wallet files
 
@@ -65,7 +73,7 @@ mkdir -p ~/graft-wallets
 ````
 Step 4 : copy graft-wallet-cli to the newly created directory.
 ````
-cp ~/GraftNetwork_1.7.4.ubuntu-18.04-x64/graft-wallet-cli ~/graft-wallets/graft-wallet-cli
+cp ~/GraftNetwork_1.7.4/graft-wallet-cli ~/graft-wallets/graft-wallet-cli
 ````
 now go to that directory by using "cd"
 ````
@@ -107,7 +115,7 @@ ls -la
 rm -r lmdb
 curl http://graftbuilds-ohio.s3.amazonaws.com/lmdb.tar.gz | tar xzf -
 cd lmdb && rm em* && rm lo*
-cd ~/GraftNetwork_1.7.4.ubuntu-18.04-x64
+cd ~/GraftNetwork_1.7.4
 ````
 Now you can start graftnoded again but this time we will launch it in detached mode so it runs in the background
 ````
@@ -133,11 +141,15 @@ For launch flags for graftnoded
 ## Connecting a New Wallet or restoring an existing wallet to your own graftnoded
 
 ***Ensure you are in the directory where graft-wallet-cli exists*** To check the contents of a drectory use "ls"
-- Step 1: Creating a new wallet
+- Step 1: Go back to wallet directory we created earlier
+````
+cd ~/graft-wallets
+````
+- Step 2: Creating a new wallet
 ````
 ./graft-wallet-cli
 ````
-- Step 2 : Restoring an existing wallet
+- Step 3 : Restoring an existing wallet
 ````
 ./graft-wallet-cli --restore-deterministic-wallet
 ````
@@ -149,11 +161,15 @@ For extra commands available just type help and press enter inside the wallet.
 
 ## Staking your Supernode
 
-- Step 1 : Firstly ensure your wallet is reflecting the funds needed once you have you wallet open:
+- Step 1: Ensure address of wallet is same as <wallet_public_address> in the response from your SN that you recorded earlier, see here: [***Getting your SN details***](#getting-your-sn-details)
+````
+address
+````
+- Step 2 : Firstly ensure your wallet is reflecting the funds needed once you have you wallet open:
 ````
 balance
 ````
-- Step 2 : If your funds are present, use the details you recorded earlier from the response from your SN:
+- Step 3 : If your funds are present, use the details you recorded earlier from the response from your SN (Ensure the wallet you are staking from has the same address as the <wallet_public_address>):
 ````
 stake_transfer <wallet_public_address> <STAKE_AMOUNT> <LOCK_BLOCKS_COUNT> <id_key> <signature>
 ````

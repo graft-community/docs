@@ -16,11 +16,27 @@
 - This guide can be used for testnet with the only difference being that **graftnoded** and **graft-wallet-cli** commands are used with the **--testnet** switch. 
 	- Like: graftnoded --testnet
 
+## Introduction to this guide and the tools included and terms used
+
+**Terms used**
+
+- 1) root user : a power/admin user in Linux that is able to perform any command/function on your system and can present huge security risks.
+- 2) sudo group : a group of admin users that can perform admin commands/functions but require a password to be passed to complete the request.
+    - 2a) Usage : Add sudo in front of any command that requires admin rights in order to execute it successfully. 
+- 3) ufw - Ultra Simple Firewall : This allows us to limit connections "into" our server by specific ports. 
+    - 3a) Once enable and active. All ports you "allow", remote machines will be able to make "inbound" connections to our server through those ports and the rest of the ports will be blocked.
+- 4) updating packages with apt - APT(Advanced Package Tool) is a command line tool that is used for easy interaction with the dpkg packaging system and it is the most efficient and preferred way of managing software from the command line for Debian and Debian based Linux distributions like Ubuntu . It manages dependencies effectively, maintains large configuration files and properly handles upgrades and downgrades to ensure system stability. See here: [**A Beginners Guide to using apt-get commands in Linux(Ubuntu)**](https://codeburst.io/a-beginners-guide-to-using-apt-get-commands-in-linux-ubuntu-d5f102a56fc4)
+- 5) ssh - the way we connect to our ubuntu server from a remote machine. For an in depth explanation and some usage methods, see here: [Definition: Secure Shell (SSH)](https://searchsecurity.techtarget.com/definition/Secure-Shell)
+- 6) systemd
+- 7) scp
+
+
+
 # Index and quick links:
 
 - [**Adding a non-root user**](#add-a-non-root-user)
 
-In this section we add a non-root user **graft**. This is recommended and not a must.
+In this section we add a non-root user **graft** and add that user to the "sudo" group. This is recommended and not a must.
 
 - [**Hardening our server**](#hardening-our-server)
 	
@@ -79,7 +95,7 @@ Logged in as root and "**graft** being your username you have chosen (the userna
 adduser graft
 ````
 * Set and confirm the new user's password at the prompt. A strong password is highly recommended!
-````bash
+````
 Set password prompts:
 Enter new UNIX password:
 Retype new UNIX password:
@@ -87,7 +103,7 @@ passwd: password updated successfully
 Note: if you are running as root please exclude any sudo references below:
 ````
 * Follow the prompts to set the new user's information. It is fine to accept the defaults to leave all of this information blank.
-````bash
+````
 User information prompts:
 Changing the user information for username
 Enter the new value, or press ENTER for the default
@@ -98,24 +114,24 @@ Enter the new value, or press ENTER for the default
     Other []:
 Is the information correct? [Y/n]
 ````
-````bash
+````
 usermod -aG sudo graft
 ````
 By default, on Ubuntu, members of the sudo group have sudo privileges.
 * Use the su command to switch to the new user account.
-````bash
+````
 su - graft
 ````
 * As the new user, verify that you can use sudo by prepending "sudo" to the command that you want to run with superuser privileges. For example we use **apt update** below.
-````bash
+````
 username# sudo apt update
 ````
 * For example, you can list the contents of the /root directory, which is normally only accessible to the root user.
-````bash
+````
 username#  sudo ls -la /root
 ````
 * The first time you use sudo in a session, you will be prompted for the password of the user account. Enter the password to proceed.
-````bash
+````
 Output:
 [sudo] password for username:
 ````
@@ -463,7 +479,7 @@ exit $EXITVALUE
 
 ````
 
-## Port forwarding is required to the graftnoded port as of the time of writing to ensure that you supernode can communicate with other supernodes and appear as active.
+## Port forwarding/"exposing the port" is required to the graftnoded port as of the time of writing to ensure that your graftnoded can communicate with other machines on the network and so your supernode appear as active on the GraftRTABot on Telegram.
 
 Port for mainnet graftnoded at the time of writing is : ***18980***
 
@@ -708,6 +724,8 @@ If you can tick all these boxes then you can be pretty sure your supernode setup
 
 - [Digital Ocean Guide for SSH Setup](https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys-on-debian-9)
 
+- [Definition: Secure Shell (SSH)](https://searchsecurity.techtarget.com/definition/Secure-Shell)
+
 - [Digital Ocean Guide for Systemd management of services](https://www.digitalocean.com/community/tutorials/how-to-use-systemctl-to-manage-systemd-services-and-units)
 
 - [Linode using logrotate to manage log files](https://www.linode.com/docs/uptime/logs/use-logrotate-to-manage-log-files/)
@@ -715,3 +733,5 @@ If you can tick all these boxes then you can be pretty sure your supernode setup
 - [TMUX Cheat Sheet](https://tmuxcheatsheet.com/) AND [Linux Tmux Cheat Sheet - computingforgeeks](https://computingforgeeks.com/linux-tmux-cheat-sheet/)
 
 - [Screen Guide](https://linuxize.com/post/how-to-use-linux-screen/)
+
+- [**A Beginners Guide to using apt-get commands in Linux(Ubuntu)**](https://codeburst.io/a-beginners-guide-to-using-apt-get-commands-in-linux-ubuntu-d5f102a56fc4)
