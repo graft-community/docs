@@ -64,8 +64,8 @@ _by: yidakee (aka el_duderino_007)_
 * We will now download the latest Graft release, and then the Supernode release
 
 ````bash
-    wget https://github.com/graft-project/GraftNetwork/releases/download/v1.7.3/GraftNetwork_1.7.3.ubuntu-18-04.x64.tar.gz
-    wget https://github.com/graft-project/graft-ng/releases/download/v1.0.1/supernode.1.0.1.ubuntu-18.04.x64.tar.gz
+    wget https://github.com/graft-project/GraftNetwork/releases/download/v1.7.5/GraftNetwork_1.7.5-ubuntu-18.04-x64.tar.gz
+    wget https://github.com/graft-project/graft-ng/releases/download/v1.0.4/supernode.1.0.4.ubuntu-18.04.x64.tar.gz
 ````
 
 ![3](easy-guide-mainnet/3.png)
@@ -83,8 +83,8 @@ _by: yidakee (aka el_duderino_007)_
 * Now, let's decompress the files and view the directories - these show up in blue
 
 ````bash
-    tar -zxvf GraftNetwork_1.7.3.ubuntu-18-04.x64.tar.gz
-    tar -zvxf supernode.1.0.1.ubuntu-18.04.x64.tar.gz
+    tar -zxvf GraftNetwork_1.7.5-ubuntu-18.04-x64.tar.gz
+    tar -zvxf supernode.1.0.4.ubuntu-18.04.x64.tar.gz
     ls -la
 ````
 
@@ -93,7 +93,7 @@ _by: yidakee (aka el_duderino_007)_
 * Next, lets enter the directory where the GraftNetwork binaries where decompressed into, and have a look inside. You will see there is a `graft-supernode` binary inside - do not use this one! The actual Supernode binary is inside /root/supernode.1.0.1.ubuntu-18.04.x64/
 
 ````bash
-    cd GraftNetwork_1.7.3
+    cd GraftNetwork_1.7.5
 ````
 ````bash
     ls -la
@@ -124,7 +124,7 @@ These will be the only binaries you will use, do not use the others.
 * Let's run `graftnoded` and wait a little for it to build the directories - give it 1 minute and then `exit` to stop `graftnode`
 
 ````bash
-    cd GraftNetwork_1.7.3
+    cd GraftNetwork_1.7.5
     ./graftnoded 
 ````
 ![7](easy-guide-mainnet/7.png)
@@ -152,7 +152,7 @@ These will be the only binaries you will use, do not use the others.
 
 ````bash
     cd 
-    cd GraftNetwork_1.7.3
+    cd GraftNetwork_1.7.5
     ./graftnoded 
 ````
 
@@ -176,7 +176,7 @@ Supernodes run on cold wallet staking, so you should NOT keep your stake wallet 
 
 ````bash
     cd 
-    cd GraftNetwork_1.7.3
+    cd GraftNetwork_1.7.5
     ./graft-wallet-cli 
 ````
 
@@ -193,7 +193,7 @@ Supernodes run on cold wallet staking, so you should NOT keep your stake wallet 
 * So, open a new Terminal session, `ssh` into your VPS, and enter the Supernode directory 
 
 ````bash
-    cd supernode.1.0.1.ubuntu-18.04.x64
+    cd supernode.1.0.4.ubuntu-18.04.x64
     ls -la
 ````
 ![9](easy-guide-mainnet/9.png)
