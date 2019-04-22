@@ -3,8 +3,8 @@ a.k.a - Graft: Running a Supernode for Dummies Guide
 
 ![0](easy-guide-mainnet/0.jpg)
 
-- GraftNetwork - v1.7.3 
-- Supernode v1.0.1
+- GraftNetwork - v1.7.5 
+- Supernode v1.0.4
 
 ---
 _by: yidakee (aka el_duderino_007)_
@@ -19,7 +19,7 @@ _by: yidakee (aka el_duderino_007)_
 
 * In future guide, I'll explain how to set up a Supernode with basic security issues addressed, basic hardening and setting the Supernode as a service so it survives a spontaneous reboot/crash.
 
-* Some screenshots show previous versions - be sure to use the correct version as of THIS guide - `Graft Network 1.7.3` + `graft-ng 1.0.1
+* Some screenshots show previous versions - be sure to use the correct version as of THIS guide - `Graft Network 1.7.5` + `graft-ng 1.0.4
 
 ## Requirements
 
