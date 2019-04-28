@@ -90,7 +90,7 @@ _by: yidakee (aka el_duderino_007)_
 
 ![5](easy-guide-mainnet/5.png)
 
-* Next, lets enter the directory where the GraftNetwork binaries where decompressed into, and have a look inside. You will see there is a `graft-supernode` binary inside - do not use this one! The actual Supernode binary is inside /root/supernode.1.0.1.ubuntu-18.04.x64/
+* Next, lets enter the directory where the GraftNetwork binaries where decompressed into, and have a look inside. You will see there is a `graft-supernode` binary inside - do not use this one! The actual Supernode binary is inside /root/supernode.1.0.4.ubuntu-18.04.x64/
 
 ````bash
     cd GraftNetwork_1.7.5
@@ -107,7 +107,7 @@ _by: yidakee (aka el_duderino_007)_
     cd
 ````
 
-Here is a handy Linux trick. Instead of writing `cd supernode.1.0.1.ubuntu-18.04.x64` try just typing `cd supe`and then press Tab. Linux is smart enough to guess what you mean and will autocomplete for you ;) 
+Here is a handy Linux trick. Instead of writing `cd supernode.1.0.4.ubuntu-18.04.x64` try just typing `cd supe`and then press Tab. Linux is smart enough to guess what you mean and will autocomplete for you ;) 
 
 ### Great! We’ve managed to install everything.
 
