@@ -25,12 +25,11 @@
     - 2a) Usage : Add sudo in front of any command that requires admin rights in order to execute it successfully. 
 - 3) ufw - Ultra Simple Firewall : This allows us to limit connections "into" our server by specific ports. 
     - 3a) Once enable and active. All ports you "allow", remote machines will be able to make "inbound" connections to our server through those ports and the rest of the ports will be blocked.
-- 4) updating packages with apt - APT(Advanced Package Tool) is a command line tool that is used for easy interaction with the dpkg packaging system and it is the most efficient and preferred way of managing software from the command line for Debian and Debian based Linux distributions like Ubuntu . It manages dependencies effectively, maintains large configuration files and properly handles upgrades and downgrades to ensure system stability. See here: [**A Beginners Guide to using apt-get commands in Linux(Ubuntu)**](https://codeburst.io/a-beginners-guide-to-using-apt-get-commands-in-linux-ubuntu-d5f102a56fc4)
-- 5) ssh - the way we connect to our ubuntu server from a remote machine. For an in depth explanation and some usage methods, see here: [Definition: Secure Shell (SSH)](https://searchsecurity.techtarget.com/definition/Secure-Shell)
-- 6) systemd
-- 7) scp
-
-
+- 4) updating packages with apt : APT(Advanced Package Tool) is a command line tool that is used for easy interaction with the dpkg packaging system and it is the most efficient and preferred way of managing software from the command line for Debian and Debian based Linux distributions like Ubuntu . It manages dependencies effectively, maintains large configuration files and properly handles upgrades and downgrades to ensure system stability. See here: [**A Beginners Guide to using apt-get commands in Linux(Ubuntu)**](https://codeburst.io/a-beginners-guide-to-using-apt-get-commands-in-linux-ubuntu-d5f102a56fc4)
+- 5) ssh : the way we connect to our ubuntu server from a remote machine using putty, powershell or lunux terminal. For an in depth explanation and some usage methods, see here: [Definition: Secure Shell (SSH)](https://searchsecurity.techtarget.com/definition/Secure-Shell)
+- 6) systemd - A way to automate and manage services/processes and ensure the configured services are started on boot and restarted if the fail/die. This is not all that systemd does but is what it is used for in this instance. [**Understanding Systemd Units and Unit Files**](https://www.digitalocean.com/community/tutorials/understanding-systemd-units-and-unit-files)
+- 7) logrotate - is designed to ease administration of systems that generate large numbers of log files. It allows automatic rotation, compression, removal, and mailing of log files. Each log file may be handled daily, weekly, monthly, or when it grows too large. [**Linux man page**](https://linux.die.net/man/8/logrotate)
+- 8) scp - scp copies files between hosts on a network.  It uses ssh(1) for data transfer, and uses the same authentication and provides the same security as ssh(1). scp will ask for passwords or passphrases if they are needed for authentication.[**Linux scp command**](https://www.computerhope.com/unix/scp.htm)
 
 # Index and quick links:
 
@@ -180,6 +179,7 @@ ssh-copy-id graft@<remote-machine-ip>
 ```
 - Enter password.
 - Now you can use:
+Note: All shown < and > should not be used in the related commands.
 ```
 ssh  graft@<remote-machine-ip>
 ```
@@ -272,9 +272,10 @@ data-dir=/home/graft/sn2/
 ````
 
 - **Obviously as per all other guides instructions, add your wallet into config.ini that you will be using to stake with:**
-
+Note: All shown < and > should not be used in the related commands.
+````
 	wallet-public-address=<Your_wallet_address>
-
+````
 
 - **Start supernode and check that supernode.keys is inside your directory for each sn. Refer to below where we setup systemd to launch each Supernode.**
 
@@ -334,7 +335,7 @@ sudo journalctl -u graftnoded.service -af
 sudo nano /etc/systemd/system/graft-supernode@.service
 ````
 
-- Input below text into the new file:
+- Input below text into the new file <change graft to you user (find this out by using "whoami" command)>:
 
 ````
 [Unit]
@@ -344,9 +345,9 @@ After=graftnoded.service
 [Service]
 User=graft
 Type=simple
-WorkingDirectory=/home/$USER/%i
+WorkingDirectory=/home/graft/%i
 Restart=always
-ExecStart=/usr/bin/graft-supernode --config-file config.ini --log-file /home/$USER/%i/logs/%i.log
+ExecStart=/usr/bin/graft-supernode --config-file config.ini --log-file /home/graft/%i/logs/%i.log
 Environment=TERM=xterm
 #LimitNOFILE=8192
 
@@ -412,7 +413,7 @@ sudo journalctl -u graft-supernode@sn2.service -af
 ````
 
 ## Configuring logrotate
-
+Remember to change graft to your user (find this out by using "whoami" command)
 ````
 sudo nano /etc/logrotate.d/sn1-logs
 ````
@@ -512,7 +513,7 @@ Get graftnoded interactive commands like status previously mentioned:
 ````
 graftnoded help
 ````
-#### Once again just to remind users who are not familiar with Linux and the is more aimed at, If you are using compiled or downloaded binaries, you need to run these commands in the directory/folder where the binaries live and put ./ in front like:
+#### Once again just to remind users who are not familiar with Linux and this section is more aimed at, If you are using compiled or downloaded binaries, you need to run these commands in the directory/folder where the binaries live and put ./ in front like:
 ````
 ./graftnoded --detach
 ````
@@ -651,6 +652,7 @@ Locally on the machine supernode is running on:
 http://127.0.0.1:28690/debug/supernode_list/1
 ````
 From external (from your home pc to your VPS for example):
+Note: All shown < and > should not be used in the related commands
 ````
 http://<Your_Server_IP>:28690/debug/supernode_list/1
 ````
@@ -671,6 +673,7 @@ tail -f -n 150 ~/.graft/graft.log
 Also the path can be adjusted to suit your needs and can be used to check the path you have mapped your supernode to, if you did not map it then the log file will exist in the same location where you ran it.
 
 Copying log files from your remote linux machine to a local linux machine:
+Note: All shown < and > should not be used in the related commands.
 ````
 scp -P <remote_port> <remote_user>@<remote_machine_ip>:/<remote_machine_directory> ~/<local_machine_directory>
 ````
