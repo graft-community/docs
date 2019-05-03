@@ -3,8 +3,8 @@ a.k.a - Graft: Running a Supernode for Dummies Guide
 
 ![0](easy-guide-mainnet/0.jpg)
 
-- GraftNetwork - v1.7.3 
-- Supernode v1.0.1
+- GraftNetwork - v1.7.5 
+- Supernode v1.0.4
 
 ---
 _by: yidakee (aka el_duderino_007)_
@@ -19,7 +19,7 @@ _by: yidakee (aka el_duderino_007)_
 
 * In future guide, I'll explain how to set up a Supernode with basic security issues addressed, basic hardening and setting the Supernode as a service so it survives a spontaneous reboot/crash.
 
-* Some screenshots show previous versions - be sure to use the correct version as of THIS guide - `Graft Network 1.7.3` + `graft-ng 1.0.1
+* Some screenshots show previous versions - be sure to use the correct version as of THIS guide - `Graft Network 1.7.5` + `graft-ng 1.0.4
 
 ## Requirements
 
@@ -64,8 +64,8 @@ _by: yidakee (aka el_duderino_007)_
 * We will now download the latest Graft release, and then the Supernode release
 
 ````bash
-    wget https://github.com/graft-project/GraftNetwork/releases/download/v1.7.3/GraftNetwork_1.7.3.ubuntu-18-04.x64.tar.gz
-    wget https://github.com/graft-project/graft-ng/releases/download/v1.0.1/supernode.1.0.1.ubuntu-18.04.x64.tar.gz
+    wget https://github.com/graft-project/GraftNetwork/releases/download/v1.7.5/GraftNetwork_1.7.5-ubuntu-18.04-x64.tar.gz
+    wget https://github.com/graft-project/graft-ng/releases/download/v1.0.4/supernode.1.0.4.ubuntu-18.04.x64.tar.gz
 ````
 
 ![3](easy-guide-mainnet/3.png)
@@ -83,17 +83,17 @@ _by: yidakee (aka el_duderino_007)_
 * Now, let's decompress the files and view the directories - these show up in blue
 
 ````bash
-    tar -zxvf GraftNetwork_1.7.3.ubuntu-18-04.x64.tar.gz
-    tar -zvxf supernode.1.0.1.ubuntu-18.04.x64.tar.gz
+    tar -zxvf GraftNetwork_1.7.5-ubuntu-18.04-x64.tar.gz
+    tar -zvxf supernode.1.0.4.ubuntu-18.04.x64.tar.gz
     ls -la
 ````
 
 ![5](easy-guide-mainnet/5.png)
 
-* Next, lets enter the directory where the GraftNetwork binaries where decompressed into, and have a look inside. You will see there is a `graft-supernode` binary inside - do not use this one! The actual Supernode binary is inside /root/supernode.1.0.1.ubuntu-18.04.x64/
+* Next, lets enter the directory where the GraftNetwork binaries where decompressed into, and have a look inside. You will see there is a `graft-supernode` binary inside - do not use this one! The actual Supernode binary is inside /root/supernode.1.0.4.ubuntu-18.04.x64/
 
 ````bash
-    cd GraftNetwork_1.7.3
+    cd GraftNetwork_1.7.5
 ````
 ````bash
     ls -la
@@ -107,7 +107,7 @@ _by: yidakee (aka el_duderino_007)_
     cd
 ````
 
-Here is a handy Linux trick. Instead of writing `cd supernode.1.0.1.ubuntu-18.04.x64` try just typing `cd supe`and then press Tab. Linux is smart enough to guess what you mean and will autocomplete for you ;) 
+Here is a handy Linux trick. Instead of writing `cd supernode.1.0.4.ubuntu-18.04.x64` try just typing `cd supe`and then press Tab. Linux is smart enough to guess what you mean and will autocomplete for you ;) 
 
 ### Great! We’ve managed to install everything.
 
@@ -124,7 +124,7 @@ These will be the only binaries you will use, do not use the others.
 * Let's run `graftnoded` and wait a little for it to build the directories - give it 1 minute and then `exit` to stop `graftnode`
 
 ````bash
-    cd GraftNetwork_1.7.3
+    cd GraftNetwork_1.7.5
     ./graftnoded 
 ````
 ![7](easy-guide-mainnet/7.png)
@@ -152,7 +152,7 @@ These will be the only binaries you will use, do not use the others.
 
 ````bash
     cd 
-    cd GraftNetwork_1.7.3
+    cd GraftNetwork_1.7.5
     ./graftnoded 
 ````
 
@@ -176,7 +176,7 @@ Supernodes run on cold wallet staking, so you should NOT keep your stake wallet 
 
 ````bash
     cd 
-    cd GraftNetwork_1.7.3
+    cd GraftNetwork_1.7.5
     ./graft-wallet-cli 
 ````
 
@@ -193,7 +193,7 @@ Supernodes run on cold wallet staking, so you should NOT keep your stake wallet 
 * So, open a new Terminal session, `ssh` into your VPS, and enter the Supernode directory 
 
 ````bash
-    cd supernode.1.0.1.ubuntu-18.04.x64
+    cd supernode.1.0.4.ubuntu-18.04.x64
     ls -la
 ````
 ![9](easy-guide-mainnet/9.png)
