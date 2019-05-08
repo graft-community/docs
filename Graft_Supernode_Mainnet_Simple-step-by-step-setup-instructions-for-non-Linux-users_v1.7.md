@@ -240,20 +240,20 @@ Now literally take a 15 minute break. No, seriously, take 15 minutes to stretch 
 * Open a new Terminal window! If you close the Terminal window running the Supernode, you will kill the process.
 
 ````bash
-    curl --request GET http://Your_Server_IP:28690/debug/supernode_list/1
+    curl --request GET http://Your_Server_IP:18690/debug/supernode_list/1
 ````
 ![14](easy-guide-mainnet/14.png)
 
-* It looks kind of weird, but that output is a positive sign. You can also use a browser to see the same output using `http://Your_Server_IP:28690/debug/supernode_list/1` - You won't be needing this, but is one way to check if your Supernode is working properly.
+* It looks kind of weird, but that output is a positive sign. You can also use a browser to see the same output using `http://Your_Server_IP:18690/debug/supernode_list/1` - You won't be needing this, but is one way to check if your Supernode is working properly.
 
 * Next, let's check the Supernode for the info we need to activate it on the network. Issue the following command, but substitute `Your_Server_IP` with your actual server IP. You will see the wallet address you previously configure in `config.ini` along with an ID_Key and Signature. We will need these in a bit to stake the Supernode to activate it and start earning rewards.
 
 ````bash
-    curl --request GET http://Your_Server_IP:28690/dapi/v2.0/cryptonode/getwalletaddress
+    curl --request GET http://Your_Server_IP:18690/dapi/v2.0/cryptonode/getwalletaddress
 ````
 ![15](easy-guide-mainnet/15.png)
 
-You can also use a browser to get this info. Just use the url `http://Your_Server_IP:28690/dapi/v2.0/cryptonode/getwalletaddress`.
+You can also use a browser to get this info. Just use the url `http://Your_Server_IP:18690/dapi/v2.0/cryptonode/getwalletaddress`.
 It may be easier to visualize and copy/paste for the next part - funding the stake wallet!
 
 
@@ -269,7 +269,7 @@ It may be easier to visualize and copy/paste for the next part - funding the sta
 
 * To remind you, just pop this into your browser. Don't forget to change `Your_Server_IP` for your actual server IP
 
-`http://Your_Server_IP:28690/dapi/v2.0/cryptonode/getwalletaddress`
+`http://Your_Server_IP:18690/dapi/v2.0/cryptonode/getwalletaddress`
 
 ![18](easy-guide-mainnet/18.png)
 
@@ -280,7 +280,7 @@ It may be easier to visualize and copy/paste for the next part - funding the sta
 
 * Now, just wait 6 blocks for the transfer to go through and your Supernode will have been activated!
 
-* You can regularly check on your Supernode using this URL `http://YOUR_IP:28690/debug/supernode_list/1`  
+* You can regularly check on your Supernode using this URL `http://YOUR_IP:18690/debug/supernode_list/1`  
 
 
 ### Congratulations! You've managed to get your Supernode up and running.
