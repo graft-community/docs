@@ -592,7 +592,7 @@ Default Port for graftnoded: 18980
 Default Port for graftnoded: 28880
 ````
 #### Launch graftnoded (Here we assume you have followed the previous part of the guide setting up GraftNetwork, refer to below link for section):
-- [**GraftNetwork**](#graftnetwork)
+- [**GraftNetwork**](#graftnetwork-1)
 ````
 ~/graftnetwork/graftnoded --detach
 ````
