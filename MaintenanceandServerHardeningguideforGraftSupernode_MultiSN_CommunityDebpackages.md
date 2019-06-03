@@ -1,19 +1,24 @@
 # Maintenance and Server Hardening guide for Graft Supernode | Multi-SN, Simple Graft commands and troubleshooting - Community Deb packages
 
-- A big thanks goes out to ***@Jagerman42*** (Telegram Handle) for the effort that goes into making the Graft Community Builds and deb packages possible and his input into providing guidance on the below guides material.
+-   A big thanks goes out to ***@Jagerman42*** (Telegram Handle) for his contribution to Graft and always supporting the community.
 
-- A big thanks also goes out to ***@el_duderino_007*** (Telegram Handle) for the time and effort put into creating the dummies guide and supporting the community in his role as community admin on multiple groups.
+-   A big thanks goes out to ***@el_duderino_007*** (Telegram Handle) for the time and effort put into creating the dummies guide and supporting the community in his role as Community Lead.
 
-- In order to follow this guide please install nano if it does not exist on your system already or use your preferred text editor, vi for example. 
+-   In order to follow this guide please install nano if it does not exist on your system already or use your preferred text editor, vi for example. 'sudo apt install nano'
 
-- This guide also assumes the name of the user performing the actions is "graft" please change at your discretion to the user your are using on your system.
+-   This guide assumes the name of the user performing the actions is "graft" please change at your discretion to the user your are using on your system. If you genuinely have no clue what user you are logged in as, run:  **echo $USER** or **whoami** and this will reflect the user you are using.
 
-- For the purpose of the guide we also assume the folder directories where we run supernode from is sn1, sn2, sn3 etc, this can be anything you like as long as each directory is unique for each Supernode. 
+-   For the purpose of the guide we also assume the folder directories where we run supernode from is sn1, sn2, sn3 etc, this can be anything you like as long as each directory is unique for each Supernode. 
 
-- We also include a logs directory inside of each Supernode directory, once again this is completely up to the user. 
+-   We also include a logs directory inside of each Supernode directory, once again this is completely up to the user. 
 
-- We will assume that the user has a general understanding of how operate the graftnoded and supernode applications, Linux distros and staking their supernode, if not please refer to the below directory for guides.
-- This guide can be used for testnet with the only difference being that **graftnoded** and **graft-wallet-cli** commands are used with the **--testnet** switch. 
+-   We will assume that the user has a general understanding of how to operate the graftnoded and supernode applications, Linux distros and staking their supernode, if not please refer to the guides at the bottom of this document and other mater in the Graft Community Docs repo.
+
+-   Links to some useful content used in building this guide.
+
+### [Graft Community Documentation](https://github.com/graft-community/docs)
+
+-   This guide can be used for testnet with the only difference being that **graftnoded** and **graft-wallet-cli** commands are used with the **--testnet** switch. 
 	- Like: graftnoded --testnet
 
 ## Introduction to this guide and the tools included and terms used
@@ -35,7 +40,7 @@
 
 - [**Adding a non-root user**](#add-a-non-root-user)
 
-In this section we add a non-root user **graft** and add that user to the "sudo" group. This is recommended and not a must.
+In this section we add a non-root user **graft** and add that user to the "sudo" group. This is recommended action and not a must.
 
 - [**Hardening our server**](#hardening-our-server)
 	
@@ -79,14 +84,9 @@ In this section I have listed my own personal checks that I have performed since
 
 - [**USEFUL LINKS & RESOURCES**](#useful-links--resources)
 
-Links to some useful content used in building this guide.
+- This guide has been adjusted to target users using the GraftNetwork official binaries.
 
-### [Graft Community Documentation](https://github.com/graft-community/docs)
-
-
-- This guide does also assumes the user has the Graft Community deb packages installed and not the official binaries or community binaries.  
-## To install the graft community deb packages, please refer to the below link for quick and easy to follow instructions:
-### [deb.graft.community](https://deb.graft.community/)
+### [GraftNetwork](https://github.com/graft-project/GraftNetwork)
 
 ## Add a non-root user
 Logged in as root and "**graft** being your username you have chosen (the username can be anything)":
@@ -221,9 +221,110 @@ nano /etc/ssh/sshd_config
 - Uncomment the Port=22 line and input your custom port instead of 22.
 	- Again restart SSH daemon to make it take effect, beware as this could kick you off and lock you out, ***ENSURE PORT IS OPEN ON UFW!***
 
-## Setting up our folder structure (Action after you have installed the graft community deb packages)
+## Downloading the latest binaries and unzipping them into our home folder.
+### GraftNetwork
 
-- **Create Our Folders**
+Note: The link below will change as newer releases are published, please find the latest release of GraftNetwork (graftnoded, graft-wallet-cli etc) at [GraftNetwork Releases](https://github.com/graft-project/GraftNetwork/releases)
+
+````
+sudo apt install wget
+````
+````
+cd && wget https://github.com/graft-project/GraftNetwork/releases/download/v1.8.1/GraftNetwork_1.8.1-ubuntu-18.04-x64.tar.gz
+````
+- When we untar these files we use the file name that is shown when we pass 'ls' in the terminal. It will be the last section of the above link we used in the download.
+````
+tar -zxvf GraftNetwork_1.8.1-ubuntu-18.04-x64.tar.gz
+````
+- Now we can delete the compressed file
+````
+rm GraftNetwork_1.8.1-ubuntu-18.04-x64.tar.gz
+````
+- Now we cd into the directory after we decompressed the downloaded file.
+````
+cd GraftNetwork_1.8.1-ubuntu-18.04-x64
+````
+- Now lets check what the contents of the file looks like.
+````
+ls
+````
+- The below shows the general contents of what this file will look like.
+````
+graft-blockchain-export     graftnoded                  graft-wallet-rpc
+graft-blockchain-ancestry   graft-blockchain-import     graft-wallet-cli
+graft-blockchain-blackball  graft-blockchain-usage      graft-blockchain-depth
+graft-gen-trusted-multisig
+````
+- Ok now lets start setting up so we can our lives easier in running a supernode. Change 'GraftNetwork_1.8.1-ubuntu-18.04-x64' to align with what you downloaded and decompressed in prior steps.
+- Below we create a link to the binaries folder so that we can constantly use the same commands even after we upgrade and have a different folder directory.
+````
+cd
+ln -snf GraftNetwork_1.8.1-ubuntu-18.04-x64 graftnetwork
+````
+- Now if you run 'ls' in the terminal you will see a "Folder" like graftnetwork now shows in the home directory.
+- This will alow us to access the graft binaries with cd ~/graftnetwork and allow us to form some sort of order when it comes to upgrading to later releases which we will address later in the guide.
+
+- Now we are ready to go with GraftNetwork.
+- Now lets setup supernode in the same way with a view to automate everything or at least to make our lives easier.
+
+### Supernode
+
+````
+cd && wget https://github.com/graft-project/graft-ng/releases/download/v1.0.4/supernode.1.0.4.ubuntu-18.04.x64.tar.gz
+````
+- When we untar these files we use the file name that is shown when we pass 'ls' in the terminal. It will be the last section of the above link we used in the download.
+````
+tar -zxvf supernode.1.0.4.ubuntu-18.04.x64.tar.gz
+````
+- Now we can delete the compressed file
+````
+rm supernode.1.0.4.ubuntu-18.04.x64.tar.gz
+````
+- Now we run ls and cd into the directory that is left after we decompressed the downloaded file.
+````
+cd supernode.1.0.4.ubuntu-18.04.x64
+````
+- Now lets check what the contents of the file looks like.
+````
+ls
+````
+- The below shows the general contents of what this file will look like.
+````
+config.ini  graftlets  supernode
+````
+
+## Setting up our folder structure for Multiple Supernodes
+
+- **Copy graftsupernode contents and create sn directories**
+Note if you already have existing directories do not do the below,
+
+- Section 1 - Setting up from scratch
+````
+cp -r ~/supernode.1.0.4.ubuntu-18.04.x64 ~/sn1
+
+cp -r ~/supernode.1.0.4.ubuntu-18.04.x64 ~/sn2
+
+cp -r ~/supernode.1.0.4.ubuntu-18.04.x64 ~/sn3
+````
+- Section 2 - Already have existing sn folders from previous setup.
+Note: you will need to copy exactly what you want from the downloaded file into the sn folders
+supernode binary
+````
+cp -r ~/supernode.1.0.4.ubuntu-18.04.x64/supernode ~/sn1/
+
+cp -r ~/supernode.1.0.4.ubuntu-18.04.x64/supernode ~/sn2/
+
+cp -r ~/supernode.1.0.4.ubuntu-18.04.x64/supernode ~/sn2/
+````
+graftlets directory
+````
+cp -r ~/supernode.1.0.4.ubuntu-18.04.x64/graftlets ~/sn1/
+
+cp -r ~/supernode.1.0.4.ubuntu-18.04.x64/graftlets ~/sn1/
+
+cp -r ~/supernode.1.0.4.ubuntu-18.04.x64/graftlets ~/sn1/
+````
+- **Create Our logs Folders**
 ````
 mkdir -p ~/sn1/logs
 ````
@@ -232,14 +333,6 @@ mkdir -p ~/sn2/logs
 ````
 ````
 mkdir -p ~/sn3/logs
-````
-- **Copy config.ini into created sn directories**
-````
-cp /usr/share/doc/graft-supernode/config.ini ~/sn1/config.ini
-
-cp /usr/share/doc/graft-supernode/config.ini ~/sn2/config.ini
-
-cp /usr/share/doc/graft-supernode/config.ini ~/sn3/config.ini
 ````
 
 - **Edit config.ini files**
@@ -277,7 +370,7 @@ Note: All shown < and > should not be used in the related commands.
 	wallet-public-address=<Your_wallet_address>
 ````
 
-- **Start supernode and check that supernode.keys is inside your directory for each sn. Refer to below where we setup systemd to launch each Supernode.**
+- **Start supernode and CHECK that supernode.keys is inside your directory for each sn. Refer to below where we setup systemd to launch each Supernode.**
 
 
 ## Systemd configuration
@@ -300,7 +393,7 @@ User=graft
 Type=simple
 WorkingDirectory=~
 Restart=always
-ExecStart=/usr/bin/graftnoded --non-interactive
+ExecStart=/home/graft/graftnetwork/graftnoded --non-interactive
 #LimitNOFILE=8192
 Environment=TERM=xterm
 
@@ -335,7 +428,9 @@ sudo journalctl -u graftnoded.service -af
 sudo nano /etc/systemd/system/graft-supernode@.service
 ````
 
-- Input below text into the new file <change graft to you user (find this out by using "whoami" command)>:
+- Input below text into the new file <change graft to your user (find this out by using "whoami" command or "echo $USER")>:
+
+Note: If you use the exact below systemd file, ensure you did create the log file directories as the linked section here [**Supernode**](#supernode)
 
 ````
 [Unit]
@@ -347,7 +442,7 @@ User=graft
 Type=simple
 WorkingDirectory=/home/graft/%i
 Restart=always
-ExecStart=/usr/bin/graft-supernode --config-file config.ini --log-file /home/graft/%i/logs/%i.log
+ExecStart=/home/graft/%i/supernode --config-file config.ini --log-file /home/graft/%i/logs/%i.log
 Environment=TERM=xterm
 #LimitNOFILE=8192
 
@@ -413,13 +508,27 @@ sudo journalctl -u graft-supernode@sn2.service -af
 ````
 
 ## Configuring logrotate
+#### graftnoded logs
+````
+sudo nano /etc/logrotate.d/graftnoded-logs
+````
+- Input below text into the new file:
+````
+/home/graft/.graft/graft.log {
+    daily
+    rotate 5
+    missingok
+    compress
+    create
+}
+````
+#### supernode logs
+
 Remember to change graft to your user (find this out by using "whoami" command)
 ````
 sudo nano /etc/logrotate.d/sn1-logs
 ````
-
 - Input below text into the new file:
-
 ````
 /home/graft/sn1/logs/sn1.log {
     daily
@@ -443,7 +552,6 @@ sudo nano /etc/logrotate.d/sn2-logs
     create
 }
 ````
-
 - Cntrl + x to save
 
 - To check that logrotate is actually working we can run the below command:
@@ -451,7 +559,6 @@ sudo nano /etc/logrotate.d/sn2-logs
 sudo /usr/sbin/logrotate -f /etc/logrotate.conf
 ````
 - Then check the log file directory for a compressed version of the log-file.
-
 - We then check the chron job to ensure that force is enabled so we are assured the log-files will be compressed and rotated daily.
 	- Check the logrotate chron script exists
 ````
@@ -479,6 +586,7 @@ fi
 exit $EXITVALUE
 
 ````
+- Then check the directory where the log file exists you should see another file now which is a result of logrotate compressing the .log file.
 
 ## Port forwarding/"exposing the port" is required to the graftnoded port as of the time of writing to ensure that your graftnoded can communicate with other machines on the network and so your supernode appear as active on the GraftRTABot on Telegram.
 
@@ -496,24 +604,24 @@ Default Port for graftnoded: 18980
 ````
 Default Port for graftnoded: 28880
 ````
-## For Deb packages:
-#### Launch graftnoded:
+#### Launch graftnoded (Here we assume you have followed the previous part of the guide setting up GraftNetwork, refer to below link for section):
+- [**GraftNetwork**](#graftnetwork-1)
 ````
-graftnoded --detach
+~/graftnetwork/graftnoded --detach
 ````
 Get status of graftnoded:
 ````
-graftnoded status
+~/graftnetwork/graftnoded status
 ````
 Get graftnoded launch options:
 ````
-graftnoded --help
+~/graftnetwork/graftnoded --help
 ````
 Get graftnoded interactive commands like status previously mentioned:
 ````
-graftnoded help
+~/graftnetwork/graftnoded help
 ````
-#### Once again just to remind users who are not familiar with Linux and this section is more aimed at, If you are using compiled or downloaded binaries, you need to run these commands in the directory/folder where the binaries live and put ./ in front like:
+#### If you did not follow the setup of graftnetwork link as referred to in above section, you need to run these commands in the directory/folder where the binaries live and put ./ in front like:
 ````
 ./graftnoded --detach
 ````
@@ -521,13 +629,13 @@ graftnoded help
 
 In the directory/folder you would like to store the wallet in:
 ````
-graft-wallet-cli
+~/graftnetwork/graft-wallet-cli
 ````
 ##### Follow prompts to launch and create a new wallet or use an existing wallet in the folder.
 
 To restore an existing wallet from the mmemonic seed:
 ````
-graft-wallet-cli --restore-deterministic-wallet
+~/graftnetwork/graft-wallet-cli --restore-deterministic-wallet
 ````
 #### Follow prompts and insert seed when requested.
 
@@ -719,22 +827,25 @@ Step 5:
 
 If you can tick all these boxes then you can be pretty sure your supernode setup is ok and just give it some time to show on the bot.
 
-#### I am busy testing fail2ban, will be added at a later stage, please send me a telegram message if you have suggestions or feel free to fork the graft community docs and add your additions to this doc, it will be greatly appreciated.
+#### Please send me a telegram message if you have suggestions or feel free to fork the graft community docs and add your additions to this doc, it will be appreciated and welcomed.
 
 #### Telegram Handle: @Fezz27
 
+#### GitHub Page
+[**Fez29 Github Repos**](https://github.com/Fez29?tab=repositories)
+
 # USEFUL LINKS & RESOURCES
 
-- [Digital Ocean Guide for SSH Setup](https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys-on-debian-9)
+- [**Digital Ocean Guide for SSH Setup**](https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys-on-debian-9)
 
-- [Definition: Secure Shell (SSH)](https://searchsecurity.techtarget.com/definition/Secure-Shell)
+- [**Definition: Secure Shell (SSH)**](https://searchsecurity.techtarget.com/definition/Secure-Shell)
 
-- [Digital Ocean Guide for Systemd management of services](https://www.digitalocean.com/community/tutorials/how-to-use-systemctl-to-manage-systemd-services-and-units)
+- [**Digital Ocean Guide for Systemd management of services**](https://www.digitalocean.com/community/tutorials/how-to-use-systemctl-to-manage-systemd-services-and-units)
 
-- [Linode using logrotate to manage log files](https://www.linode.com/docs/uptime/logs/use-logrotate-to-manage-log-files/)
+- [**Linode using logrotate to manage log files**](https://www.linode.com/docs/uptime/logs/use-logrotate-to-manage-log-files/)
 
-- [TMUX Cheat Sheet](https://tmuxcheatsheet.com/) AND [Linux Tmux Cheat Sheet - computingforgeeks](https://computingforgeeks.com/linux-tmux-cheat-sheet/)
+- [**TMUX Cheat Sheet**](https://tmuxcheatsheet.com/) AND [**Linux Tmux Cheat Sheet - computingforgeeks**](https://computingforgeeks.com/linux-tmux-cheat-sheet/)
 
-- [Screen Guide](https://linuxize.com/post/how-to-use-linux-screen/)
+- [**Screen Guide**](https://linuxize.com/post/how-to-use-linux-screen/)
 
 - [**A Beginners Guide to using apt-get commands in Linux(Ubuntu)**](https://codeburst.io/a-beginners-guide-to-using-apt-get-commands-in-linux-ubuntu-d5f102a56fc4)
