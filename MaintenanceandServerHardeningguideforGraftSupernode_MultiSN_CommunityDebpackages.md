@@ -296,6 +296,9 @@ config.ini  graftlets  supernode
 ## Setting up our folder structure for Multiple Supernodes
 
 - **Copy graftsupernode contents and create sn directories**
+Note if you already have existing directories do not do the below,
+
+- Section 1 - Setting up from scratch
 ````
 cp -r ~/supernode.1.0.4.ubuntu-18.04.x64 ~/sn1
 
@@ -303,7 +306,24 @@ cp -r ~/supernode.1.0.4.ubuntu-18.04.x64 ~/sn2
 
 cp -r ~/supernode.1.0.4.ubuntu-18.04.x64 ~/sn3
 ````
+- Section 2 - Already have existing sn folders from previous setup.
+Note: you will need to copy exactly what you want from the downloaded file into the sn folders
+supernode binary
+````
+cp -r ~/supernode.1.0.4.ubuntu-18.04.x64/supernode ~/sn1/
 
+cp -r ~/supernode.1.0.4.ubuntu-18.04.x64/supernode ~/sn2/
+
+cp -r ~/supernode.1.0.4.ubuntu-18.04.x64/supernode ~/sn2/
+````
+graftlets directory
+````
+cp -r ~/supernode.1.0.4.ubuntu-18.04.x64/graftlets ~/sn1/
+
+cp -r ~/supernode.1.0.4.ubuntu-18.04.x64/graftlets ~/sn1/
+
+cp -r ~/supernode.1.0.4.ubuntu-18.04.x64/graftlets ~/sn1/
+````
 - **Create Our logs Folders**
 ````
 mkdir -p ~/sn1/logs
@@ -409,6 +429,8 @@ sudo nano /etc/systemd/system/graft-supernode@.service
 ````
 
 - Input below text into the new file <change graft to your user (find this out by using "whoami" command or "echo $USER")>:
+
+Note: If you use the exact below systemd file, ensure you did create the log file directories as the linked section here [**Supernode**](#supernode)
 
 ````
 [Unit]
