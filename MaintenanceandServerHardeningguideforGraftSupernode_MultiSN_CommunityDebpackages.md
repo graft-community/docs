@@ -293,24 +293,15 @@ ls
 config.ini  graftlets  supernode
 ````
 
-#### OPTIONAL
-- Change 'supernode.1.0.4.ubuntu-18.04.x64' to align with what you downloaded and decompressed in prior steps above for Supernode.
-- Below we create a link to the binaries folder so that we can constantly use the same commands even after we upgrade and have a different folder directory. This will just help us to copy the binaries to the sn folders in the next step and allow some sort of repeatability when upgrading. 
-
-````
-cd
-ln -snf supernode.1.0.4.ubuntu-18.04.x64 graftsupernode
-````
-
 ## Setting up our folder structure for Multiple Supernodes
 
 - **Copy graftsupernode contents and create sn directories**
 ````
-cp -r ~/graftsupernode ~/sn1
+cp -r ~/supernode.1.0.4.ubuntu-18.04.x64 ~/sn1
 
-cp -r ~/graftsupernode ~/sn2
+cp -r ~/supernode.1.0.4.ubuntu-18.04.x64 ~/sn2
 
-cp -r ~/graftsupernode ~/sn3
+cp -r ~/supernode.1.0.4.ubuntu-18.04.x64 ~/sn3
 ````
 
 - **Create Our logs Folders**
