@@ -242,7 +242,7 @@ rm GraftNetwork_1.8.1-ubuntu-18.04-x64.tar.gz
 ````
 - Now we cd into the directory after we decompressed the downloaded file.
 ````
-cd GraftNetwork_1.8.1-ubuntu-18.04-x64
+cd GraftNetwork_1.8.1
 ````
 - Now lets check what the contents of the file looks like.
 ````
@@ -259,7 +259,7 @@ graft-gen-trusted-multisig
 - Below we create a link to the binaries folder so that we can constantly use the same commands even after we upgrade and have a different folder directory.
 ````
 cd
-ln -snf GraftNetwork_1.8.1-ubuntu-18.04-x64 graftnetwork
+ln -snf GraftNetwork_1.8.1 graftnetwork
 ````
 - Now if you run 'ls' in the terminal you will see a "Folder" like graftnetwork now shows in the home directory.
 - This will alow us to access the graft binaries with cd ~/graftnetwork and allow us to form some sort of order when it comes to upgrading to later releases which we will address later in the guide.
@@ -314,15 +314,15 @@ cp -r ~/supernode.1.0.4.ubuntu-18.04.x64/supernode ~/sn1/
 
 cp -r ~/supernode.1.0.4.ubuntu-18.04.x64/supernode ~/sn2/
 
-cp -r ~/supernode.1.0.4.ubuntu-18.04.x64/supernode ~/sn2/
+cp -r ~/supernode.1.0.4.ubuntu-18.04.x64/supernode ~/sn3/
 ````
 graftlets directory
 ````
 cp -r ~/supernode.1.0.4.ubuntu-18.04.x64/graftlets ~/sn1/
 
-cp -r ~/supernode.1.0.4.ubuntu-18.04.x64/graftlets ~/sn1/
+cp -r ~/supernode.1.0.4.ubuntu-18.04.x64/graftlets ~/sn2/
 
-cp -r ~/supernode.1.0.4.ubuntu-18.04.x64/graftlets ~/sn1/
+cp -r ~/supernode.1.0.4.ubuntu-18.04.x64/graftlets ~/sn2/
 ````
 - **Create Our logs Folders**
 ````
