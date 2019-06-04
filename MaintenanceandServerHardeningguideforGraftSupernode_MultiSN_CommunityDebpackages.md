@@ -322,7 +322,7 @@ cp -r ~/supernode.1.0.4.ubuntu-18.04.x64/graftlets ~/sn1/
 
 cp -r ~/supernode.1.0.4.ubuntu-18.04.x64/graftlets ~/sn2/
 
-cp -r ~/supernode.1.0.4.ubuntu-18.04.x64/graftlets ~/sn2/
+cp -r ~/supernode.1.0.4.ubuntu-18.04.x64/graftlets ~/sn3/
 ````
 - **Create Our logs Folders**
 ````
