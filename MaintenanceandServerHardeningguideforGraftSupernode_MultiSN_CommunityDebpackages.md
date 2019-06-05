@@ -14,6 +14,8 @@
 
 -   We will assume that the user has a general understanding of how to operate the graftnoded and supernode applications, Linux distros and staking their supernode, if not please refer to the guides at the bottom of this document and other mater in the Graft Community Docs repo.
 
+- Take note that if you are upgrading from GraftNetwork version 1.7.* to 1.8.* that your current blockchain will need to be migrated from V1 to V2 so if it appears that graftnoded is hanging after starting 1.8.* it is most like bust with the migration. 
+
 -   Links to some useful content used in building this guide.
 
 ### [Graft Community Documentation](https://github.com/graft-community/docs)
@@ -223,7 +225,10 @@ nano /etc/ssh/sshd_config
 
 ## Downloading the latest binaries and unzipping them into our home folder.
 ### GraftNetwork
-
+#### Installing package in order to run graftnoded
+````
+sudo apt update && sudo apt upgrade && sudo apt install libnorm1
+````
 Note: The link below will change as newer releases are published, please find the latest release of GraftNetwork (graftnoded, graft-wallet-cli etc) at [GraftNetwork Releases](https://github.com/graft-project/GraftNetwork/releases)
 
 ````
