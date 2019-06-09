@@ -42,47 +42,51 @@
 
 - [**Adding a non-root user**](#add-a-non-root-user)
 
-In this section we add a non-root user **graft** and add that user to the "sudo" group. This is recommended action and not a must.
+	In this section we add a non-root user **graft** and add that user to the "sudo" group. This is recommended action and not a must.
 
 - [**Hardening our server**](#hardening-our-server)
 	
-In this section there are a few rudimentary hardening steps and tips to ensuring you server is not a easy target. Please BEWARE of locking yourself out of your server after applying 1 or more of these steps.
+	In this section there are a few rudimentary hardening steps and tips to ensuring you server is not a easy target. Please BEWARE of locking yourself out of your server after applying 1 or more of these steps.
 
 - [**Setting up folder structures**](#setting-up-our-folder-structure)
 	
-In this section we setup a dummy example for a folder structure for having multiple supernodes on the same machine.
+	In this section we setup a dummy example for a folder structure for having multiple supernodes on the same machine.
 
 - [**Systemd configuration**](#systemd-configuration)
 	
-In this section we setup systemd for our graftnoded and supernode services, please make sure that you replace the "graft" value in any path to the user you are logged in as.
+	In this section we setup systemd for our graftnoded and supernode services, please make sure that you replace the "graft" value in any path to the user you are logged in as.
 
 - [**Configuring logrotate**](#configuring-logrotate)
 	
-In this section we configure logrotate to manage logs in for our graftnoded and supernode services. Note once again: Please replace the "graft" value in any path to the user you are logged in as.
+	In this section we configure logrotate to manage logs in for our graftnoded and supernode services. Note once again: Please replace the "graft" value in any path to the user you are logged in as.
 
 - [**A simple guide to operating and using graftnoded**](#operating-and-using-graftnoded)
 	
-In this section the basic usage of graftnoded, graft-wallet-cli and supernode is explained.
+    In this section the basic usage of graftnoded, graft-wallet-cli and supernode is explained.
 
 - [**Running processes in the background if you have not setup systemd**](#running-processes-in-the-background-if-you-have-not-setup-systemd)
 	
-In this section it is explained how to run a process in the background without killing it when closing your terminal session via Putty for example.
+	In this section it is explained how to run a process in the background without killing it when closing your terminal session via Putty for example.
 
 - [**TMUX explained**](#tmux)
 	
-In this section a few commands for general usage of tmux are shown, please refer to the Useful resources section for a link to a more comprehensive commands list.
+	In this section a few commands for general usage of tmux are shown, please refer to the Useful resources section for a link to a more comprehensive commands list.
 
 - [**Checking if your supernode is running as expected**](#checking-if-your-supernode-is-running-as-expected)
 	
-In this section a couple commands to quickly check if the supernode service is running and providing us a supernode list back are shown.
+	In this section a couple commands to quickly check if the supernode service is running and providing us a supernode list back are shown.
 
 - [**Checking logs**](#checking-logs)
 	
-In this section, it is shown how to quickly inspect a log file.
+	In this section, it is shown how to quickly inspect a log file.
 
 - [**General Troubleshooting of your Supernode setup**](#general-troubleshooting-of-your-supernode-setup)
 	
-In this section I have listed my own personal checks that I have performed since the days of public alpha, which have served me well in ensuring that I am able to quickly get my supernode up and running.
+	In this section I have listed my own personal checks that I have performed since the days of public alpha, which have served me well in ensuring that I am able to quickly get my supernode up and running.
+
+- [**Upgrading GraftNetwork and Supernode**](#upgrading)
+
+	A brief explanation on upgrading to latest binaries.
 
 - [**USEFUL LINKS & RESOURCES**](#useful-links--resources)
 
@@ -238,6 +242,13 @@ sudo apt install wget
 cd && wget https://github.com/graft-project/GraftNetwork/releases/download/v1.8.1/GraftNetwork_1.8.1-ubuntu-18.04-x64.tar.gz
 ````
 - When we untar these files we use the file name that is shown when we pass 'ls' in the terminal. It will be the last section of the above link we used in the download.
+
+Now we check for the file that we downloaded
+````
+ls
+````
+- We should see "GraftNetwork_1.8.1-ubuntu-18.04-x64.tar.gz" which is the downloaded file.
+- Now we decompress the file.
 ````
 tar -zxvf GraftNetwork_1.8.1-ubuntu-18.04-x64.tar.gz
 ````
@@ -262,6 +273,7 @@ graft-gen-trusted-multisig
 ````
 - Ok now lets start setting up so we can our lives easier in running a supernode. Change 'GraftNetwork_1.8.1-ubuntu-18.04-x64' to align with what you downloaded and decompressed in prior steps.
 - Below we create a link to the binaries folder so that we can constantly use the same commands even after we upgrade and have a different folder directory.
+#### Hard linking GraftNetwork
 ````
 cd
 ln -snf GraftNetwork_1.8.1 graftnetwork
@@ -278,6 +290,12 @@ ln -snf GraftNetwork_1.8.1 graftnetwork
 cd && wget https://github.com/graft-project/graft-ng/releases/download/v1.0.4/supernode.1.0.4.ubuntu-18.04.x64.tar.gz
 ````
 - When we untar these files we use the file name that is shown when we pass 'ls' in the terminal. It will be the last section of the above link we used in the download.
+Now we check for the file that we downloaded
+````
+ls
+````
+- We should see "supernode.1.0.4.ubuntu-18.04.x64.tar.gz" which is the downloaded file.
+- Now we decompress the file.
 ````
 tar -zxvf supernode.1.0.4.ubuntu-18.04.x64.tar.gz
 ````
@@ -297,6 +315,13 @@ ls
 ````
 config.ini  graftlets  supernode
 ````
+Now we setup a hardlink to our supernode download folder called graftsupernode, which will make upgrading in future much easier and quicker.
+
+#### Hard linking Supernode
+
+````
+ln -snf supernode.1.0.4.ubuntu-18.04.x64 graftsupernode
+````
 
 ## Setting up our folder structure for Multiple Supernodes
 
@@ -305,29 +330,11 @@ Note if you already have existing directories do not do the below,
 
 - Section 1 - Setting up from scratch
 ````
-cp -r ~/supernode.1.0.4.ubuntu-18.04.x64 ~/sn1
+cp -r ~/graftsupernode/ ~/sn1/config.ini
 
-cp -r ~/supernode.1.0.4.ubuntu-18.04.x64 ~/sn2
+cp -r ~/graftsupernode/ ~/sn2/config.ini
 
-cp -r ~/supernode.1.0.4.ubuntu-18.04.x64 ~/sn3
-````
-- Section 2 - Already have existing sn folders from previous setup.
-Note: you will need to copy exactly what you want from the downloaded file into the sn folders
-supernode binary
-````
-cp -r ~/supernode.1.0.4.ubuntu-18.04.x64/supernode ~/sn1/
-
-cp -r ~/supernode.1.0.4.ubuntu-18.04.x64/supernode ~/sn2/
-
-cp -r ~/supernode.1.0.4.ubuntu-18.04.x64/supernode ~/sn3/
-````
-graftlets directory
-````
-cp -r ~/supernode.1.0.4.ubuntu-18.04.x64/graftlets ~/sn1/
-
-cp -r ~/supernode.1.0.4.ubuntu-18.04.x64/graftlets ~/sn2/
-
-cp -r ~/supernode.1.0.4.ubuntu-18.04.x64/graftlets ~/sn3/
+cp -r ~/graftsupernode/ ~/sn3/config.ini
 ````
 - **Create Our logs Folders**
 ````
@@ -340,7 +347,7 @@ mkdir -p ~/sn2/logs
 mkdir -p ~/sn3/logs
 ````
 
-- **Edit config.ini files**
+- **Edit config.ini files** Repeat for all sn folders created.
 
 ````
 nano ~/sn1/config.ini
@@ -358,7 +365,7 @@ data-dir=
 
 - Change the port on ***http-address=***
 
-- **Change the directory according to the folders you created in the first step for ***data-dir=*** for each respective config.ini in each directory.**
+- **Change the directory according to the folders you created in the first step for ***data-dir=*** for each respective config.ini in each directory. (Replace value after /home/<value> with your user)**
 - **Something like:**
 
 ````
@@ -386,7 +393,7 @@ Note: All shown < and > should not be used in the related commands.
 sudo nano /etc/systemd/system/graftnoded.service
 ````
 
-- Input below text into the new file:
+- Input below text into the new file <change graft (Inside the User field and after /home/ in the ExecStart field) to your user (find this out by using "whoami" command or "echo $USER")>:
 
 ````
 [Unit]
@@ -398,7 +405,7 @@ User=graft
 Type=simple
 WorkingDirectory=~
 Restart=always
-ExecStart=/home/graft/graftnetwork/graftnoded --non-interactive
+ExecStart=/home/graft/graftnetwork/graftnoded --non-interactive --log-level 1
 #LimitNOFILE=8192
 Environment=TERM=xterm
 
@@ -433,7 +440,7 @@ sudo journalctl -u graftnoded.service -af
 sudo nano /etc/systemd/system/graft-supernode@.service
 ````
 
-- Input below text into the new file <change graft to your user (find this out by using "whoami" command or "echo $USER")>:
+- Input below text into the new file <change graft (Inside the User field and in WorkingDirectory and after /home/ in the ExecStart field) to your user (find this out by using "whoami" command or "echo $USER")>:
 
 Note: If you use the exact below systemd file, ensure you did create the log file directories as the linked section here [**Supernode**](#supernode)
 
@@ -447,7 +454,7 @@ User=graft
 Type=simple
 WorkingDirectory=/home/graft/%i
 Restart=always
-ExecStart=/home/graft/%i/supernode --config-file config.ini --log-file /home/graft/%i/logs/%i.log
+ExecStart=/home/graft/graftsupernode/supernode --config-file config.ini --log-file /home/graft/%i/logs/%i.log --log-level 1
 Environment=TERM=xterm
 #LimitNOFILE=8192
 
@@ -760,11 +767,11 @@ This should be enough to allow you a general understanding of tmux and its usage
 
 #### Checking if your supernode is running as expected
 
-Locally on the machine supernode is running on:
+Locally on the machine supernode is running on (run in terminal on the local machine):
 ````
-http://127.0.0.1:28690/debug/supernode_list/1
+curl 127.0.0.1:28690/debug/supernode_list/1
 ````
-From external (from your home pc to your VPS for example):
+From external (from your home pc to your VPS for example, insert in browser):
 Note: All shown < and > should not be used in the related commands
 ````
 http://<Your_Server_IP>:28690/debug/supernode_list/1
@@ -773,7 +780,7 @@ The above commands show all supernodes that your supernode has picked up, in ord
 
 Like:
 ````
-http://Your_Server_IP:28690/debug/supernode_list/0
+curl Your_Server_IP:28690/debug/supernode_list/0
 ````
 #### Checking logs
 CHecking graftnoded logs
@@ -831,6 +838,17 @@ Step 5:
 	- Testnet: 28881  
 
 If you can tick all these boxes then you can be pretty sure your supernode setup is ok and just give it some time to show on the bot.
+
+# Upgrading
+
+### Upgrading GraftNetwork
+
+- Follow the relevant section in the guide relating to [**GraftNetwork**](#graftnetwork-1) using the latest versions download link. Ensure you perform the last step ([**Hard Linking GraftNetwork**](#hard-linking-graftnetwork)) using the directory from your latest download.
+
+### Upgrading Supernode
+
+- Follow the relevant section in the guide relating to [**GraftNetwork**](#graftnetwork-1) using the latest versions download link. Ensure you perform the last step ([**Hard Linking Supernode**](#hard-linking-supernode)) using the directory from your latest download.
+
 
 #### Please send me a telegram message if you have suggestions or feel free to fork the graft community docs and add your additions to this doc, it will be appreciated and welcomed.
 
