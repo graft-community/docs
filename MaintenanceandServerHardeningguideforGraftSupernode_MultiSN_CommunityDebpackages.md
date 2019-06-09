@@ -847,7 +847,7 @@ If you can tick all these boxes then you can be pretty sure your supernode setup
 
 ### Upgrading Supernode
 
-- Follow the relevant section in the guide relating to [**GraftNetwork**](#graftnetwork-1) using the latest versions download link. Ensure you perform the last step ([**Hard Linking Supernode**](#hard-linking-supernode)) using the directory from your latest download.
+- Follow the relevant section in the guide relating to [**GraftNetwork**](#supernode) using the latest versions download link. Ensure you perform the last step ([**Hard Linking Supernode**](#hard-linking-supernode)) using the directory from your latest download.
 
 
 #### Please send me a telegram message if you have suggestions or feel free to fork the graft community docs and add your additions to this doc, it will be appreciated and welcomed.
