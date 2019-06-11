@@ -330,13 +330,14 @@ Note if you already have existing directories do not do the below,
 
 - Section 1 - Setting up from scratch
 ````
-cp -r ~/graftsupernode/ ~/sn1/config.ini
+cp -r ~/graftsupernode/config.ini ~/sn1/config.ini
 
-cp -r ~/graftsupernode/ ~/sn2/config.ini
+cp -r ~/graftsupernode/config.ini ~/sn2/config.ini
 
-cp -r ~/graftsupernode/ ~/sn3/config.ini
+cp -r ~/graftsupernode/config.ini ~/sn3/config.ini
 ````
 - **Create Our logs Folders**
+
 ````
 mkdir -p ~/sn1/logs
 ````
