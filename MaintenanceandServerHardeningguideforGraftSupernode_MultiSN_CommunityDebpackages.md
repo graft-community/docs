@@ -239,7 +239,7 @@ Note: The link below will change as newer releases are published, please find th
 sudo apt install wget
 ````
 ````
-cd && wget https://github.com/graft-project/GraftNetwork/releases/download/v1.8.1/GraftNetwork_1.8.1-ubuntu-18.04-x64.tar.gz
+cd && wget https://github.com/graft-project/GraftNetwork/releases/download/v1.8.4/GraftNetwork_1.8.4_ubuntu-18.04.x64.tar.gz
 ````
 - When we untar these files we use the file name that is shown when we pass 'ls' in the terminal. It will be the last section of the above link we used in the download.
 
@@ -247,18 +247,18 @@ Now we check for the file that we downloaded
 ````
 ls
 ````
-- We should see "GraftNetwork_1.8.1-ubuntu-18.04-x64.tar.gz" which is the downloaded file.
+- We should see "GraftNetwork_1.8.4_ubuntu-18.04.x64.tar.gz" which is the downloaded file.
 - Now we decompress the file.
 ````
-tar -zxvf GraftNetwork_1.8.1-ubuntu-18.04-x64.tar.gz
+tar -zxvf GraftNetwork_1.8.4_ubuntu-18.04.x64.tar.gz
 ````
 - Now we can delete the compressed file
 ````
-rm GraftNetwork_1.8.1-ubuntu-18.04-x64.tar.gz
+rm GraftNetwork_1.8.4_ubuntu-18.04.x64.tar.gz
 ````
 - Now we cd into the directory after we decompressed the downloaded file.
 ````
-cd GraftNetwork_1.8.1
+cd GraftNetwork_1.8.4_ubuntu-18.04.x64
 ````
 - Now lets check what the contents of the file looks like.
 ````
@@ -284,7 +284,7 @@ cd
 Then:
 
 ````
-ln -snf ~/GraftNetwork_1.8.1 ~/graftnetwork
+ln -snf ~/GraftNetwork_1.8.4_ubuntu-18.04.x64 ~/graftnetwork
 ````
 
 - Now if you run 'ls' in the terminal you will see a "Folder" like graftnetwork now shows in the home directory.
