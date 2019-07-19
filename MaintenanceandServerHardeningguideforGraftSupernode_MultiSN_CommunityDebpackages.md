@@ -239,7 +239,7 @@ Note: The link below will change as newer releases are published, please find th
 sudo apt install wget
 ````
 ````
-cd && wget https://github.com/graft-project/GraftNetwork/releases/download/v1.8.1/GraftNetwork_1.8.1-ubuntu-18.04-x64.tar.gz
+cd && wget https://github.com/graft-project/GraftNetwork/releases/download/v1.8.4/GraftNetwork_1.8.4_ubuntu-18.04.x64.tar.gz
 ````
 - When we untar these files we use the file name that is shown when we pass 'ls' in the terminal. It will be the last section of the above link we used in the download.
 
@@ -247,18 +247,18 @@ Now we check for the file that we downloaded
 ````
 ls
 ````
-- We should see "GraftNetwork_1.8.1-ubuntu-18.04-x64.tar.gz" which is the downloaded file.
+- We should see "GraftNetwork_1.8.4_ubuntu-18.04.x64.tar.gz" which is the downloaded file.
 - Now we decompress the file.
 ````
-tar -zxvf GraftNetwork_1.8.1-ubuntu-18.04-x64.tar.gz
+tar -zxvf GraftNetwork_1.8.4_ubuntu-18.04.x64.tar.gz
 ````
 - Now we can delete the compressed file
 ````
-rm GraftNetwork_1.8.1-ubuntu-18.04-x64.tar.gz
+rm GraftNetwork_1.8.4_ubuntu-18.04.x64.tar.gz
 ````
 - Now we cd into the directory after we decompressed the downloaded file.
 ````
-cd GraftNetwork_1.8.1
+cd GraftNetwork_1.8.4_ubuntu-18.04.x64
 ````
 - Now lets check what the contents of the file looks like.
 ````
@@ -274,10 +274,19 @@ graft-gen-trusted-multisig
 - Ok now lets start setting up so we can our lives easier in running a supernode. Change 'GraftNetwork_1.8.1-ubuntu-18.04-x64' to align with what you downloaded and decompressed in prior steps.
 - Below we create a link to the binaries folder so that we can constantly use the same commands even after we upgrade and have a different folder directory.
 #### Hard linking GraftNetwork
+
+To take you back to your users "home" directory, do:
+
 ````
 cd
-ln -snf GraftNetwork_1.8.1 graftnetwork
 ````
+
+Then:
+
+````
+ln -snf ~/GraftNetwork_1.8.4_ubuntu-18.04.x64 ~/graftnetwork
+````
+
 - Now if you run 'ls' in the terminal you will see a "Folder" like graftnetwork now shows in the home directory.
 - This will alow us to access the graft binaries with cd ~/graftnetwork and allow us to form some sort of order when it comes to upgrading to later releases which we will address later in the guide.
 
@@ -319,14 +328,28 @@ Now we setup a hardlink to our supernode download folder called graftsupernode, 
 
 #### Hard linking Supernode
 
+To take you back to your users "home" directory, do:
+
 ````
-ln -snf supernode.1.0.4.ubuntu-18.04.x64 graftsupernode
+cd
+````
+
+Then:
+
+````
+ln -snf ~/supernode.1.0.4.ubuntu-18.04.x64 ~/graftsupernode
 ````
 
 ## Setting up our folder structure for Multiple Supernodes
 
 - **Copy graftsupernode contents and create sn directories**
-Note if you already have existing directories do not do the below,
+Note if you already have existing directories do not do the below.
+
+To take you back to your users "home" directory, do:
+
+````
+cd
+````
 
 - Section 1 - Setting up from scratch
 ````
